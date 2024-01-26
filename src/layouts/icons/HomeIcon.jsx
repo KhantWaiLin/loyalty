@@ -6,7 +6,7 @@ export default (
     fill="#667085"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g id="fi-sr-home" clip-path="url(#clip0_456_1461)">
+    <g id="fi-sr-home" clipPath="url(#clip0_456_1461)">
       <g id="Group">
         <path
           id="Vector"
@@ -36,8 +36,8 @@ export default (
         y2="23.6745"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#384BCA" />
-        <stop offset="1" stop-color="#7B8CFF" />
+        <stop stopColor="#384BCA" />
+        <stop offset="1" stopColor="#7B8CFF" />
       </linearGradient>
       <linearGradient
         id="paint1_linear_456_1461"
@@ -47,8 +47,8 @@ export default (
         y2="40.6174"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#384BCA" />
-        <stop offset="1" stop-color="#7B8CFF" />
+        <stop stopColor="#384BCA" />
+        <stop offset="1" stopColor="#7B8CFF" />
       </linearGradient>
       <linearGradient
         id="paint2_linear_456_1461"
@@ -58,8 +58,8 @@ export default (
         y2="23.6745"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#384BCA" />
-        <stop offset="1" stop-color="#7B8CFF" />
+        <stop stopColor="#384BCA" />
+        <stop offset="1" stopColor="#7B8CFF" />
       </linearGradient>
       <clipPath id="clip0_456_1461">
         <rect width="20" height="20" fill="white" transform="translate(0.5)" />

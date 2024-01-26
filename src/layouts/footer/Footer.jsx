@@ -20,7 +20,7 @@ const Footer = () => {
   ];
 
   return (
-    <div className="footer-wrapper w-full flex justify-between absolute py-2 px-4 pb-[34px] bottom-0">
+    <div className="footer-wrapper w-full flex justify-between z-10 absolute py-2 px-4 pb-[34px] bottom-0">
       {buttons.map((button) => (
         <FooterButton
           key={button.route}

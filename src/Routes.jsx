@@ -1,9 +1,10 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
+
 import Profile from "./pages/Profile";
 import QR from "./pages/QR";
 import Reward from "./pages/Reward";
 import RewardDetail from "./pages/RewardDetail";
+import Home from "./pages/home/Home";
 
 const Routers = () => {
   return (
