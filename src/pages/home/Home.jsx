@@ -17,7 +17,7 @@ import "./Home.scss";
 
 const Home = () => {
   return (
-    <div className="home-wrapper text-black-500 text-lg p-4 w-full overflow-scroll">
+    <div className="home-wrapper p-4 w-full overflow-scroll">
       <div className="flex justify-end  pb-4">
         <Noti />
       </div>

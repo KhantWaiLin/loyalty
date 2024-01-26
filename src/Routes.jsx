@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 
 import Profile from "./pages/Profile";
 import QR from "./pages/QR";
-import Reward from "./pages/Reward";
+import Reward from "./pages/reward/Reward";
 import RewardDetail from "./pages/RewardDetail";
 import Home from "./pages/home/Home";
 

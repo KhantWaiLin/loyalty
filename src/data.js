@@ -38,3 +38,12 @@ export const service_data = [
   { name: "Service 3", desc: "Service Description 3" },
   { name: "Service 4", desc: "Service Description 4" },
 ];
+
+export const reward_data = [
+  { name: "Reward 1", desc: "Reward Description 1" },
+  { name: "Reward 2", desc: "Reward Description 2" },
+  { name: "Reward 3", desc: "Reward Description 3" },
+  { name: "Reward 4", desc: "Reward Description 4" },
+  { name: "Reward 5", desc: "Reward Description 5" },
+  { name: "Reward 6", desc: "Reward Description 6" },
+];
