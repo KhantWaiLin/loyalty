@@ -1,13 +1,14 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import routes from "./Routes";
+import { BrowserRouter as Router } from "react-router-dom";
 import Layout from "./layouts/Layout";
+import Routers from "./Routes";
 
 function App() {
-  const routers = createBrowserRouter(routes);
   return (
-    <Layout>
-      <RouterProvider router={routers} />
-    </Layout>
+    <Router>
+      <Layout>
+        <Routers />
+      </Layout>
+    </Router>
   );
 }
 
