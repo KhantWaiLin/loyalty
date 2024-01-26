@@ -9,6 +9,10 @@ const Routers = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/qr" element={<QR />} />
+      <Route path="/reward" element={<Reward />} />
+      <Route path="/reward/:id" element={<RewardDetail />} />
     </Routes>
   );
 };
