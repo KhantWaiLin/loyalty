@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 
@@ -14,8 +14,25 @@ import PromotionCard from "../../components/PromotionCard";
 import BlogCard from "../../components/BlogCard";
 
 import "./Home.scss";
+import api from "../../api/api";
 
 const Home = () => {
+  const promotion_url = "/api/Customer/GetPromotionListByBrandId";
+
+  const get_data = async () => {
+    const auth_data = localStorage.getItem("authenticate_data");
+    let brand_id;
+    if (auth_data) {
+      const parsed_data = JSON.parse(auth_data);
+      brand_id = parsed_data?.brandId;
+    }
+    await api.postByBody(promotion_url, { brandId: brand_id });
+  };
+
+  useEffect(() => {
+    get_data();
+  }, []);
+
   return (
     <div className="home-wrapper p-4 w-full overflow-scroll">
       <div className="flex justify-end  pb-4">
