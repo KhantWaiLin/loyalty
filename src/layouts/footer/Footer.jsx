@@ -13,7 +13,7 @@ import "./Footer.scss";
 const Footer = () => {
   const navigate = useNavigate();
   const buttons = [
-    { label: "Home", route: "/", icon: Home },
+    { label: "Home", route: "/home", icon: Home },
     { label: "QR", route: "/qr", icon: QR },
     { label: "Reward", route: "/reward", icon: Reward },
     { label: "Profile", route: "/profile", icon: User },
@@ -24,7 +24,7 @@ const Footer = () => {
       {buttons.map((button) => (
         <FooterButton
           key={button.route}
-          isActive={window.location.pathname === button.route}
+          isActive={window.location.pathname.includes(button.route)}
           label={button.label}
           icon={button.icon}
           onClick={() => {

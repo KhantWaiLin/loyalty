@@ -40,10 +40,10 @@ export const service_data = [
 ];
 
 export const reward_data = [
-  { name: "Reward 1", desc: "Reward Description 1" },
-  { name: "Reward 2", desc: "Reward Description 2" },
-  { name: "Reward 3", desc: "Reward Description 3" },
-  { name: "Reward 4", desc: "Reward Description 4" },
-  { name: "Reward 5", desc: "Reward Description 5" },
-  { name: "Reward 6", desc: "Reward Description 6" },
+  { id: 1, name: "Reward 1", desc: "Reward Description 1" },
+  { id: 2, name: "Reward 2", desc: "Reward Description 2" },
+  { id: 3, name: "Reward 3", desc: "Reward Description 3" },
+  { id: 4, name: "Reward 4", desc: "Reward Description 4" },
+  { id: 5, name: "Reward 5", desc: "Reward Description 5" },
+  { id: 6, name: "Reward 6", desc: "Reward Description 6" },
 ];
