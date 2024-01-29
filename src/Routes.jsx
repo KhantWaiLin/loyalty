@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import QR from "./pages/QR";
-import QRScanner from './pages/QRScanner';
-import BlogDetail from "./pages/BlogDetail";
+import QR from "./pages/QR/QR";
+import QRScanner from './pages/QR/QRScanner';
+import BlogDetail from "./pages/Blog/BlogDetail";
 import Reward from "./pages/Reward";
 import RewardDetail from "./pages/RewardDetail";
 
