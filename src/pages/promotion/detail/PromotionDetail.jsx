@@ -3,10 +3,11 @@ import Footer from "../../../layouts/Footer";
 import PromotionDetailBody from "./components/PromotionDetailBody";
 
 function PromotionDetail() {
-  const promotionURL = "https://loyaltybim.azurewebsites.net/api/Admin/GetPromotionDetail";
+  const promotionURL =
+    "https://loyaltybim.azurewebsites.net/api/Admin/GetPromotionDetail";
 
   console.log(promotionURL);
-  
+
   return (
     <main className="flex flex-col h-full ">
       <header className="py-3 basis-1/12">
