@@ -45,6 +45,18 @@ const like_and_comment = {
   left: '38%',
 }
 
+const blog_content = {
+  position: 'absolute',
+  top: '330px',
+  left: '38%',
+  textIndent: '50px',
+  textAlign: 'justify',
+  width: '24%',
+  height: '270px',
+  border: '1px solid #ccc',
+  overflow: 'auto',
+}
+
 const BlogDetail = () => {
 
   const [likes, setLikes] = React.useState(0);
@@ -73,6 +85,9 @@ const BlogDetail = () => {
       <div style={title_style}>Title</div>
       <div style={date_style}>September 7, 2024</div>
       <img style={image} src='abc.png' />
+      <div style={blog_content}>
+        LoLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsumrem
+      </div>
       <div style={like_and_comment}>
         <button onClick={handleLike}>
           Like {likes} {likes !== 1 ? 'Likes' : 'Like'}
@@ -84,18 +99,18 @@ const BlogDetail = () => {
             placeholder="Add a comment..."
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
-          /><br/>
+          /><br />
           <button onClick={handleAddComment}>Comment</button>
         </div>
 
-        <div>
+        {/* <div>
           <h3>Comments:</h3>
           <ul>
             {comments.map((comment, index) => (
               <li key={index}>{comment}</li>
             ))}
           </ul>
-        </div>
+        </div> */}
       </div>
     </div>
   );
