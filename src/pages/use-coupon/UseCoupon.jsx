@@ -4,7 +4,7 @@ function UseCoupon() {
   return (
     <main className="flex items-center justify-center h-full">
       <section className="p-1 border-2 border-black rounded-lg size-80">
-        <form className="flex flex-col w-full px-4 ">
+        <form className="flex flex-col h-full px-4 ">
           <div className="flex items-center basis-1/4">
             <h1>Modal</h1>
           </div>
