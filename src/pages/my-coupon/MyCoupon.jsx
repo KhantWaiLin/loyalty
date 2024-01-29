@@ -9,14 +9,23 @@ function MyCoupon() {
         </section>
         <section className="px-2 basis-1/12">
             <ul className="flex items-center justify-between w-1/2 h-full">
-                <li>Available</li>
-                <li>Used</li>
-                <li>Expired</li>
+                <li>
+                    <button>Available</button>
+                </li>
+                <li>
+                    <button>Used</button>
+                </li>
+                <li>
+                    <button>Expired</button>
+                </li>
             </ul>
         </section>
         <section className="px-2 basis-9/12">
             <ul className="mt-1">
-                <MyCouponList/>
+                <MyCouponList name="Redeem Product"/>
+                <MyCouponList name="Coupon Code"/>
+                <MyCouponList name="Redeem Product"/>
+                <MyCouponList name="Coupon Code"/>
             </ul>
         </section>
         <section className="basis-1/12">
