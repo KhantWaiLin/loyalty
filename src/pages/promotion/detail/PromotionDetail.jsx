@@ -3,19 +3,23 @@ import Footer from "../../../layouts/Footer";
 import PromotionDetailBody from "./components/PromotionDetailBody";
 
 function PromotionDetail() {
+  const promotionURL = "https://loyaltybim.azurewebsites.net/api/Admin/GetPromotionDetail";
+
+  console.log(promotionURL);
+  
   return (
-    <main className="flex border-2 border-green-700 h-full flex-col">
-      <header className="basis-1/12 py-3">
-        <section className="h-full flex">
-          <article className="basis-1/3 flex justify-center items-center">
-            <button className="border-2 rounded-full px-4 py-2">Back</button>
+    <main className="flex flex-col h-full ">
+      <header className="py-3 basis-1/12">
+        <section className="flex h-full">
+          <article className="flex items-center justify-center basis-1/3">
+            <button className="px-4 py-2 border-2 rounded-full">Back</button>
           </article>
-          <article className="basis-2/3 flex ps-2 items-center">
+          <article className="flex items-center basis-2/3 ps-2">
             <h1>Promotion Detail</h1>
           </article>
         </section>
       </header>
-      <section className="bg-red-400 basis-10/12 flex flex-col">
+      <section className="flex flex-col basis-10/12">
         <PromotionDetailBody />
       </section>
       <section className="basis-1/12">
