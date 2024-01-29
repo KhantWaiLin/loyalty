@@ -21,7 +21,7 @@ const Home = () => {
       <div className="flex justify-end  pb-4">
         <Noti />
       </div>
-      <div className="flex  gap-4 mb-5">
+      <div className="flex gap-4 mb-5">
         <div className="w-[305px] h-[80px]">
           <PointTotal />
         </div>
@@ -68,7 +68,6 @@ const Home = () => {
         <Swiper
           grabCursor={true}
           loop={true}
-          autoplay={true}
           modules={[Autoplay]}
           className="w-full"
         >

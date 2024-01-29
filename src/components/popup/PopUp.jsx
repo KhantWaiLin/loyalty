@@ -8,7 +8,7 @@ const PopUp = ({ title, desc, onClick }) => {
       onClick={() => onClick(false)}
     >
       <div className="popup-container p-4 bg-white z-20 border-black border-[1px] rounded-lg">
-        <h1 className="text-[22px]">{title}</h1>
+        <h1 className="text-[22px] font-bold mb-4">{title}</h1>
         <p className="mb-4">{desc}</p>
         <div className="flex gap-5 justify-end items-center">
           <button

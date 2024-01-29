@@ -22,8 +22,6 @@ const RewardDetail = () => {
     getDetail(id);
   }, [id]);
 
-  console.log(data);
-
   const onClick = (is_ok) => {
     console.log(is_ok);
     setShowPopup(false);
@@ -63,21 +61,16 @@ const RewardDetail = () => {
       </div>
       <div className="flex justify-between mb-4">
         <h1 className="text-[24px]">{data?.name}</h1>
-        <h1 className="text-[24px]">Price</h1>
+        <h1 className="text-[24px]">price: {data?.price}</h1>
       </div>
       <div className="w-full flex flex-wrap mb-8">
-        <p>
-          Lorem ipsum dolor sit amet consectetur. Tellus neque vestibulum
-          commodo non nibh quisque. Cursus tristique ac tellus in blandit
-          vivamus quis. Pellentesque consequat urna hac est iaculis sit vitae
-          ornare. Nisi et eu arcu malesuada viverra enim.
-        </p>
+        <p className="flex text-justify">{data?.desc}</p>
       </div>
       <div className="flex w-full justify-center items-center">
         <button
           type="button"
           onClick={() => setShowPopup(true)}
-          className="flex p-4 text-[23px] bg-gray-200 rounded-lg"
+          className="flex p-4 text-[23px] bg-blue-400 rounded-lg text-white"
         >
           Redeem
         </button>
