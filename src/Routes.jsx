@@ -13,6 +13,8 @@ import ServiceDetail from "./pages/service/ServiceDetail";
 import MyCoupon from "./pages/my-coupon/MyCoupon";
 import PromotionDetail from "./pages/promotion/detail/PromotionDetail";
 import PromotionList from "./pages/promotion/list/PromotionList";
+import UseCoupon from "./pages/use-coupon/UseCoupon";
+
 
 const Routers = () => {
   return (
@@ -30,6 +32,7 @@ const Routers = () => {
       <Route path="/my-coupon" element={<MyCoupon />} />
       <Route path="/promotion-detail/:promotionId" element={<PromotionDetail />} />
       <Route path="/promotion-list" element={<PromotionList />} />
+      <Route path="/use-coupon" element={<UseCoupon />} />
     </Routes>
   );
 };
