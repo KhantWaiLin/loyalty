@@ -9,6 +9,7 @@ import Login from "./pages/login/Login";
 import QRScanner from "./pages/qr/QRScanner";
 import BlogDetail from "./pages/blog/BlogDetail";
 import ServiceList from "./pages/service/ServiceList";
+import ServiceDetail from "./pages/service/ServiceDetail";
 
 const Routers = () => {
   return (
@@ -17,9 +18,10 @@ const Routers = () => {
       <Route path="/home" element={<Home />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/qr" element={<QR />} />
-      <Route path="/scanner" element={<QRScanner/>} />
-      <Route path="/blog/:id" element={<BlogDetail/>} />
-      <Route path="/servicelist" element={<ServiceList/>} />
+      <Route path="/scanner" element={<QRScanner />} />
+      <Route path="/blog/:id" element={<BlogDetail />} />
+      <Route path="/servicelist" element={<ServiceList />} />
+      <Route path="/service/:id" element={<ServiceDetail />} />
       <Route path="/reward" element={<Reward />} />
       <Route path="/reward/:id" element={<RewardDetail />} />
     </Routes>

@@ -100,12 +100,13 @@ const Home = () => {
       <div className="flex flex-col">
         <div className="flex justify-between mb-5">
           <h1 className="text-black font-medium text-[16px]">Services</h1>
-          <button
+          <a
             type="button"
             className="text-blue-500 font-normal text-[14px]"
+            href="/servicelist"
           >
             View all
-          </button>
+          </a>
         </div>
         <Swiper
           grabCursor={true}
