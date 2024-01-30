@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-import "./RewardDetail.scss";
-import { reward_data } from "../../data";
 import PopUp from "../../components/popup/PopUp";
+import Loader from "../../components/loader/Loader";
+
+import api from "../../api/api";
+import { api_routes } from "../../utils/apiRoute";
+import { getUserBrandMemberId } from "../../utils/getBrandUserId";
+
+import "./RewardDetail.scss";
 
 const RewardDetail = () => {
   const { id } = useParams();
@@ -12,14 +17,24 @@ const RewardDetail = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const getDetail = (id) => {
+  const { reward_list } = api_routes;
+
+  const get_detail = async (id) => {
     setIsLoading(true);
-    setData(reward_data.find((item) => item.id === parseInt(id)));
+    const { brand_id } = getUserBrandMemberId();
+    await api
+      .postByBody(reward_list, { brandId: brand_id })
+      .then((response) => {
+        setData(
+          response?.data?.value?.data?.data?.find((item) => item.id === id)
+        );
+      });
     setIsLoading(false);
   };
 
   useEffect(() => {
-    getDetail(id);
+    get_detail(id);
+    // eslint-disable-next-line
   }, [id]);
 
   const onClick = (is_ok) => {
@@ -28,7 +43,11 @@ const RewardDetail = () => {
   };
 
   if (isLoading) {
-    return <div>Loading ...</div>;
+    return (
+      <div className="reward-detail items-center flex flex-col justify-center">
+        <Loader />
+      </div>
+    );
   }
 
   return (
@@ -51,7 +70,13 @@ const RewardDetail = () => {
         <h1 className="flex-1 flex items-center text-[28px]">Reward Detail</h1>
       </div>
       <div className="flex flex-col gap-5 mb-4">
-        <div className="w-full  bg-gray-300 h-[211px]" />
+        <div className="w-full  bg-gray-300 h-[211px]">
+          <img
+            src={data?.image}
+            alt="detail-img"
+            className=" w-full h-full object-contain"
+          />
+        </div>
         <div className="flex justify-between">
           <button className="bg-gray-300 p-3 rounded-md">Button 1</button>
           <button className="bg-gray-300 p-3 rounded-md">Button 2</button>
@@ -60,11 +85,13 @@ const RewardDetail = () => {
         </div>
       </div>
       <div className="flex justify-between mb-4">
-        <h1 className="text-[24px]">{data?.name}</h1>
-        <h1 className="text-[24px]">price: {data?.price}</h1>
+        <h1 className="text-[18px] font-medium">{data?.name}</h1>
+        <h1 className="text-[18px] font-medium">
+          price: {data?.pointRequired}
+        </h1>
       </div>
       <div className="w-full flex flex-wrap mb-8">
-        <p className="flex text-justify">{data?.desc}</p>
+        <p className="flex text-justify">{data?.description}</p>
       </div>
       <div className="flex w-full justify-center items-center">
         <button

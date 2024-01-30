@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 
-import Profile from "./pages/Profile";
+import Profile from "./pages/profile/Profile";
 import QR from "./pages/qr/QR";
 import Reward from "./pages/reward/Reward";
 import RewardDetail from "./pages/reward_detail/RewardDetail";
@@ -15,6 +15,9 @@ import PromotionDetail from "./pages/promotion/detail/PromotionDetail";
 import PromotionList from "./pages/promotion/list/PromotionList";
 import UseCoupon from "./pages/use-coupon/UseCoupon";
 
+import PersonalInformation from "./pages/profile/personal_information/PersonalInformation";
+import TransactionHistory from "./pages/profile/transaction_history/TransactionHistory";
+import MemberTireLevel from "./pages/profile/membership_tire_level/MemberTireLevel";
 
 const Routers = () => {
   return (
@@ -22,6 +25,23 @@ const Routers = () => {
       <Route path="/" element={<Login />} />
       <Route path="/home" element={<Home />} />
       <Route path="/profile" element={<Profile />} />
+      <Route
+        path="/profile/personal-information"
+        element={<PersonalInformation />}
+      />
+      <Route
+        path="/profile/transaction-history"
+        element={<TransactionHistory />}
+      />
+      <Route
+        path="/profile/transaction-history"
+        element={<TransactionHistory />}
+      />
+      <Route
+        path="/profile/membership-tire-level"
+        element={<MemberTireLevel />}
+      />
+
       <Route path="/qr" element={<QR />} />
       <Route path="/scanner" element={<QRScanner />} />
       <Route path="/blog/:id" element={<BlogDetail />} />

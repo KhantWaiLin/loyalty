@@ -11,7 +11,6 @@ const Login = () => {
   });
   const api_url =
     process.env.REACT_APP_API_URL + "/api/Authentication/Authenticate";
-  console.log(api_url);
   const onChange = (e) => {
     const { name, value } = e.target;
     setForm(() => {
@@ -21,7 +20,6 @@ const Login = () => {
       };
     });
   };
-  console.log(form);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -55,6 +53,7 @@ const Login = () => {
             <input
               name="password"
               value={form.password}
+              autoComplete="false"
               type="password"
               className="p-1 rounded-sm"
               onChange={onChange}
