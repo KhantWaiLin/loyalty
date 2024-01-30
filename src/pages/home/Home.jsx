@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
+import { useNavigate } from "react-router-dom";
 
 import Noti from "../../components/Noti";
 import PointTotal from "../../components/PointTotal";
 import Cupon from "../../components/Cupon";
+import PromotionCard from "../../components/PromotionCard";
+import BlogCard from "../../components/BlogCard";
+
+import api from "../../api/api";
+import { api_routes } from "../../utils/apiRoute";
+import { getUserBrandId } from "../../utils/getBrandUserId";
 
 import { blog_data, service_data } from "../../data";
 
 import "swiper/css";
 import "swiper/css/navigation";
-import PromotionCard from "../../components/PromotionCard";
-import BlogCard from "../../components/BlogCard";
-
 import "./Home.scss";
-import api from "../../api/api";
-import { api_routes } from "../../utils/apiRoute";
-import { useNavigate } from "react-router-dom";
+
+
 
 const Home = () => {
   const navigate = useNavigate();
@@ -28,14 +31,7 @@ const Home = () => {
 
   const get_data = async () => {
     setIsLoading(true);
-    const auth_data = localStorage.getItem("authenticate_data");
-    let brand_id;
-    let user_id;
-    if (auth_data) {
-      const parsed_data = JSON.parse(auth_data);
-      brand_id = parsed_data?.brandId;
-      user_id = parsed_data?.memberID;
-    }
+    const { brand_id, user_id } = getUserBrandId();
     await api
       .get(get_member_info, { brandId: brand_id, userId: user_id })
       .then((response) => {
@@ -53,8 +49,6 @@ const Home = () => {
     get_data();
     // eslint-disable-next-line
   }, []);
-
-  console.log(promotionData);
 
   if (isLoading) {
     return <div>Loading ...</div>;
