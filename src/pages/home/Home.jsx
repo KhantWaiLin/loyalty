@@ -19,8 +19,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "./Home.scss";
 
-
-
 const Home = () => {
   const navigate = useNavigate();
   const [pointData, setPointData] = useState(null);
@@ -47,6 +45,7 @@ const Home = () => {
 
   useEffect(() => {
     get_data();
+    console.log("running");
     // eslint-disable-next-line
   }, []);
 
@@ -133,9 +132,7 @@ const Home = () => {
           </button>
         </div>
         <Swiper
-          grabCursor={true}
           loop={true}
-          autoplay={true}
           modules={[Autoplay]}
           className="w-full"
         >

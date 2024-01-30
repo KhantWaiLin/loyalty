@@ -18,7 +18,7 @@ const RewardDetail = () => {
 
   const { reward_list } = api_routes;
 
-  const getDetail = async (id) => {
+  const get_detail = async (id) => {
     setIsLoading(true);
     const { brand_id } = getUserBrandId();
     await api
@@ -32,7 +32,7 @@ const RewardDetail = () => {
   };
 
   useEffect(() => {
-    getDetail(id);
+    get_detail(id);
     // eslint-disable-next-line
   }, [id]);
 

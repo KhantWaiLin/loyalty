@@ -11,7 +11,7 @@ const RewardCard = ({ reward, onClick }) => {
           <img
             src={reward.image}
             alt="reward-img"
-            className="w-[80%] object-contain mb-2"
+            className="w-[80%] h-[100px] object-contain mb-2"
           />
         </div>
       )}
