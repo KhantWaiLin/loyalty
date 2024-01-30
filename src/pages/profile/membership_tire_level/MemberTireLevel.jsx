@@ -16,7 +16,6 @@ const MemberTireLevel = () => {
     setIsLoading(true);
     await api.get(member_tire_level, { brandId: brand_id }).then((response) => {
       setData(response?.data?.value?.data);
-      // eslint-disable-next-line
     });
     setIsLoading(false);
   };
