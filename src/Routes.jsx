@@ -8,6 +8,7 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import QRScanner from "./pages/qr/QRScanner";
 import BlogDetail from "./pages/blog/BlogDetail";
+import ServiceList from "./pages/service/ServiceList";
 
 const Routers = () => {
   return (
@@ -18,6 +19,7 @@ const Routers = () => {
       <Route path="/qr" element={<QR />} />
       <Route path="/scanner" element={<QRScanner/>} />
       <Route path="/blog/:id" element={<BlogDetail/>} />
+      <Route path="/servicelist" element={<ServiceList/>} />
       <Route path="/reward" element={<Reward />} />
       <Route path="/reward/:id" element={<RewardDetail />} />
     </Routes>
