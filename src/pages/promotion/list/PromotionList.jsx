@@ -26,7 +26,7 @@ function PromotionList({promotionList}) {
           Authorization: `Bearer ${token}`
         },
         body: JSON.stringify(data)
-      }).then(response => response.json()).then(result => setPromotionData(result.value.data));
+      }).then(response => response.json()).then(result => setPromotionData(result.value));
     }
 
   }, [token]);
@@ -50,7 +50,7 @@ function PromotionList({promotionList}) {
   let promotionListData = "";
 
   if (promotionData) {
-    promotionListData = promotionData.data;
+    promotionListData = promotionData.data.data;
   } else {
     return null;
   }

@@ -11,7 +11,7 @@ const Routers = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/promotion-detail" element={<PromotionDetail />} />
+      <Route path="/promotion-detail/:promotionId" element={<PromotionDetail />} />
       <Route path="/promotion-list" element={<PromotionList />} />
     </Routes>
   );
