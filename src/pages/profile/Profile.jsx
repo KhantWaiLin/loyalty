@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
-import { getUserBrandId } from "../../utils/getBrandUserId";
+import { getUserBrandMemberId } from "../../utils/getBrandUserId";
+
 
 import "./Profile.scss";
 
@@ -40,7 +41,7 @@ const Profile = () => {
   const navigate = useNavigate();
 
   const { get_member_info } = api_routes;
-  const { brand_id, user_id } = getUserBrandId();
+  const { brand_id, user_id } = getUserBrandMemberId();
 
   const get_profile_detail = async () => {
     setIsLoading(true);

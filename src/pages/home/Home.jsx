@@ -11,13 +11,14 @@ import BlogCard from "../../components/BlogCard";
 
 import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
-import { getUserBrandId } from "../../utils/getBrandUserId";
+import { getUserBrandMemberId } from "../../utils/getBrandUserId";
 
 import { blog_data, service_data } from "../../data";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "./Home.scss";
+
 
 const Home = () => {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ const Home = () => {
 
   const get_data = async () => {
     setIsLoading(true);
-    const { brand_id, user_id } = getUserBrandId();
+    const { brand_id, user_id } = getUserBrandMemberId();
     await api
       .get(get_member_info, { brandId: brand_id, userId: user_id })
       .then((response) => {

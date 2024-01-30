@@ -3,9 +3,9 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import PopUp from "../../components/popup/PopUp";
 
-import { getUserBrandId } from "../../utils/getBrandUserId";
 import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
+import { getUserBrandMemberId } from "../../utils/getBrandUserId";
 
 import "./RewardDetail.scss";
 
@@ -20,7 +20,7 @@ const RewardDetail = () => {
 
   const get_detail = async (id) => {
     setIsLoading(true);
-    const { brand_id } = getUserBrandId();
+    const { brand_id } = getUserBrandMemberId();
     await api
       .postByBody(reward_list, { brandId: brand_id })
       .then((response) => {

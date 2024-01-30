@@ -53,6 +53,7 @@ const Login = () => {
             <input
               name="password"
               value={form.password}
+              autoComplete="false"
               type="password"
               className="p-1 rounded-sm"
               onChange={onChange}

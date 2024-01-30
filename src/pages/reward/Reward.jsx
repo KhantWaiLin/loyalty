@@ -5,13 +5,13 @@ import RewardCard from "../../components/RewardCard";
 
 import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
-import { getUserBrandId } from "../../utils/getBrandUserId";
+import { getUserBrandMemberId } from "../../utils/getBrandUserId";
 
 import "./Reward.scss";
 
 const Reward = () => {
   const [rewardData, setRewardData] = useState(null);
-  const [isLoading,setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const onClick = (item) => {
@@ -22,10 +22,12 @@ const Reward = () => {
 
   const get_reward_list = async () => {
     setIsLoading(true);
-    const { brand_id } = getUserBrandId();
-    await api.postByBody(reward_list, { brandId: brand_id }).then((response) => {
-      setRewardData(response?.data?.value?.data?.data);
-    });
+    const { brand_id } = getUserBrandMemberId();
+    await api
+      .postByBody(reward_list, { brandId: brand_id })
+      .then((response) => {
+        setRewardData(response?.data?.value?.data?.data);
+      });
     setIsLoading(false);
   };
 
@@ -34,8 +36,8 @@ const Reward = () => {
     // eslint-disable-next-line
   }, []);
 
-  if(isLoading){
-    return <div>Loading...</div>
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
   return (
