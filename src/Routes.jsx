@@ -4,6 +4,7 @@ import Profile from "./pages/Profile";
 import QR from "./pages/QR/QR";
 import QRScanner from './pages/QR/QRScanner';
 import BlogDetail from "./pages/Blog/BlogDetail";
+import ServiceList from "./pages/Service/ServiceList";
 import Reward from "./pages/Reward";
 import RewardDetail from "./pages/RewardDetail";
 
@@ -14,6 +15,7 @@ const Routers = () => {
       <Route path="/qr" element={<QR />} />
       <Route path="/scanner" element={<QRScanner />} />
       <Route path="/blogdetail" element={<BlogDetail/>} />
+      <Route path="/servicelist" element={<ServiceList/>} />
     </Routes>
   );
 };
