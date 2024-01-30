@@ -10,6 +10,7 @@ import QRScanner from "./pages/qr/QRScanner";
 import BlogDetail from "./pages/blog/BlogDetail";
 import ServiceList from "./pages/service/ServiceList";
 import ServiceDetail from "./pages/service/ServiceDetail";
+import MyCoupon from "./pages/my-coupon/MyCoupon";
 
 const Routers = () => {
   return (
@@ -24,6 +25,7 @@ const Routers = () => {
       <Route path="/service/:id" element={<ServiceDetail />} />
       <Route path="/reward" element={<Reward />} />
       <Route path="/reward/:id" element={<RewardDetail />} />
+      <Route path="/my-coupon" element={<MyCoupon />} />
     </Routes>
   );
 };

@@ -16,7 +16,7 @@ const api = {
     try {
       const URL = api_url + url;
       const response = await axios.get(URL, {
-        headers: {
+        "headers": {
           "Content-Type": "application/json",
           "Authorization": "Bearer " + token,
         },
@@ -36,7 +36,7 @@ const api = {
         URL,
         {},
         {
-          headers: {
+          "headers": {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + token,
           },
@@ -54,7 +54,7 @@ const api = {
     const URL = api_url + url;
     try {
       const response = await axios.post(URL, data, {
-        headers: {
+        "headers": {
           "Content-Type": "application/json",
           "Authorization": "Bearer " + token,
         },
