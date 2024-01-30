@@ -10,7 +10,7 @@ const PromotionCard = ({ promotion, onClick }) => {
         <img
           src={promotion.image}
           alt="promotion-img"
-          className="w-[60%] h-[60%] object-contain mb-2"
+          className="w-full h-[60%] object-cover mb-2"
         />
       )}
       <h1 className="w-full text-black text-[16px] font-medium ">

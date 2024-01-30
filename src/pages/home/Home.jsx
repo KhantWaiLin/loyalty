@@ -14,19 +14,21 @@ import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
 import { getUserBrandMemberId } from "../../utils/getBrandUserId";
 
-import { blog_data, service_data } from "../../data";
+import { blog_data } from "../../data";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "./Home.scss";
+import ServiceCard from "../../components/ServiceCard";
 
 const Home = () => {
   const navigate = useNavigate();
   const [pointData, setPointData] = useState(null);
   const [promotionData, setPromotionData] = useState(null);
+  const [serviceData, setServiceData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { get_member_info, promotion_list } = api_routes;
+  const { get_member_info, promotion_list, service_list } = api_routes;
 
   const get_data = async () => {
     setIsLoading(true);
@@ -41,12 +43,17 @@ const Home = () => {
       .then((response) => {
         setPromotionData(response?.data?.value?.data?.data);
       });
+
+    await api
+      .postByBody(service_list, { brandId: brand_id })
+      .then((response) => {
+        setServiceData(response?.data?.value?.data?.data[0]?.catList);
+      });
     setIsLoading(false);
   };
 
   useEffect(() => {
     get_data();
-    console.log("running");
     // eslint-disable-next-line
   }, []);
 
@@ -137,10 +144,13 @@ const Home = () => {
           </button>
         </div>
         <Swiper loop={true} modules={[Autoplay]} className="w-full">
-          {service_data?.map((service) => (
-            <SwiperSlide key={service.name}>
+          {serviceData?.map((service) => (
+            <SwiperSlide key={service.cateGoryId}>
               <div className="px-2 h-[180px]">
-                <BlogCard name={service.name} desc={service.desc} />
+                <ServiceCard
+                  service={service}
+                  onClick={() => navigate(`/service/${service?.cateGoryId}`)}
+                />
               </div>
             </SwiperSlide>
           ))}
