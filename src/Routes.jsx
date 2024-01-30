@@ -4,13 +4,13 @@ import Profile from "./pages/Profile";
 import QR from "./pages/QR";
 import Reward from "./pages/Reward";
 import RewardDetail from "./pages/RewardDetail";
-import MyCoupon from "./pages/my-coupon/MyCoupon";
+import MyCouponList from "./pages/my-coupon/MyCouponList";
 
 const Routers = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/my-coupon" element={<MyCoupon />} />
+      <Route path="/my-coupon" element={<MyCouponList />} />
     </Routes>
   );
 };

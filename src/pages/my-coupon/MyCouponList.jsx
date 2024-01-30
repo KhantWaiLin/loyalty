@@ -1,8 +1,8 @@
 import React from "react";
 import Footer from "../../layouts/Footer";
-import MyCouponList from "./components/MyCouponList";
+import CouponItem from "./components/CouponItem";
 
-function MyCoupon() {
+function MyCouponList({couponList}) {
     return (<main className="flex flex-col h-full border-2">
         <section className="flex items-center justify-center basis-1/12">
             <h1>My Coupon</h1>
@@ -22,10 +22,10 @@ function MyCoupon() {
         </section>
         <section className="px-2 basis-9/12">
             <ul className="mt-1">
-                <MyCouponList name="Redeem Product"/>
-                <MyCouponList name="Coupon Code"/>
-                <MyCouponList name="Redeem Product"/>
-                <MyCouponList name="Coupon Code"/>
+                <CouponItem name="Redeem Product"/>
+                <CouponItem name="Coupon Code"/>
+                <CouponItem name="Redeem Product"/>
+                <CouponItem name="Coupon Code"/>
             </ul>
         </section>
         <section className="basis-1/12">
@@ -34,4 +34,4 @@ function MyCoupon() {
     </main>);
 }
 
-export default MyCoupon;
+export default MyCouponList;

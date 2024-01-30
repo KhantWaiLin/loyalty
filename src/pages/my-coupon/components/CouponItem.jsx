@@ -1,4 +1,4 @@
-function MyCouponList({name}) {
+function CouponItem({name}) {
     return (
         <li className="flex items-center justify-between px-3 py-2 mb-3 border-2 border-black rounded-md">
             <span>{name}</span>
@@ -9,4 +9,4 @@ function MyCouponList({name}) {
     );
 }
 
-export default MyCouponList;
+export default CouponItem;
