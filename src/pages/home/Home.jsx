@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 
@@ -6,7 +6,7 @@ import Noti from "../../components/Noti";
 import PointTotal from "../../components/PointTotal";
 import Cupon from "../../components/Cupon";
 
-import { blog_data, promotion_data, service_data } from "../../data";
+import { blog_data, service_data } from "../../data";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -15,23 +15,48 @@ import BlogCard from "../../components/BlogCard";
 
 import "./Home.scss";
 import api from "../../api/api";
+import { api_routes } from "../../utils/apiRoute";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const promotion_url = "/api/Customer/GetPromotionListByBrandId";
+  const navigate = useNavigate();
+  const { get_member_info, promotion_list } = api_routes;
+  const [promotionData, setPromotionData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const get_data = async () => {
+    setIsLoading(true);
     const auth_data = localStorage.getItem("authenticate_data");
     let brand_id;
+    let user_id;
     if (auth_data) {
       const parsed_data = JSON.parse(auth_data);
       brand_id = parsed_data?.brandId;
+      user_id = parsed_data?.memberID;
     }
-    await api.postByBody(promotion_url, { brandId: brand_id });
+    await api
+      .get(get_member_info, { brandId: brand_id, userId: user_id })
+      .then((response) => {
+        console.log(response);
+      });
+    await api
+      .postByBody(promotion_list, { brandId: brand_id })
+      .then((response) => {
+        setPromotionData(response?.data?.value?.data?.data);
+      });
+    setIsLoading(false);
   };
 
   useEffect(() => {
     get_data();
+    // eslint-disable-next-line
   }, []);
+
+  console.log(promotionData);
+
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
 
   return (
     <div className="home-wrapper p-4 w-full overflow-scroll">
@@ -59,14 +84,18 @@ const Home = () => {
         <Swiper
           grabCursor={true}
           loop={true}
-          autoplay={true}
           modules={[Autoplay]}
           className="w-full"
         >
-          {promotion_data?.map((item) => (
-            <SwiperSlide key={item.name}>
-              <div className="px-2 h-[159px]">
-                <PromotionCard name={item.name} desc={item.desc} />
+          {promotionData?.map((promotion) => (
+            <SwiperSlide key={promotion?.id}>
+              <div className="px-2 h-[180px]">
+                <PromotionCard
+                  promotion={promotion}
+                  onClick={() => {
+                    navigate(`/promotion/${promotion?.id}`);
+                  }}
+                />
               </div>
             </SwiperSlide>
           ))}
@@ -90,7 +119,7 @@ const Home = () => {
         >
           {blog_data?.map((blog) => (
             <SwiperSlide key={blog.name}>
-              <div className="px-2 h-[159px]">
+              <div className="px-2 h-[180px]">
                 <BlogCard name={blog.name} desc={blog.desc} />
               </div>
             </SwiperSlide>
@@ -116,7 +145,7 @@ const Home = () => {
         >
           {service_data?.map((service) => (
             <SwiperSlide key={service.name}>
-              <div className="px-2 h-[159px]">
+              <div className="px-2 h-[180px]">
                 <BlogCard name={service.name} desc={service.desc} />
               </div>
             </SwiperSlide>

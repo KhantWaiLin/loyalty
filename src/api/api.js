@@ -2,7 +2,14 @@ import axios from "axios";
 
 const api_url = process.env.REACT_APP_API_URL;
 
+
 const api = {
+  checkToken: (response) => {
+    if (response?.data?.code === 401) {
+      return (window.location.href = "/");
+    }
+    return;
+  },
   getToken: () => {
     const auth_data = localStorage.getItem("authenticate_data");
     if (auth_data) {
@@ -18,12 +25,13 @@ const api = {
       const response = await axios.get(URL, {
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer " + token,
+          Authorization: "Bearer " + token,
         },
         params: data,
       });
+      api.checkToken(response);
 
-      return { data: response.data, status: response.status };
+      return { data: response.data.data, status: response?.data?.code };
     } catch (error) {
       console.log(error);
     }
@@ -38,12 +46,12 @@ const api = {
         {
           headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + token,
+            Authorization: "Bearer " + token,
           },
           params: data,
         }
       );
-
+      api.checkToken(response);
       return { data: response.data, status: response.status };
     } catch (error) {
       console.log(error);
@@ -56,9 +64,10 @@ const api = {
       const response = await axios.post(URL, data, {
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer " + token,
+          Authorization: "Bearer " + token,
         },
       });
+      api.checkToken(response);
 
       return { data: response.data, status: response.status };
     } catch (error) {
