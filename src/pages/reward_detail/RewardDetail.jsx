@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import PopUp from "../../components/popup/PopUp";
+import Loader from "../../components/loader/Loader";
 
 import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
@@ -42,7 +43,11 @@ const RewardDetail = () => {
   };
 
   if (isLoading) {
-    return <div>Loading ...</div>;
+    return (
+      <div className="reward-detail items-center flex flex-col justify-center">
+        <Loader />
+      </div>
+    );
   }
 
   return (

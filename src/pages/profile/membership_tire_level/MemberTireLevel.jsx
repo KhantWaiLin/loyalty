@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+
+import Loader from "../../../components/loader/Loader";
+
 import api from "../../../api/api";
 import { api_routes } from "../../../utils/apiRoute";
 import { getUserBrandMemberId } from "../../../utils/getBrandUserId";
@@ -28,7 +31,11 @@ const MemberTireLevel = () => {
   }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="member-tire-wrapper items-center flex flex-col justify-center">
+        <Loader />
+      </div>
+    );
   }
 
   return (

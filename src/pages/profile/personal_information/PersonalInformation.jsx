@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import "./PersonalInformation.scss";
 
+import Loader from "../../../components/loader/Loader";
+
 import api from "../../../api/api";
 import { api_routes } from "../../../utils/apiRoute";
 import { getUserBrandMemberId } from "../../../utils/getBrandUserId";
@@ -36,7 +38,11 @@ const PersonalInformation = () => {
   }, []);
 
   if (isLoading && profile === null) {
-    return <div>Loading...</div>;
+    return (
+      <div className="personal-information-wrapper items-center flex flex-col justify-center">
+        <Loader />
+      </div>
+    );
   }
 
   return (

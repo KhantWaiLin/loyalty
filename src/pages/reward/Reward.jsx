@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import Loader from "../../components/loader/Loader";
 import RewardCard from "../../components/RewardCard";
 
 import api from "../../api/api";
@@ -37,7 +38,11 @@ const Reward = () => {
   }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="reward-wrapper items-center flex flex-col justify-center">
+        <Loader />
+      </div>
+    );
   }
 
   return (

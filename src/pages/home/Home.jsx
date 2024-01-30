@@ -8,6 +8,7 @@ import PointTotal from "../../components/PointTotal";
 import Cupon from "../../components/Cupon";
 import PromotionCard from "../../components/PromotionCard";
 import BlogCard from "../../components/BlogCard";
+import Loader from "../../components/loader/Loader";
 
 import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
@@ -18,7 +19,6 @@ import { blog_data, service_data } from "../../data";
 import "swiper/css";
 import "swiper/css/navigation";
 import "./Home.scss";
-
 
 const Home = () => {
   const navigate = useNavigate();
@@ -51,7 +51,11 @@ const Home = () => {
   }, []);
 
   if (isLoading) {
-    return <div>Loading ...</div>;
+    return (
+      <div className="home-wrapper items-center flex flex-col justify-center">
+        <Loader />
+      </div>
+    );
   }
 
   return (
@@ -132,11 +136,7 @@ const Home = () => {
             View all
           </button>
         </div>
-        <Swiper
-          loop={true}
-          modules={[Autoplay]}
-          className="w-full"
-        >
+        <Swiper loop={true} modules={[Autoplay]} className="w-full">
           {service_data?.map((service) => (
             <SwiperSlide key={service.name}>
               <div className="px-2 h-[180px]">

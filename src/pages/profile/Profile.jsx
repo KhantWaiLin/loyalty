@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import Loader from "../../components/loader/Loader";
+
 import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
 import { getUserBrandMemberId } from "../../utils/getBrandUserId";
-
 
 import "./Profile.scss";
 
@@ -58,7 +59,11 @@ const Profile = () => {
   }, []);
 
   if (isLoading) {
-    return <div>Loading ...</div>;
+    return (
+      <div className="profile-wrapper items-center flex flex-col justify-center">
+        <Loader />
+      </div>
+    );
   }
 
   return (
