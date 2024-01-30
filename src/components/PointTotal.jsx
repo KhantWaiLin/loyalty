@@ -1,9 +1,14 @@
 import React from "react";
 
-const PointTotal = () => {
+const PointTotal = ({ point_data }) => {
+  console.log(point_data);
   return (
-    <div className="w-full h-full flex border-black border-[1px] rounded-lg items-center justify-center">
-      <span>PointTotal</span>
+    <div className="w-full h-full flex border-black border-[1px] rounded-lg p-2">
+      <div>
+        <p>Name: {point_data?.name}</p>
+        <p>Phone: {point_data?.phoneNo}</p>
+        <p>Total points:{point_data?.point}</p>
+      </div>
     </div>
   );
 };

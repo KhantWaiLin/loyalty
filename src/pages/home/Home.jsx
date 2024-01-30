@@ -20,9 +20,11 @@ import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
-  const { get_member_info, promotion_list } = api_routes;
+  const [pointData, setPointData] = useState(null);
   const [promotionData, setPromotionData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const { get_member_info, promotion_list } = api_routes;
 
   const get_data = async () => {
     setIsLoading(true);
@@ -37,7 +39,7 @@ const Home = () => {
     await api
       .get(get_member_info, { brandId: brand_id, userId: user_id })
       .then((response) => {
-        console.log(response);
+        setPointData(response?.data?.value?.data);
       });
     await api
       .postByBody(promotion_list, { brandId: brand_id })
@@ -64,10 +66,10 @@ const Home = () => {
         <Noti />
       </div>
       <div className="flex gap-4 mb-5">
-        <div className="w-[305px] h-[80px]">
-          <PointTotal />
+        <div className="w-[305px] h-[90px]">
+          <PointTotal point_data={pointData} />
         </div>
-        <div className="w-[100px] h-[80px]">
+        <div className="w-[100px] h-[90px]">
           <Cupon />
         </div>
       </div>

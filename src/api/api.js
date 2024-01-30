@@ -31,7 +31,7 @@ const api = {
       });
       api.checkToken(response);
 
-      return { data: response.data.data, status: response?.data?.code };
+      return { data: response.data, status: response.status };
     } catch (error) {
       console.log(error);
     }
