@@ -11,6 +11,8 @@ import BlogDetail from "./pages/blog/BlogDetail";
 import ServiceList from "./pages/service/ServiceList";
 import ServiceDetail from "./pages/service/ServiceDetail";
 import MyCoupon from "./pages/my-coupon/MyCoupon";
+import PromotionDetail from "./pages/promotion/detail/PromotionDetail";
+import PromotionList from "./pages/promotion/list/PromotionList";
 
 const Routers = () => {
   return (
@@ -26,6 +28,8 @@ const Routers = () => {
       <Route path="/reward" element={<Reward />} />
       <Route path="/reward/:id" element={<RewardDetail />} />
       <Route path="/my-coupon" element={<MyCoupon />} />
+      <Route path="/promotion-detail/:promotionId" element={<PromotionDetail />} />
+      <Route path="/promotion-list" element={<PromotionList />} />
     </Routes>
   );
 };
