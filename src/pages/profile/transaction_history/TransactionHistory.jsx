@@ -15,7 +15,6 @@ const TransactionHistory = () => {
   const { transaction_history } = api_routes;
   const { brand_id, user_id } = getUserBrandMemberId();
 
-  console.log(data);
   const get_transaction = async () => {
     setIsLoading(true);
     await api
@@ -24,7 +23,6 @@ const TransactionHistory = () => {
         memberid: user_id,
       })
       .then((response) => {
-        console.log(response.data);
         setData(response?.data?.data?.pointHistories);
       });
     setIsLoading(false);

@@ -23,8 +23,6 @@ const MemberTireLevel = () => {
     setIsLoading(false);
   };
 
-  console.log(data);
-
   useEffect(() => {
     get_tire_list();
     // eslint-disable-next-line
