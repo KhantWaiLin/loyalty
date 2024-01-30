@@ -2,30 +2,45 @@ import React, { useEffect, useState } from "react";
 import { api_routes } from "../../../utils/apiRoute";
 import { getUserBrandMemberId } from "../../../utils/getBrandUserId";
 import api from "../../../api/api";
+import { format } from "date-fns";
+
+import Loader from "../../../components/loader/Loader";
 
 import "./TransactionHistory.scss";
 
 const TransactionHistory = () => {
   const [data, setData] = useState(null);
-  const { transaction_history } = api_routes;
-  const { brand_id, member_id } = getUserBrandMemberId();
+  const [isLoading, setIsLoading] = useState(false);
 
+  const { transaction_history } = api_routes;
+  const { brand_id, user_id } = getUserBrandMemberId();
+
+  console.log(data);
   const get_transaction = async () => {
-    api
+    setIsLoading(true);
+    await api
       .postByBody(transaction_history, {
-        branchId: brand_id,
-        memberId: member_id,
+        brandId: brand_id,
+        memberid: user_id,
       })
       .then((response) => {
         console.log(response.data);
-        setData(response?.data?.value?.data);
+        setData(response?.data?.data?.pointHistories);
       });
+    setIsLoading(false);
   };
 
   useEffect(() => {
     get_transaction();
     // eslint-disable-next-line
   }, []);
+  if (isLoading) {
+    return (
+      <div className="transaction-history-wrapper items-center flex flex-col justify-center">
+        <Loader />
+      </div>
+    );
+  }
   return (
     <div className="transaction-history-wrapper flex flex-col py-4 px-6 w-full overflow-scroll">
       <h1 className="text-[24px] w-full flex justify-center font-medium mb-10">
@@ -41,18 +56,23 @@ const TransactionHistory = () => {
           </tr>
         </thead>
         <tbody>
-          {data?.map((history) => (
-            <tr key={data?.date}>
-              <td className="border border-gray-500 p-2">{data?.point}</td>
-              <td className="border border-gray-500 p-2">
-                {data?.collectedType}
-              </td>
-              <td className="border border-gray-500 p-2">
-                {data?.isIn.toString()}
-              </td>
-              <td className="border border-gray-500 p-2">{data?.date}</td>
-            </tr>
-          ))}
+          {data?.map((item) => {
+            const date = new Date(item?.date);
+            const formattedDate = format(date, "yyyy-MM-dd HH:mm");
+
+            return (
+              <tr key={item?.date}>
+                <td className="border border-gray-500 p-2">{item?.point}</td>
+                <td className="border border-gray-500 p-2">
+                  {item?.collectedType}
+                </td>
+                <td className="border border-gray-500 p-2">
+                  {item?.isIn?.toString()}
+                </td>
+                <td className="border border-gray-500 p-2">{formattedDate}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
