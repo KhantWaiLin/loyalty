@@ -68,7 +68,7 @@ const Home = () => {
 
   return (
     <div className="home-wrapper p-5 w-full overflow-scroll">
-      <div className="flex justify-between items-center  mb-10">
+      <div className="flex justify-between items-center mt-10  mb-10">
         <div className="flex-1">
           <UserInfo user={pointData} />
         </div>
@@ -119,24 +119,19 @@ const Home = () => {
       </div>
       <div className="flex flex-col mb-5">
         <div className="flex justify-between mb-5">
-          <h1 className="text-black font-medium text-[16px]">Blog</h1>
+          <h1 className="text-[#48505E] font-medium text-[16px]">Blog</h1>
           <button
             type="button"
-            className="text-blue-500 font-normal text-[14px]"
+            className="text-[#384BCA] font-medium text-[12px]"
           >
             View all
           </button>
         </div>
-        <Swiper
-          grabCursor={true}
-          loop={true}
-          modules={[Autoplay]}
-          className="w-full"
-        >
+        <Swiper loop={true} modules={[Autoplay]} className="w-full">
           {blog_data?.map((blog) => (
             <SwiperSlide key={blog.name}>
               <div className="px-2 h-[180px]">
-                <BlogCard name={blog.name} desc={blog.desc} />
+                <BlogCard blog={blog} onClick={() => {}} />
               </div>
             </SwiperSlide>
           ))}
@@ -144,10 +139,10 @@ const Home = () => {
       </div>
       <div className="flex flex-col">
         <div className="flex justify-between mb-5">
-          <h1 className="text-black font-medium text-[16px]">Services</h1>
+          <h1 className="text-[#48505E] font-medium text-[16px]">Services</h1>
           <a
             type="button"
-            className="text-blue-500 font-normal text-[14px]"
+            className="text-[#384BCA] font-medium text-[12px]"
             href="/servicelist"
           >
             View all

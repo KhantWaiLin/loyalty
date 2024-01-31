@@ -2,6 +2,10 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { getUserBrandMemberId } from "../../utils/getBrandUserId";
+import { api_routes } from "../../utils/apiRoute";
+import api from "../../api/api";
+
 const Login = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({
@@ -9,17 +13,41 @@ const Login = () => {
     password: "",
     userType: 2,
   });
+  const { get_member_info } = api_routes;
+  const { brand_id, user_id } = getUserBrandMemberId();
   const api_url =
     process.env.REACT_APP_API_URL + "/api/Authentication/Authenticate";
+
   const onChange = (e) => {
     const { name, value } = e.target;
-    setForm(() => {
+    setForm((prev) => {
       return {
-        ...form,
+        ...prev,
         [name]: value,
       };
     });
   };
+
+  const check_token = async () => {
+    const headers = {
+      Authorization: `Bearer ${api.getToken()}`,
+      "Content-Type": "application/json",
+    };
+    const url = process.env.REACT_APP_API_URL + get_member_info;
+    await axios
+      .get(url, {
+        headers,
+        params: { brandId: brand_id, userId: user_id },
+      })
+      .then((response) => {
+        if (response.data?.value?.code === 200) {
+          return navigate("/home");
+        }
+        return;
+      });
+  };
+
+  check_token();
 
   const onSubmit = (e) => {
     e.preventDefault();
