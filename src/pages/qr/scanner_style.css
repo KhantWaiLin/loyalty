@@ -1,0 +1,10 @@
+#reader {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+/* Additional styles for the child elements if needed */
+#reader video {
+    border-radius: 15px; /* Apply rounded corners to the video element inside the scanning box */
+}

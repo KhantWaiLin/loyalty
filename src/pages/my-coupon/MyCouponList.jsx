@@ -1,6 +1,10 @@
 import React from "react";
+<<<<<<< HEAD:src/pages/my-coupon/MyCouponList.jsx
 import Footer from "../../layouts/Footer";
 import CouponItem from "./components/CouponItem";
+=======
+import MyCouponList from "./components/MyCouponList";
+>>>>>>> develop:src/pages/my-coupon/MyCoupon.jsx
 
 function MyCouponList({couponList}) {
     return (<main className="flex flex-col h-full border-2">
@@ -28,9 +32,9 @@ function MyCouponList({couponList}) {
                 <CouponItem name="Coupon Code"/>
             </ul>
         </section>
-        <section className="basis-1/12">
+        {/* <section className="basis-1/12">
             <Footer/>
-        </section>
+        </section> */}
     </main>);
 }
 
