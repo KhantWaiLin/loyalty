@@ -8,31 +8,31 @@ import { api_routes } from "../../utils/apiRoute";
 import { getUserBrandMemberId } from "../../utils/getBrandUserId";
 
 import "./Profile.scss";
+import Accordion from "../../components/accordion/Accordion";
+import AccordionItem from "../../components/accordion/AccordionItem";
 
 const PROFILE_DATA = [
   {
-    name: "Personal Information",
-    route: "personal-information",
+    accordion_name: "Personal Information",
+    accordion_content: [
+      { name: "My Account", route: "my-account" },
+      { name: "Change Number", route: "change-number" },
+      { name: "Change Password", route: "change-password" },
+    ],
   },
   {
-    name: "Transaction History",
-    route: "transaction-history",
+    accordion_name: "Loyalty",
+    accordion_content: [
+      { name: "Transaction History", route: "transaction-history" },
+      { name: "Membership Tire Level", route: "membership-tire-level" },
+    ],
   },
   {
-    name: "Membership tire level",
-    route: "membership-tire-level",
-  },
-  {
-    name: "General Setting",
-    route: "general-setting",
-  },
-  {
-    name: "Help Center",
-    route: "help-center",
-  },
-  {
-    name: "Terms & Condition",
-    route: "terms",
+    accordion_name: "General Setting",
+    accordion_content: [
+      { name: "Help Center", route: "help-center" },
+      { name: "Terms & Condition", route: "terms" },
+    ],
   },
 ];
 
@@ -96,16 +96,31 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col justify-between">
-        {PROFILE_DATA?.map((item) => (
-          <div
-            key={item?.name}
-            className="w-full flex items-center pb-8 border-b-[1px] mb-5 border-black cursor-pointer"
-            onClick={() => navigate(item.route)}
-          >
-            <p>{item?.name}</p>
-          </div>
-        ))}
+      <div className="flex flex-col justify-between mb-8">
+        <Accordion>
+          {PROFILE_DATA?.map((item) => (
+            <AccordionItem key={item?.accordion_name} item={item}>
+              <div className="flex flex-col rounded-lg border-[1px] border-[#F0F1F3] mt-2">
+                {item?.accordion_content?.map((d_item, index) => (
+                  <button
+                    className={`p-4 flex hover:bg-gray-200 ${
+                      index === 0 && "rounded-t-lg"
+                    } ${
+                      index + 1 === item?.accordion_content?.length &&
+                      "rounded-b-lg"
+                    }`}
+                    key={d_item?.route}
+                    onClick={() => {
+                      navigate(d_item.route);
+                    }}
+                  >
+                    {d_item.name}
+                  </button>
+                ))}
+              </div>
+            </AccordionItem>
+          ))}
+        </Accordion>
       </div>
       <div className="w-full flex justify-center">
         <button className="bg-blue-400 px-4 py-2 rounded-lg text-white">

@@ -15,7 +15,7 @@ import PromotionDetail from "./pages/promotion/detail/PromotionDetail";
 import PromotionList from "./pages/promotion/list/PromotionList";
 import UseCoupon from "./pages/use-coupon/UseCoupon";
 
-import PersonalInformation from "./pages/profile/personal_information/PersonalInformation";
+import MyAccount from "./pages/profile/personal_information/MyAccount";
 import TransactionHistory from "./pages/profile/transaction_history/TransactionHistory";
 import MemberTireLevel from "./pages/profile/membership_tire_level/MemberTireLevel";
 
@@ -25,10 +25,7 @@ const Routers = () => {
       <Route path="/" element={<Login />} />
       <Route path="/home" element={<Home />} />
       <Route path="/profile" element={<Profile />} />
-      <Route
-        path="/profile/personal-information"
-        element={<PersonalInformation />}
-      />
+      <Route path="/profile/my-account" element={<MyAccount />} />
       <Route
         path="/profile/transaction-history"
         element={<TransactionHistory />}
@@ -50,7 +47,10 @@ const Routers = () => {
       <Route path="/reward" element={<Reward />} />
       <Route path="/reward/:id" element={<RewardDetail />} />
       <Route path="/my-coupon" element={<MyCoupon />} />
-      <Route path="/promotion-detail/:promotionId" element={<PromotionDetail />} />
+      <Route
+        path="/promotion-detail/:promotionId"
+        element={<PromotionDetail />}
+      />
       <Route path="/promotion-list" element={<PromotionList />} />
       <Route path="/use-coupon" element={<UseCoupon />} />
     </Routes>

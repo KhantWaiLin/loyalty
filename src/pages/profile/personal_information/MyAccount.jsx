@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import "./PersonalInformation.scss";
+import "./MyAccount.scss";
 
 import Loader from "../../../components/loader/Loader";
 
@@ -16,7 +16,7 @@ const PERSONAL_DATA = {
   address: "Address",
 };
 
-const PersonalInformation = () => {
+const MyAccount = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [profile, setProfile] = useState(null);
 
@@ -76,4 +76,4 @@ const PersonalInformation = () => {
   );
 };
 
-export default PersonalInformation;
+export default MyAccount;
