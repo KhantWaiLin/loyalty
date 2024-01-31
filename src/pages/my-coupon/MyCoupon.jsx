@@ -47,7 +47,7 @@ function MyCoupon({ couponList }) {
       {/*  Available & Used Expired bar */}
 
       {/* body or Coupon Data */}
-      <section className=" basis-10/12 px-[20px] pt-[20px]">
+      <section className=" basis-10/12 px-[20px]">
         <article className="h-[370px] overflow-auto scroll-smooth no-scrollbar">
           <CouponList />
           <CouponList />

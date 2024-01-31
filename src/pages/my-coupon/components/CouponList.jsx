@@ -3,7 +3,7 @@ import Img from "../image 4.png";
 
 function CouponList({ name }) {
   return (
-    <div className=" w-full h-[100px] mb-[12px] bg-white rounded-[20px] flex gap-[8px] px-[12px] py-[10px] border border-gray-100 shadow-md">
+    <div className=" w-full h-[100px] my-[20px] bg-white rounded-[20px] flex gap-[8px] px-[12px] py-[10px] border border-gray-100 shadow-md">
       <section className="flex justify-center basis-1/4">
         <div class="w-20 h-20 py-4 bg-indigo-50 rounded-lg justify-center items-center inline-flex">
           <div class="w-20 h-12 mix-blend-darken ">
