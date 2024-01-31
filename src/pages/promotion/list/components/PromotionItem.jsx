@@ -18,12 +18,8 @@ const imageStyle = {
 function PromotionItem({ promotion }) {
   let navigate = useNavigate();
 
-  const handleDetail = (id) => {
-    navigate(`/promotion-detail/${id}`);
-  };
-
   return (
-    <div style={cardStyle}>
+    <a href={`/promotiondetail/${promotion.id}`} style={cardStyle}>
       <img
         style={imageStyle}
         src={promotion.image}
@@ -35,7 +31,7 @@ function PromotionItem({ promotion }) {
       <p className="text-sm font-normal mt-[8px] not-italic text-[#989FAD]">
         {promotion.startDate}
       </p>
-    </div>
+    </a>
   );
 }
 

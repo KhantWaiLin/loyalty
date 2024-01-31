@@ -64,7 +64,7 @@ function PromotionList({ promotionList }) {
         .then((result) => setPromotionData(result.value));
     }
   }, [token]);
-
+  
   const auth = {
     userName: "09422924858",
     password: "jujuJu1",
