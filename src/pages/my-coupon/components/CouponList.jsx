@@ -5,8 +5,8 @@ function CouponList({ name }) {
   return (
     <div className=" w-full h-[100px] my-[20px] bg-white rounded-[20px] flex gap-[8px] px-[12px] py-[10px] border border-gray-100 shadow-md">
       <section className="flex justify-center basis-1/4">
-        <div class="w-20 h-20 py-4 bg-indigo-50 rounded-lg justify-center items-center inline-flex">
-          <div class="w-20 h-12 mix-blend-darken ">
+        <div className="inline-flex items-center justify-center w-20 h-20 py-4 rounded-lg bg-indigo-50">
+          <div className="w-20 h-12 mix-blend-darken ">
             <img src={Img}/>
           </div>
         </div>
@@ -33,18 +33,3 @@ function CouponList({ name }) {
 }
 
 export default CouponList;
-
-// return (
-//     <li className="flex items-center justify-between px-3 py-2 mb-3 border-2 border-black rounded-md">
-//         <span>{name}</span>
-//         <span>
-//             <button className="px-2 border-2 rounded-full">Use Code</button>
-//         </span>
-//     </li>
-// );
-
-{
-  /* <button className="w-[82px] h-[34px] px-3 py-2 bg-neutral-50 rounded-lg border border-gray-100 justify-center items-center gap-2.5 inline-flex">
-    <span className="mx-[12px] my-[8px] text-center text-indigo-700 text-xs font-medium leading-[18px]">Use Code</span>
-</button> */
-}

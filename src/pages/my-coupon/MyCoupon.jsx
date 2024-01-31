@@ -2,12 +2,18 @@ import React, { useState } from "react";
 import CouponList from "./components/CouponList";
 
 function MyCoupon({ couponList }) {
+  const [status, setStatus] = useState("Available");
+  
+  const handleStatus = (status) => {
+    setStatus(status.innerText)
+  }
+
   return (
     <main className="flex flex-col h-full">
       {/* header */}
       <header className="flex items-center mt-8 basis-1/12">
-        <div class="w-[50px] cursor-pointer h-[50px] p-[13px] ms-[20px] bg-neutral-50 rounded-lg border border-gray-100 justify-center items-center inline-flex">
-          <div class="w-6 h-6 relative flex-col justify-start items-start flex">
+        <div className="w-[50px] cursor-pointer h-[50px] p-[13px] ms-[20px] bg-neutral-50 rounded-lg border border-gray-100 justify-center items-center inline-flex">
+          <div className="relative flex flex-col items-start justify-start w-6 h-6">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -33,13 +39,13 @@ function MyCoupon({ couponList }) {
       {/*  Available & Used Expired bar */}
       <section className="mt-4 basis-1/12">
         <article className="flex items-center h-full">
-          <h1 className="text-indigo-700 text-xs leading-[18px] font-semibold border-[#F0F1F3] py-3 text-center border-b-2 cursor-pointer hover:border-[#384BCA] basis-1/3 hover:text-[#384BCA]">
+          <h1 onClick={(event) => handleStatus(event.target)}  className={` text-xs leading-[18px] font-semibold  py-3 text-center border-b-2 cursor-pointer basis-1/3 ${status === "Available" ? "text-indigo-700 border-[#384BCA]" : "border-[#F0F1F3] text-[#667085]"}`}>
             Available
           </h1>
-          <h1 className="text-[#667085]  text-xs leading-[18px] font-semibold border-[#F0F1F3] py-3 text-center border-b-2 cursor-pointer basis-1/3 hover:border-[#384BCA] hover:text-[#384BCA]">
+          <h1 onClick={(event) => handleStatus(event.target)} className={`text-xs leading-[18px] font-semibold py-3 text-center border-b-2 cursor-pointer basis-1/3 ${status === "Used" ? "text-indigo-700 border-[#384BCA]" : "border-[#F0F1F3] text-[#667085]"}`}>
             Used
           </h1>
-          <h1 className="text-[#667085]  text-xs leading-[18px] font-semibold border-[#F0F1F3] py-3 text-center border-b-2 cursor-pointer basis-1/3 hover:border-[#384BCA] hover:text-[#384BCA]">
+          <h1 onClick={(event) => handleStatus(event.target)} className={`text-xs leading-[18px] font-semibold py-3 text-center border-b-2 cursor-pointer basis-1/3 ${status === "Expired" ? "text-indigo-700 border-[#384BCA]" : "border-[#F0F1F3] text-[#667085]"}`}>
             Expired
           </h1>
         </article>
