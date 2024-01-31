@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import Profile from "./pages/Profile";
-import QR from "./pages/QR";
-import Reward from "./pages/Reward";
-import RewardDetail from "./pages/RewardDetail";
-import MyCouponList from "./pages/my-coupon/MyCouponList";
-=======
 import { Route, Routes } from "react-router-dom";
 
 import Profile from "./pages/profile/Profile";
@@ -27,15 +18,10 @@ import UseCoupon from "./pages/use-coupon/UseCoupon";
 import PersonalInformation from "./pages/profile/personal_information/PersonalInformation";
 import TransactionHistory from "./pages/profile/transaction_history/TransactionHistory";
 import MemberTireLevel from "./pages/profile/membership_tire_level/MemberTireLevel";
->>>>>>> develop
 
 const Routers = () => {
   return (
     <Routes>
-<<<<<<< HEAD
-      <Route path="/" element={<Home />} />
-      <Route path="/my-coupon" element={<MyCouponList />} />
-=======
       <Route path="/" element={<Login />} />
       <Route path="/home" element={<Home />} />
       <Route path="/profile" element={<Profile />} />
@@ -67,7 +53,6 @@ const Routers = () => {
       <Route path="/promotion-detail/:promotionId" element={<PromotionDetail />} />
       <Route path="/promotion-list" element={<PromotionList />} />
       <Route path="/use-coupon" element={<UseCoupon />} />
->>>>>>> develop
     </Routes>
   );
 };
