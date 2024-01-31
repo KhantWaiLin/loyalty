@@ -19,7 +19,7 @@ import { blog_data } from "../../data";
 import "swiper/css";
 import "swiper/css/navigation";
 import "./Home.scss";
-import ServiceCard from "../../components/ServiceCard";
+import HomeServiceCard from "../../components/HomeServiceCard";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -148,7 +148,7 @@ const Home = () => {
           {serviceData?.map((service) => (
             <SwiperSlide key={service.cateGoryId}>
               <div className="px-2 h-[180px]">
-                <ServiceCard
+                <HomeServiceCard
                   service={service}
                   onClick={() => navigate(`/service/${service?.cateGoryId}`)}
                 />
