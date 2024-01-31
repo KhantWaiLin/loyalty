@@ -59,7 +59,7 @@ const ChangeNumber = () => {
             placeholder="09"
             value={number}
             onChange={(e) => setNumber(e.target.value)}
-            className="focus:outline-none p-3 w-full mb-[40px]"
+            className="focus:outline-none p-3 w-full mb-[40px] shadow-lg rounded-lg"
           />
           <button
             className="change-number-btn text-white font-medium rounded-lg

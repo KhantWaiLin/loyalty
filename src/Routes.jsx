@@ -19,6 +19,7 @@ import MyAccount from "./pages/profile/my_account/MyAccount";
 import TransactionHistory from "./pages/profile/transaction_history/TransactionHistory";
 import MemberTireLevel from "./pages/profile/membership_tire_level/MemberTireLevel";
 import ChangeNumber from "./pages/profile/change_number/ChangeNumber";
+import ChangePassword from "./pages/profile/change_password/ChangePassword";
 
 const Routers = () => {
   return (
@@ -28,6 +29,7 @@ const Routers = () => {
       <Route path="/profile" element={<Profile />} />
       <Route path="/profile/my-account" element={<MyAccount />} />
       <Route path="/profile/change-number" element={<ChangeNumber />} />
+      <Route path="/profile/change-password" element={<ChangePassword />} />
       <Route
         path="/profile/transaction-history"
         element={<TransactionHistory />}
