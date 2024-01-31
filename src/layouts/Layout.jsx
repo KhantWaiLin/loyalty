@@ -7,9 +7,8 @@ const Layout = ({ children }) => {
 
   return (
     <div className="w-[100vw] flex  justify-center h-[100vh]">
-      <div className="w-[428px] justify-between relative h-full bg-gray-50">
+      <div className="w-[428px] justify-between relative h-full bg-[#FFF]">
         {children}
-
         {location?.pathname !== "/" && <Footer />}
       </div>
     </div>

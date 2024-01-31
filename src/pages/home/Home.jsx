@@ -4,11 +4,13 @@ import { Autoplay } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
 
 import Noti from "../../components/Noti";
-import PointTotal from "../../components/PointTotal";
-import Cupon from "../../components/Cupon";
+import PointTotal from "../../components/point_total/PointTotal";
+import Coupon from "../../components/coupon/Coupon";
 import PromotionCard from "../../components/PromotionCard";
 import BlogCard from "../../components/BlogCard";
 import Loader from "../../components/loader/Loader";
+import HomeServiceCard from "../../components/HomeServiceCard";
+import UserInfo from "./components/UserInfo";
 
 import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
@@ -19,7 +21,6 @@ import { blog_data } from "../../data";
 import "swiper/css";
 import "swiper/css/navigation";
 import "./Home.scss";
-import HomeServiceCard from "../../components/HomeServiceCard";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -66,24 +67,32 @@ const Home = () => {
   }
 
   return (
-    <div className="home-wrapper p-4 w-full overflow-scroll">
-      <div className="flex justify-end  pb-4">
-        <Noti />
+    <div className="home-wrapper p-5 w-full overflow-scroll">
+      <div className="flex justify-between items-center  mb-10">
+        <div className="flex-1">
+          <UserInfo user={pointData} />
+        </div>
+        <div className="w-[50px] h-[50px]">
+          <Noti />
+        </div>
       </div>
-      <div className="flex gap-4 mb-5">
-        <div className="w-[305px] h-[90px]">
+      <div className="flex w-full gap-4 mb-5">
+        <div className="w-[74%] h-fit">
           <PointTotal point_data={pointData} />
         </div>
-        <div className="w-[100px] h-[90px]">
-          <Cupon />
+        <div
+          className="w-[26%] h-[90px]"
+          onClick={() => navigate("/my-coupon")}
+        >
+          <Coupon />
         </div>
       </div>
       <div className="flex flex-col mb-5">
         <div className="flex justify-between mb-5">
-          <h1 className="text-black font-medium text-[16px]">Promotion</h1>
+          <h1 className="text-[#48505E] font-medium text-[16px]">Promotion</h1>
           <button
             type="button"
-            className="text-blue-500 font-normal text-[14px]"
+            className="text-[#384BCA] font-medium text-[12px]"
           >
             View all
           </button>
@@ -96,7 +105,7 @@ const Home = () => {
         >
           {promotionData?.map((promotion) => (
             <SwiperSlide key={promotion?.id}>
-              <div className="px-2 h-[180px]">
+              <div className="w-[378px] h-[160px]">
                 <PromotionCard
                   promotion={promotion}
                   onClick={() => {
