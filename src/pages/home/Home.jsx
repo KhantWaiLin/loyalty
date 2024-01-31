@@ -81,12 +81,13 @@ const Home = () => {
       <div className="flex flex-col mb-5">
         <div className="flex justify-between mb-5">
           <h1 className="text-black font-medium text-[16px]">Promotion</h1>
-          <button
+          <a
             type="button"
             className="text-blue-500 font-normal text-[14px]"
+            href="/promotionlist"
           >
             View all
-          </button>
+          </a>
         </div>
         <Swiper
           grabCursor={true}

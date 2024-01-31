@@ -2,6 +2,36 @@ import React from "react";
 import PromotionItem from "./components/PromotionItem";
 import { useState, useEffect } from "react";
 
+const heading = {
+  position: 'relative',
+  left: '180px',
+  top: '35px'
+}
+
+const icon_style = {
+  position: 'absolute',
+  left: '15px',
+  top: '33px',
+  backgroundColor: '#FAFAFA',
+  padding: '10px',
+  border: '1px',
+  borderRadius: '5px',
+}
+
+const cardListStyle = {
+  position: 'absolute',
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: '8px',
+  left: '17px',
+  top: '80px',
+  height: '550px',
+  overflow: 'auto',
+  ovarflowY: 'scroll',
+  scrollbarWidth: 'thin',
+};
+
+
 function PromotionList({ promotionList }) {
   const baseURL =
     "https://loyaltybim.azurewebsites.net/api/Customer/GetPromotionListByBrandId";
@@ -60,43 +90,20 @@ function PromotionList({ promotionList }) {
   }
 
   return (
-    <main className="relative flex flex-col h-full">
-      {/* header */}
-      <header className="flex bg-blue-800 basis-2/12">
-        <article className="mt-7">
-          <button>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6 text-white"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 19.5 8.25 12l7.5-7.5"
-              />
-            </svg>
-          </button>
-        </article>
-        <h1 className="text-center text-white mt-7 ms-36">Promotion</h1>
-        {/* <article className="absolute z-20 w-32 h-32 overflow-hidden bg-blue-200 rounded-full -right-4 -top-4"></article> */}
-      </header>
-      {/* header */}
-
-      {/* body */}
-      <section className="bg-white z-30 rounded-t-2xl absolute top-[90px] left-0 w-full h-[520px] basis-10/12 pt-[24px] px-[20px]">
-        <ul className="max-h-[445px] overflow-auto">
-          {promotionListData &&
+    <div className="text-black-500 text-lg">
+      <a style={icon_style} href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+        </svg>
+      </a>
+      <h1 style={heading}>Promotions</h1>
+      <div style={cardListStyle}>
+      {promotionListData &&
             promotionListData.map((promotion, index) => (
               <PromotionItem promotion={promotion} key={index} />
             ))}
-        </ul>
-      </section>
-      {/* body */}
-    </main>
+      </div>
+    </div>
   );
 }
 

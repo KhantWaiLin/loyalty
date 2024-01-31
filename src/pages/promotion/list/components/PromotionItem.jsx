@@ -1,6 +1,20 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+const cardStyle = {
+  width: '388px',
+  height: '220px',
+  border: '1px solid #000',
+  borderRadius: '20px',
+  padding: '10px',
+};
+
+const imageStyle = {
+  width: '368px',
+  height: '140px',
+  borderRadius: '8px',
+};
+
 function PromotionItem({ promotion }) {
   let navigate = useNavigate();
 
@@ -9,14 +23,11 @@ function PromotionItem({ promotion }) {
   };
 
   return (
-    <li
-      onClick={() => handleDetail(promotion.id)}
-      className="cursor-pointer h-[260px] mb-1 p-[10px] w-full bg-white"
-    >
+    <div style={cardStyle}>
       <img
+        style={imageStyle}
         src={promotion.image}
-        alt={promotion.name}
-        className="h-[180px] w-full rounded-md mb-[8px]"
+        alt="Card Image"
       />
       <p lassName="text-base font-normal not-italic text-[#48505E]">
         {promotion.name}
@@ -24,7 +35,7 @@ function PromotionItem({ promotion }) {
       <p className="text-sm font-normal mt-[8px] not-italic text-[#989FAD]">
         {promotion.startDate}
       </p>
-    </li>
+    </div>
   );
 }
 

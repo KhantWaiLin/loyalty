@@ -51,7 +51,7 @@ const Routers = () => {
       <Route path="/reward/:id" element={<RewardDetail />} />
       <Route path="/my-coupon" element={<MyCoupon />} />
       <Route path="/promotion-detail/:promotionId" element={<PromotionDetail />} />
-      <Route path="/promotion-list" element={<PromotionList />} />
+      <Route path="/promotionlist" element={<PromotionList />} />
       <Route path="/use-coupon" element={<UseCoupon />} />
     </Routes>
   );
