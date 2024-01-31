@@ -71,3 +71,52 @@ export const reward_data = [
     desc: "Lorem ipsum dolor sit amet consectetur. Tellus neque vestibulum commodo non nibh quisque. Cursus tristique ac tellus in blandit vivamus quis. Pellentesque consequat urna hac est iaculis sit vitaeornare. Nisi et eu arcu malesuada viverra enim.",
   },
 ];
+
+
+export const myCouponData = [
+  {
+    id: 1,
+    name: "Redeem Gift",
+    image: "../image 4.png",
+    status: "Available",
+    date: "September 7, 2024"
+  },
+  {
+    id: 2,
+    name: "Redeem Gift",
+    image: "../image 4.png",
+    status: "Used",
+    date: "September 7, 2024"
+  },
+  {
+    id: 3,
+    name: "Redeem Gift",
+    image: "../image 4.png",
+    status: "Expired",
+    date: "September 7, 2024"
+  },
+  {
+    id: 4,
+    name: "Coupon Code",
+    image: "../image 4.png",
+    status: "Available",
+    date: "September 7, 2024"
+  },
+  {
+    id: 5,
+    name: "Coupon Code",
+    image: "../image 4.png",
+    status: "Used",
+    date: "September 7, 2024"
+  },
+  {
+    id: 6,
+    name: "Coupon Code",
+    image: "../image 4.png",
+    status: "Expired",
+    date: "September 7, 2024"
+  },
+]
+
+
+

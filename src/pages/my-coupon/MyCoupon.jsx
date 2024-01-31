@@ -3,10 +3,10 @@ import CouponList from "./components/CouponList";
 
 function MyCoupon({ couponList }) {
   const [status, setStatus] = useState("Available");
-  
+
   const handleStatus = (status) => {
-    setStatus(status.innerText)
-  }
+    setStatus(status.innerText);
+  };
 
   return (
     <main className="flex flex-col h-full">
@@ -39,13 +39,34 @@ function MyCoupon({ couponList }) {
       {/*  Available & Used Expired bar */}
       <section className="mt-4 basis-1/12">
         <article className="flex items-center h-full">
-          <h1 onClick={(event) => handleStatus(event.target)}  className={` text-xs leading-[18px] font-semibold  py-3 text-center border-b-2 cursor-pointer basis-1/3 ${status === "Available" ? "text-indigo-700 border-[#384BCA]" : "border-[#F0F1F3] text-[#667085]"}`}>
+          <h1
+            onClick={(event) => handleStatus(event.target)}
+            className={` text-xs leading-[18px] font-semibold  py-3 text-center border-b-2 cursor-pointer basis-1/3 ${
+              status === "Available"
+                ? "text-indigo-700 border-[#384BCA]"
+                : "border-[#F0F1F3] text-[#667085]"
+            }`}
+          >
             Available
           </h1>
-          <h1 onClick={(event) => handleStatus(event.target)} className={`text-xs leading-[18px] font-semibold py-3 text-center border-b-2 cursor-pointer basis-1/3 ${status === "Used" ? "text-indigo-700 border-[#384BCA]" : "border-[#F0F1F3] text-[#667085]"}`}>
+          <h1
+            onClick={(event) => handleStatus(event.target)}
+            className={`text-xs leading-[18px] font-semibold py-3 text-center border-b-2 cursor-pointer basis-1/3 ${
+              status === "Used"
+                ? "text-indigo-700 border-[#384BCA]"
+                : "border-[#F0F1F3] text-[#667085]"
+            }`}
+          >
             Used
           </h1>
-          <h1 onClick={(event) => handleStatus(event.target)} className={`text-xs leading-[18px] font-semibold py-3 text-center border-b-2 cursor-pointer basis-1/3 ${status === "Expired" ? "text-indigo-700 border-[#384BCA]" : "border-[#F0F1F3] text-[#667085]"}`}>
+          <h1
+            onClick={(event) => handleStatus(event.target)}
+            className={`text-xs leading-[18px] font-semibold py-3 text-center border-b-2 cursor-pointer basis-1/3 ${
+              status === "Expired"
+                ? "text-indigo-700 border-[#384BCA]"
+                : "border-[#F0F1F3] text-[#667085]"
+            }`}
+          >
             Expired
           </h1>
         </article>
@@ -55,12 +76,7 @@ function MyCoupon({ couponList }) {
       {/* body or Coupon Data */}
       <section className=" basis-10/12 px-[20px]">
         <article className="h-[370px] overflow-auto scroll-smooth no-scrollbar">
-          <CouponList />
-          <CouponList />
-          <CouponList />
-          <CouponList />
-          <CouponList />
-          <CouponList />
+          <CouponList status={status} />
         </article>
       </section>
       {/* body or Coupon Data */}
@@ -69,33 +85,3 @@ function MyCoupon({ couponList }) {
 }
 
 export default MyCoupon;
-
-// return (<main className="flex flex-col h-full border-2">
-//     <section className="flex items-center justify-center basis-1/12">
-//         <h1>My Coupon</h1>
-//     </section>
-//     <section className="px-2 basis-1/12">
-//         <ul className="flex items-center justify-between w-1/2 h-full">
-//             <li>
-//                 <button>Available</button>
-//             </li>
-//             <li>
-//                 <button>Used</button>
-//             </li>
-//             <li>
-//                 <button>Expired</button>
-//             </li>
-//         </ul>
-//     </section>
-//     <section className="px-2 basis-9/12">
-//         <ul className="mt-1">
-//             <CouponItem name="Redeem Product"/>
-//             <CouponItem name="Coupon Code"/>
-//             <CouponItem name="Redeem Product"/>
-//             <CouponItem name="Coupon Code"/>
-//         </ul>
-//     </section>
-//     <section className="basis-1/12">
-//         <Footer/>
-//     </section>
-// </main>);
