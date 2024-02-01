@@ -41,7 +41,7 @@ const Profile = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const { get_member_info } = api_routes;
+  const { get_member_info, log_out } = api_routes;
   const { brand_id, user_id } = getUserBrandMemberId();
 
   const get_profile_detail = async () => {
@@ -57,6 +57,16 @@ const Profile = () => {
     get_profile_detail();
     // eslint-disable-next-line
   }, []);
+
+  const on_log_out = async () => {
+    setIsLoading(true);
+    await api.post(log_out, { userId: user_id }).then((response) => {
+      console.log(response);
+      localStorage.clear();
+      return navigate("/");
+    });
+    setIsLoading(false);
+  };
 
   if (isLoading) {
     return (
@@ -123,7 +133,11 @@ const Profile = () => {
         </Accordion>
       </div>
       <div className="w-full flex justify-center">
-        <button className="bg-blue-400 px-4 py-2 rounded-lg text-white">
+        <button
+          className="logout-btn px-4 py-2 w-full rounded-lg text-[#FFF]"
+          type="button"
+          onClick={on_log_out}
+        >
           Log out
         </button>
       </div>

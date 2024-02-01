@@ -120,7 +120,7 @@ const RewardDetail = () => {
         <button
           type="button"
           onClick={() => setShowPopup(true)}
-          className="flex w-full p-4 font-bold justify-center bg-[#384BCA] text-[16px] rounded-lg text-[#FFF]"
+          className="redeem-btn flex w-full p-4 font-bold justify-center text-[16px] rounded-lg text-[#FFF]"
         >
           Redeem
         </button>
