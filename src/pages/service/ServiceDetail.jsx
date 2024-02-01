@@ -1,7 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from 'axios';
+
+import Loader from "../../components/loader/Loader";
+import api from "../../api/api";
+import { api_routes } from "../../utils/apiRoute";
 
 const icon_style = {
     position: 'absolute',
@@ -94,13 +97,11 @@ const blog_content = {
 const ServiceDetail = () => {
 
     const { id } = useParams();
-    const [token, setToken] = React.useState(null);
     const [serviceDetail, setServiceDetail] = React.useState([]);
-    const [tempData, setPostData] = React.useState({
-        "userName": "09422924858",
-        "password": "jujuJU1",
-        "userType": '2'
-    });
+
+    const { service_detail } = api_routes;
+    const [isLoading, setIsLoading] = useState(false);
+
     const [preData, setPreData] = React.useState({
         "keyword": "",
         "rowLimit": 10,
@@ -111,38 +112,27 @@ const ServiceDetail = () => {
         'subCategoryId': []
     });
 
-    const sendPostData = async () => {
-        try {
-            const response = await axios.post('https://loyaltybim.azurewebsites.net/api/Authentication/Authenticate', tempData);
-            setToken(response.data.data.token);
-        } catch (error) {
-            console.error('Error submitting post:', error);
-        }
-    };
-
     const serviceData = async () => {
-        try {
-            const response = await axios.post('https://loyaltybim.azurewebsites.net/api/Customer/GetProductListByCategoryAndSubCategory', preData, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+        setIsLoading(true);
+        await api
+            .postByBody(service_detail, preData)
+            .then((response) => {
+                setServiceDetail(response.data.value.data.data[0][0]);
             });
-            console.log(response.data.value.data.data[0][0]);
-            setServiceDetail(response.data.value.data.data[0][0]);
-        } catch (error) {
-            console.error('Error submitting post:', error);
-        }
+        setIsLoading(false);
     };
 
     useEffect(() => {
-        sendPostData();
+        serviceData();
     }, []);
 
-    useEffect(() => {
-        if (token) {
-            serviceData();
-        }
-    }, [token]);
+    if (isLoading) {
+        return (
+            <div className="reward-wrapper items-center flex flex-col justify-center">
+                <Loader />
+            </div>
+        );
+    }
 
     return (
         <div className="text-black-500 text-lg">

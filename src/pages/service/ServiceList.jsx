@@ -1,56 +1,39 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios';
 import ServiceCard from "../../components/ServiceCard";
 
-const ServiceList = () => {
-  const [token, setToken] = useState(null);
-  const [serviceList, setServiceList] = useState(null);
-  const [tempData, setPostData] = useState({
-    "userName": "09422924858",
-    "password": "jujuJU1",
-    "userType": '2'
-  });
-  const [preData, setPreData] = useState({
-    "keyword": "",
-    "rowLimit": 10,
-    "currentPage": 1,
-    "sortBy": "",
-    "isDesc": true,
-    "brandId": "265f0dff-a30a-11ed-b26e-6045bdd63acb"
-  });
+import Loader from "../../components/loader/Loader";
+import api from "../../api/api";
+import { api_routes } from "../../utils/apiRoute";
+import { getUserBrandMemberId } from "../../utils/getBrandUserId";
 
-  const sendPostData = async () => {
-    try {
-      const response = await axios.post('https://loyaltybim.azurewebsites.net/api/Authentication/Authenticate', tempData);
-      setToken(response.data.data.token);
-    } catch (error) {
-      console.error('Error submitting post:', error);
-    }
-  };
+const ServiceList = () => {
+  const [serviceList, setServiceList] = useState(null);
+
+  const { service_list } = api_routes;
+  const [isLoading, setIsLoading] = useState(false);
 
   const serviceData = async () => {
-    try {
-      const response = await axios.post('https://loyaltybim.azurewebsites.net/api/Customer/GetCategoryListByCustomer', preData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+    setIsLoading(true);
+    const { brand_id } = getUserBrandMemberId();
+    await api
+      .postByBody(service_list, { brandId: brand_id })
+      .then((response) => {
+        setServiceList(response?.data?.value?.data?.data[0].catList);
       });
-      console.log(response.data.value.data.data[0].catList)
-      setServiceList(response.data.value.data.data[0].catList);
-    } catch (error) {
-      console.error('Error submitting post:', error);
-    }
+    setIsLoading(false);
   };
 
   useEffect(() => {
-    sendPostData();
+    serviceData();
   }, []);
 
-  useEffect(() => {
-    if (token) {
-      serviceData();
-    }
-  }, [token]);
+  if (isLoading) {
+    return (
+      <div className="reward-wrapper items-center flex flex-col justify-center">
+        <Loader />
+      </div>
+    );
+  }
 
   const renderServiceRows = () => {
     const rows = [];
@@ -64,7 +47,7 @@ const ServiceList = () => {
             <ServiceCard
               name={service.categoryName}
               img={service.categoryImage}
-              link = {service.cateGoryId}
+              link={service.cateGoryId}
             />
           </div>
         ))}

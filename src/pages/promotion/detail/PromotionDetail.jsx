@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+
+import Loader from "../../../components/loader/Loader";
+import api from "../../../api/api";
+import { api_routes } from "../../../utils/apiRoute";
 
 const icon_style = {
   position: 'absolute',
@@ -54,54 +57,43 @@ const des = {
 }
 
 function PromotionDetail({ promotionId }) {
-  /**
-   * const baseURL = `https://loyaltybim.azurewebsites.net/api/Customer/GetPromotionDetailById?PromoId=${promotionId}`;
-   * promotionId is not working
-   */
 
-  const baseURL = `https://loyaltybim.azurewebsites.net/api/Customer/GetPromotionDetailById?PromoId=`;
-
-  const authURL = "https://loyaltybim.azurewebsites.net/api/Authentication/Authenticate";
-
-  const [token, setToken] = useState("");
   const [detailData, setDetailData] = useState('');
   const { id } = useParams();
 
-  useEffect(() => {
-    fetch(authURL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(auth)
-    }).then(response => response.json()).then(result => setToken(result.data.token));
-
-    if (token) {
-      fetch(baseURL+id, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        }
-      }).then(response => response.json()).then(result => setDetailData(result.value));
-    }
-
-  }, [token]);
-
-  const auth = {
-    "userName": "09422924858",
-    "password": "jujuJU1",
-    "userType": 2
-  };
-
-  let promotionDetailData = "";
-
-  if (detailData) {
-    promotionDetailData = detailData.data;
-  }
+  const { promotion_detail } = api_routes;
+  const api_url = process.env.REACT_APP_API_URL;
+  const [isLoading, setIsLoading] = useState(false);
 
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const formattedDate = new Date(dateString).toLocaleDateString(undefined, options);
     return formattedDate;
   };
+
+  const getDetail = async () => {
+    setIsLoading(true);
+    const token = api.getToken();
+    fetch(api_url+promotion_detail+id, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: "Bearer " + token,
+      }
+    }).then(response => response.json()).then(result => setDetailData(result.value.data));
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    getDetail();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="reward-wrapper items-center flex flex-col justify-center">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <main className="flex flex-col h-full ">
@@ -125,17 +117,17 @@ function PromotionDetail({ promotionId }) {
         </svg>
       </header>
       <div className="basis-2/12">
-            <h4 className="mt-3" style={title}>{promotionDetailData.name}</h4>
-            <h6 className="my-3" style={date_time}>{formatDate(promotionDetailData.startDate)}</h6>
+            <h4 className="mt-3" style={title}>{detailData.name}</h4>
+            <h6 className="my-3" style={date_time}>{formatDate(detailData.startDate)}</h6>
       </div>
       <section className="flex flex-col basis-10/12">
         <article className="flex items-center justify-center basis-1/3" style={img}>
-          <img className="w-44" src={promotionDetailData.image} alt={promotionDetailData.name} />
+          <img className="w-44" src={detailData.image} alt={detailData.name} />
         </article>
         <article className="flex flex-col mt-2 basis-2/3" style={des}>
           <div className="basis-10/12">
             <p className="px-3 py-2">
-              {promotionDetailData.description}
+              {detailData.description}
             </p>
           </div>
         </article>
