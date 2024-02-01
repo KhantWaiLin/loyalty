@@ -54,7 +54,7 @@ const RewardDetail = () => {
   }
 
   return (
-    <div className="reward-detail relative p-4 w-full h-full overflow-scroll no-scrollbar">
+    <div className="reward-detail relative p-4 w-full h-full overflow-hidden">
       {showPopup && (
         <PopUp
           title="Confirmation"
@@ -62,7 +62,7 @@ const RewardDetail = () => {
           onClick={onClick}
         />
       )}
-      <div className="reward-detail-wrapper w-full relative p-4 overflow-scroll no-scrollbar">
+      <div className="reward-detail-wrapper w-full relative overflow-hidden">
         <div className="flex w-full items-center justify-between mb-6">
           <button
             type="button"
@@ -82,38 +82,40 @@ const RewardDetail = () => {
             <img src={Heart} alt="heart-icon" className="w-5 h-5" />
           </button>
         </div>
-        <div className="flex flex-col gap-2 mb-6">
-          <div className="flex justify-center items-center bg-[#EBF2FF] rounded-lg h-[200px]">
-            <img
-              src={data?.image}
-              alt="detail-img"
-              className=" w-[85%] h-[85%] object-contain"
-            />
+        <div className="scroll-container w-full overflow-scroll no-scrollbar">
+          <div className="flex flex-col gap-2 mb-6">
+            <div className="flex justify-center items-center bg-[#EBF2FF] rounded-lg h-[200px]">
+              <img
+                src={data?.image}
+                alt="detail-img"
+                className=" w-[85%] h-[85%] object-contain"
+              />
+            </div>
+            <div className="flex gap-2 justify-between">
+              {Array.from({ length: 5 }, (_, index) => (
+                <div
+                  key={index}
+                  className="flex justify-center items-center rounded-lg bg-[#EBF2FF]"
+                >
+                  <img
+                    src={data?.image}
+                    alt="detail-img"
+                    className=" w-[85%] items-center h-[85%] object-contain"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="flex gap-2 justify-between">
-            {Array.from({ length: 5 }, (_, index) => (
-              <div
-                key={index}
-                className="flex justify-center items-center rounded-lg bg-[#EBF2FF]"
-              >
-                <img
-                  src={data?.image}
-                  alt="detail-img"
-                  className=" w-[85%] items-center h-[85%] object-contain"
-                />
-              </div>
-            ))}
+          <div className="flex justify-between mb-4">
+            <h1 className="text-[20px] text-[#48505E] font-medium">
+              {data?.name}
+            </h1>
           </div>
-        </div>
-        <div className="flex justify-between mb-4">
-          <h1 className="text-[20px] text-[#48505E] font-medium">
-            {data?.name}
-          </h1>
-        </div>
-        <div className="w-full flex flex-wrap mb-8">
-          <p className="flex text-[16px] text-justify font-normal text-[#48505E]">
-            {data?.description}
-          </p>
+          <div className="w-full flex flex-wrap mb-8">
+            <p className="flex text-[16px] text-justify font-normal text-[#48505E]">
+              {data?.description}
+            </p>
+          </div>
         </div>
       </div>
       <div className="redeem-btn-wrapper w-full shadow-md flex justify-between z-10 absolute left-0 py-2 px-4 pb-[34px] bottom-0">

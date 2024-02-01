@@ -1,5 +1,8 @@
 .reward-wrapper {
   height: calc(100% - 84px);
+  .scroll-container {
+    height: calc(100% - 180px);
+  }
   .total-point {
     display: flex;
     .point-total {

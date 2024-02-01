@@ -55,7 +55,7 @@ const Reward = () => {
   }
 
   return (
-    <section className="reward-wrapper p-4 w-full overflow-scroll">
+    <section className="reward-wrapper p-4 w-full overflow-hidden">
       <div className="flex w-full justify-between items-center mb-6">
         <h1 className="flex w-auto flex-1 text-[#48505E] justify-center items-center text-[16px] font-medium">
           Rewards
@@ -70,7 +70,7 @@ const Reward = () => {
       <div className="total-point mb-6">
         <PointTotal point_data={pointData} />
       </div>
-      <div className="flex gap-[20px] flex-wrap">
+      <div className="scroll-container overflow-scroll no-scrollbar w-full flex gap-[20px] flex-wrap">
         {rewardData?.map((reward) => (
           <div key={reward.id} className="w-[186px] h-[180px] cursor-pointer">
             <RewardCard
