@@ -47,7 +47,7 @@ const RewardDetail = () => {
 
   if (isLoading) {
     return (
-      <div className="reward-detail items-center flex flex-col justify-center">
+      <div className="w-full h-full items-center flex flex-col justify-center">
         <Loader />
       </div>
     );

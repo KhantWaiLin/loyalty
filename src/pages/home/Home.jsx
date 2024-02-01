@@ -68,7 +68,7 @@ const Home = () => {
 
   return (
     <div className="home-wrapper  p-5 w-full overflow-scroll no-scrollbar">
-      <div className="flex justify-between items-center mt-10  mb-10">
+      <div className="flex justify-between items-center mt-2  mb-8">
         <div className="flex-1">
           <UserInfo user={pointData} />
         </div>
@@ -131,7 +131,7 @@ const Home = () => {
         <Swiper loop={true} modules={[Autoplay]} className="w-full">
           {blog_data?.map((blog) => (
             <SwiperSlide key={blog.name}>
-              <div className="px-2 h-[180px]">
+              <div className="px-2">
                 <BlogCard blog={blog} onClick={() => {}} />
               </div>
             </SwiperSlide>
