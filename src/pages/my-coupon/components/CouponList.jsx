@@ -26,7 +26,7 @@ function CouponList({ status }) {
           <section className="flex justify-center basis-1/4">
             <div className="inline-flex items-center justify-center w-20 h-20 py-4 rounded-lg bg-indigo-50">
               <div className="w-20 h-12 mix-blend-darken ">
-                <img src={Img} />
+                <img src={Img} alt={coupon.name}/>
               </div>
             </div>
           </section>

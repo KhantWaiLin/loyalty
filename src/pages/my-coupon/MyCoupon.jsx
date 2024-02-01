@@ -1,19 +1,26 @@
 import React, { useState } from "react";
 import CouponList from "./components/CouponList";
+import { useNavigate } from "react-router-dom";
 
 function MyCoupon({ couponList }) {
   const [status, setStatus] = useState("Available");
 
+  let navigate = useNavigate();
+
   const handleStatus = (status) => {
     setStatus(status.innerText);
   };
+
+  const handleBack = () => {
+    navigate(`/home`);
+  }
 
   return (
     <main className="flex flex-col h-full">
       {/* header */}
       <header className="flex items-center mt-8 basis-1/12">
         <div className="w-[50px] cursor-pointer h-[50px] p-[13px] ms-[20px] bg-neutral-50 rounded-lg border border-gray-100 justify-center items-center inline-flex">
-          <div className="relative flex flex-col items-start justify-start w-6 h-6">
+          <div onClick={(event) => handleBack(event)} className="relative flex flex-col items-start justify-start w-6 h-6 cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
