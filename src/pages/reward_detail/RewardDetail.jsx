@@ -14,6 +14,7 @@ import RewardIcon from "../../layouts/icons/RewardIcon";
 
 import "./RewardDetail.scss";
 import RedeemModal from "../../components/modals/redeem_modal/RedeemModal";
+import QrModal from "../../components/modals/qr_modal/QrModal";
 
 const RewardDetail = () => {
   const { id } = useParams();
@@ -22,6 +23,7 @@ const RewardDetail = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isRedeem, setIsRedeem] = useState(false);
+  const [showQr, setShowQr] = useState(false);
 
   const { reward_list } = api_routes;
 
@@ -68,6 +70,7 @@ const RewardDetail = () => {
           image={RewardIcon}
         />
       )}
+      {showQr && <QrModal setIsClick={setShowQr} />}
       <div className="reward-detail-wrapper w-full relative overflow-hidden">
         <div className="flex w-full items-center justify-between mb-6">
           <button
@@ -116,6 +119,11 @@ const RewardDetail = () => {
             <h1 className="text-[20px] text-[#48505E] font-medium">
               {data?.name}
             </h1>
+            {isRedeem && (
+              <p className="px-4 py-1 flex items-center rounded-lg bg-[#F790091A] text-[#F79009] text-[10px]">
+                Pending
+              </p>
+            )}
           </div>
           <div className="w-full flex flex-wrap mb-8">
             <p className="flex text-[16px] text-justify font-normal text-[#48505E]">
@@ -128,7 +136,7 @@ const RewardDetail = () => {
         {isRedeem ? (
           <button
             type="button"
-            onClick={() => {}}
+            onClick={() => setShowQr((prev) => !prev)}
             className="redeem-btn flex-1 flex w-full p-4 font-bold justify-center text-[16px] rounded-lg text-[#FFF]"
           >
             Collect Reward
