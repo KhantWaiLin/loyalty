@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-import PopUp from "../../components/popup/PopUp";
 import Loader from "../../components/loader/Loader";
 
 import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
 import { getUserBrandMemberId } from "../../utils/getBrandUserId";
 
+import Heart from "../../assets/icons/heart-icon.svg";
+import BackArrow from "../../assets/icons/back_arrow.svg";
+import PointIcon from "../../assets/icons/point_icon.svg";
+import RewardIcon from "../../layouts/icons/RewardIcon";
+
 import "./RewardDetail.scss";
+import RedeemModal from "../../components/modals/redeem_modal/RedeemModal";
+import QrModal from "../../components/modals/qr_modal/QrModal";
 
 const RewardDetail = () => {
   const { id } = useParams();
@@ -16,6 +22,8 @@ const RewardDetail = () => {
   const [data, setData] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isRedeem, setIsRedeem] = useState(false);
+  const [showQr, setShowQr] = useState(false);
 
   const { reward_list } = api_routes;
 
@@ -38,69 +46,122 @@ const RewardDetail = () => {
   }, [id]);
 
   const onClick = (is_ok) => {
-    console.log(is_ok);
+    if (is_ok) {
+      setIsRedeem(true);
+    }
     setShowPopup(false);
   };
 
   if (isLoading) {
     return (
-      <div className="reward-detail items-center flex flex-col justify-center">
+      <div className="w-full h-full items-center flex flex-col justify-center">
         <Loader />
       </div>
     );
   }
 
   return (
-    <div className="reward-detail p-4 w-full overflow-scroll">
+    <div className="reward-detail relative p-4 w-full h-full overflow-hidden">
       {showPopup && (
-        <PopUp
-          title="Confirmation"
-          desc="Are you sure to redeem?"
+        <RedeemModal
+          title="Redeem item?"
+          desc="Sure you want to redeem this item!"
           onClick={onClick}
+          image={RewardIcon}
         />
       )}
-      <div className="flex w-full items-center gap-12 mb-10">
-        <button
-          type="button"
-          onClick={() => navigate(-1)}
-          className="px-4 py-2 bg-gray-400 rounded-full text-white"
-        >
-          Back
-        </button>
-        <h1 className="flex-1 flex items-center text-[28px]">Reward Detail</h1>
-      </div>
-      <div className="flex flex-col gap-5 mb-4">
-        <div className="w-full  bg-gray-300 h-[211px]">
-          <img
-            src={data?.image}
-            alt="detail-img"
-            className=" w-full h-full object-contain"
-          />
+      {showQr && <QrModal setIsClick={setShowQr} />}
+      <div className="reward-detail-wrapper w-full relative overflow-hidden">
+        <div className="flex w-full items-center justify-between mb-6">
+          <button
+            type="button"
+            onClick={() => navigate(-1)}
+            className="w-[50px] h-[50px] flex items-center justify-center border-[1px] border-[#F0F1F3] rounded-lg bg-[#FAFAFA]  text-white"
+          >
+            <img src={BackArrow} alt="back-icon" className="w-6 h-6" />
+          </button>
+
+          <h1 className="flex w-auto flex-1 text-[#48505E] justify-center items-center text-[16px] font-medium">
+            Reward Details
+          </h1>
+          <button
+            className="flex w-[50px] h-[50px] items-center justify-center border-[1px]
+         border-[#F0F1F3] rounded-lg bg-[#FAFAFA]"
+          >
+            <img src={Heart} alt="heart-icon" className="w-5 h-5" />
+          </button>
         </div>
-        <div className="flex justify-between">
-          <button className="bg-gray-300 p-3 rounded-md">Button 1</button>
-          <button className="bg-gray-300 p-3 rounded-md">Button 2</button>
-          <button className="bg-gray-300 p-3 rounded-md">Button 3</button>
-          <button className="bg-gray-300 p-3 rounded-md">Button 4</button>
+        <div className="scroll-container w-full overflow-scroll no-scrollbar">
+          <div className="flex flex-col gap-2 mb-6">
+            <div className="flex justify-center items-center bg-[#EBF2FF] rounded-lg h-[200px]">
+              <img
+                src={data?.image}
+                alt="detail-img"
+                className=" w-[85%] h-[85%] object-contain"
+              />
+            </div>
+            <div className="flex gap-2 justify-between">
+              {Array.from({ length: 5 }, (_, index) => (
+                <div
+                  key={index}
+                  className="flex justify-center items-center rounded-lg bg-[#EBF2FF]"
+                >
+                  <img
+                    src={data?.image}
+                    alt="detail-img"
+                    className=" w-[85%] items-center h-[85%] object-contain"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="flex justify-between mb-4">
+            <h1 className="text-[20px] text-[#48505E] font-medium">
+              {data?.name}
+            </h1>
+            {isRedeem && (
+              <p className="px-4 py-1 flex items-center rounded-lg bg-[#F790091A] text-[#F79009] text-[10px]">
+                Pending
+              </p>
+            )}
+          </div>
+          <div className="w-full flex flex-wrap mb-8">
+            <p className="flex text-[16px] text-justify font-normal text-[#48505E]">
+              {data?.description}
+            </p>
+          </div>
         </div>
       </div>
-      <div className="flex justify-between mb-4">
-        <h1 className="text-[18px] font-medium">{data?.name}</h1>
-        <h1 className="text-[18px] font-medium">
-          price: {data?.pointRequired}
-        </h1>
-      </div>
-      <div className="w-full flex flex-wrap mb-8">
-        <p className="flex text-justify">{data?.description}</p>
-      </div>
-      <div className="flex w-full justify-center items-center">
-        <button
-          type="button"
-          onClick={() => setShowPopup(true)}
-          className="flex p-4 text-[23px] bg-blue-400 rounded-lg text-white"
-        >
-          Redeem
-        </button>
+      <div className="redeem-btn-wrapper w-full shadow-md flex gap-5 justify-between z-10 absolute left-0 py-2 px-4 pb-[34px] bottom-0">
+        {isRedeem ? (
+          <button
+            type="button"
+            onClick={() => setShowQr((prev) => !prev)}
+            className="redeem-btn flex-1 flex w-full p-4 font-bold justify-center text-[16px] rounded-lg text-[#FFF]"
+          >
+            Collect Reward
+          </button>
+        ) : (
+          <div className="w-full flex gap-5">
+            <button
+              className="flex flex-col h-[52px] px-5 justify-center bg-[#F0F1F3] 
+          items-center rounded-lg"
+            >
+              <p className="text-[#667085] font-normal leading-5">Points</p>
+              <span className="flex text-[#48505E] font-medium  items-center gap-2">
+                {data?.pointRequired} Pts
+                <img src={PointIcon} alt="point-icon" className="w-5 h-5" />
+              </span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowPopup(true)}
+              className="redeem-btn flex-1 flex w-full p-4 font-bold justify-center text-[16px] rounded-lg text-[#FFF]"
+            >
+              Redeem
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

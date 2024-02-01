@@ -67,8 +67,8 @@ const Home = () => {
   }
 
   return (
-    <div className="home-wrapper p-5 w-full overflow-scroll">
-      <div className="flex justify-between items-center mt-10  mb-10">
+    <div className="home-wrapper p-5 w-full overflow-hidden">
+      <div className="flex justify-between items-center mt-2  mb-8">
         <div className="flex-1">
           <UserInfo user={pointData} />
         </div>
@@ -87,80 +87,84 @@ const Home = () => {
           <Coupon />
         </div>
       </div>
-      <div className="flex flex-col mb-5">
-        <div className="flex justify-between mb-5">
-          <h1 className="text-[#48505E] font-medium text-[16px]">Promotion</h1>
-          <a
-            type="button"
-            className="text-[#384BCA] font-normal text-[14px]"
-            href="/promotionlist"
+      <div className="scroll-container w-full pb-5 overflow-scroll no-scrollbar">
+        <div className="flex flex-col mb-5">
+          <div className="flex justify-between mb-5">
+            <h1 className="text-[#48505E] font-medium text-[16px]">
+              Promotion
+            </h1>
+            <a
+              type="button"
+              className="text-[#384BCA] font-normal text-[14px]"
+              href="/promotionlist"
+            >
+              View all
+            </a>
+          </div>
+          <Swiper
+            grabCursor={true}
+            loop={true}
+            modules={[Autoplay]}
+            className="w-full"
           >
-            View all
-          </a>
+            {promotionData?.map((promotion) => (
+              <SwiperSlide key={promotion?.id}>
+                <div className="w-[378px] h-[160px]">
+                  <PromotionCard
+                    promotion={promotion}
+                    onClick={() => {
+                      navigate(`/promotion/${promotion?.id}`);
+                    }}
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
-        <Swiper
-          grabCursor={true}
-          loop={true}
-          modules={[Autoplay]}
-          className="w-full"
-        >
-          {promotionData?.map((promotion) => (
-            <SwiperSlide key={promotion?.id}>
-              <div className="w-[378px] h-[160px]">
-                <PromotionCard
-                  promotion={promotion}
-                  onClick={() => {
-                    navigate(`/promotion/${promotion?.id}`);
-                  }}
-                />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-      <div className="flex flex-col mb-5">
-        <div className="flex justify-between mb-5">
-          <h1 className="text-[#48505E] font-medium text-[16px]">Blog</h1>
-          <button
-            type="button"
-            className="text-[#384BCA] font-medium text-[12px]"
-          >
-            View all
-          </button>
+        <div className="flex flex-col mb-5">
+          <div className="flex justify-between mb-5">
+            <h1 className="text-[#48505E] font-medium text-[16px]">Blog</h1>
+            <button
+              type="button"
+              className="text-[#384BCA] font-medium text-[12px]"
+            >
+              View all
+            </button>
+          </div>
+          <Swiper loop={true} modules={[Autoplay]} className="w-full">
+            {blog_data?.map((blog) => (
+              <SwiperSlide key={blog.id}>
+                <div className="px-2">
+                  <BlogCard blog={blog} onClick={() => {}} />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
-        <Swiper loop={true} modules={[Autoplay]} className="w-full">
-          {blog_data?.map((blog) => (
-            <SwiperSlide key={blog.name}>
-              <div className="px-2 h-[180px]">
-                <BlogCard blog={blog} onClick={() => {}} />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-      <div className="flex flex-col">
-        <div className="flex justify-between mb-5">
-          <h1 className="text-[#48505E] font-medium text-[16px]">Services</h1>
-          <a
-            type="button"
-            className="text-[#384BCA] font-medium text-[12px]"
-            href="/servicelist"
-          >
-            View all
-          </a>
+        <div className="flex flex-col">
+          <div className="flex justify-between mb-5">
+            <h1 className="text-[#48505E] font-medium text-[16px]">Services</h1>
+            <a
+              type="button"
+              className="text-[#384BCA] font-medium text-[12px]"
+              href="/servicelist"
+            >
+              View all
+            </a>
+          </div>
+          <Swiper loop={true} modules={[Autoplay]} className="w-full">
+            {serviceData?.map((service) => (
+              <SwiperSlide key={service.cateGoryId}>
+                <div className="px-2 h-[180px]">
+                  <HomeServiceCard
+                    service={service}
+                    onClick={() => navigate(`/service/${service?.cateGoryId}`)}
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
-        <Swiper loop={true} modules={[Autoplay]} className="w-full">
-          {serviceData?.map((service) => (
-            <SwiperSlide key={service.cateGoryId}>
-              <div className="px-2 h-[180px]">
-                <HomeServiceCard
-                  service={service}
-                  onClick={() => navigate(`/service/${service?.cateGoryId}`)}
-                />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
       </div>
     </div>
   );

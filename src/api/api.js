@@ -2,10 +2,9 @@ import axios from "axios";
 
 const api_url = process.env.REACT_APP_API_URL;
 
-
 const api = {
   checkToken: (response) => {
-    if (response?.data?.code === 401) {
+    if (response?.data?.code === 401 || response.status === 401) {
       return (window.location.href = "/");
     }
     return;
@@ -23,7 +22,7 @@ const api = {
     try {
       const URL = api_url + url;
       const response = await axios.get(URL, {
-        "headers": {
+        headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + token,
         },
@@ -44,7 +43,7 @@ const api = {
         URL,
         {},
         {
-          "headers": {
+          headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + token,
           },
@@ -62,7 +61,7 @@ const api = {
     const URL = api_url + url;
     try {
       const response = await axios.post(URL, data, {
-        "headers": {
+        headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + token,
         },
