@@ -98,7 +98,7 @@ const ServiceDetail = () => {
     const [serviceDetail, setServiceDetail] = React.useState([]);
     const [tempData, setPostData] = React.useState({
         "userName": "09422924858",
-        "password": "jujuJu1",
+        "password": "jujuJU1",
         "userType": '2'
     });
     const [preData, setPreData] = React.useState({
