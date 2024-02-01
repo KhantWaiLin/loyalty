@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const cardStyle = {
   width: '388px',
   height: '220px',
-  border: '1px solid #000',
+  border: '1px solid #F0F1F3',
   borderRadius: '20px',
   padding: '10px',
 };
@@ -18,6 +18,12 @@ const imageStyle = {
 function PromotionItem({ promotion }) {
   let navigate = useNavigate();
 
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = new Date(dateString).toLocaleDateString(undefined, options);
+    return formattedDate;
+  };
+
   return (
     <a href={`/promotiondetail/${promotion.id}`} style={cardStyle}>
       <img
@@ -29,7 +35,7 @@ function PromotionItem({ promotion }) {
         {promotion.name}
       </p>
       <p className="text-sm font-normal mt-[8px] not-italic text-[#989FAD]">
-        {promotion.startDate}
+        {formatDate(promotion.startDate)}
       </p>
     </a>
   );

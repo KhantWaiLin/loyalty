@@ -25,7 +25,8 @@ const cardListStyle = {
   gap: '8px',
   left: '17px',
   top: '80px',
-  height: '550px',
+  height: '80%',
+  width : '90%',
   overflow: 'auto',
   ovarflowY: 'scroll',
   scrollbarWidth: 'thin',
@@ -67,7 +68,7 @@ function PromotionList({ promotionList }) {
   
   const auth = {
     userName: "09422924858",
-    password: "jujuJu1",
+    password: "jujuJU1",
     userType: 2,
   };
 

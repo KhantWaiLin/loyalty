@@ -7,7 +7,7 @@ const ServiceList = () => {
   const [serviceList, setServiceList] = useState(null);
   const [tempData, setPostData] = useState({
     "userName": "09422924858",
-    "password": "jujuJu1",
+    "password": "jujuJU1",
     "userType": '2'
   });
   const [preData, setPreData] = useState({

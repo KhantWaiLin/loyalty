@@ -14,7 +14,7 @@ const icon_style = {
 
 const share_style = {
   position: 'absolute',
-  left: '370px',
+  left: '85%',
   top: '60px',
   backgroundColor: '#FAFAFA',
   border: '1px',
@@ -87,7 +87,7 @@ function PromotionDetail({ promotionId }) {
 
   const auth = {
     "userName": "09422924858",
-    "password": "jujuJu1",
+    "password": "jujuJU1",
     "userType": 2
   };
 
@@ -96,6 +96,12 @@ function PromotionDetail({ promotionId }) {
   if (detailData) {
     promotionDetailData = detailData.data;
   }
+
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = new Date(dateString).toLocaleDateString(undefined, options);
+    return formattedDate;
+  };
 
   return (
     <main className="flex flex-col h-full ">
@@ -120,7 +126,7 @@ function PromotionDetail({ promotionId }) {
       </header>
       <div className="basis-2/12">
             <h4 className="mt-3" style={title}>{promotionDetailData.name}</h4>
-            <h6 className="my-3" style={date_time}>{promotionDetailData.startDate}</h6>
+            <h6 className="my-3" style={date_time}>{formatDate(promotionDetailData.startDate)}</h6>
       </div>
       <section className="flex flex-col basis-10/12">
         <article className="flex items-center justify-center basis-1/3" style={img}>
