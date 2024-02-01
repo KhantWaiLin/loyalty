@@ -8,9 +8,13 @@ import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
 import { getUserBrandMemberId } from "../../utils/getBrandUserId";
 
+import Heart from "../../assets/icons/heart-icon.svg";
+
 import "./Reward.scss";
+import PointTotal from "../../components/point_total/PointTotal";
 
 const Reward = () => {
+  const [pointData, setPointData] = useState(null);
   const [rewardData, setRewardData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -19,11 +23,16 @@ const Reward = () => {
     navigate(`/reward/${item?.id}`);
   };
 
-  const { reward_list } = api_routes;
+  const { get_member_info, reward_list } = api_routes;
 
   const get_reward_list = async () => {
     setIsLoading(true);
-    const { brand_id } = getUserBrandMemberId();
+    const { brand_id, user_id } = getUserBrandMemberId();
+    await api
+      .get(get_member_info, { brandId: brand_id, userId: user_id })
+      .then((response) => {
+        setPointData(response?.data?.value?.data);
+      });
     await api
       .postByBody(reward_list, { brandId: brand_id })
       .then((response) => {
@@ -46,13 +55,24 @@ const Reward = () => {
   }
 
   return (
-    <div className="reward-wrapper p-4 w-full overflow-scroll">
-      <h1 className="flex justify-center mb-5 items-center text-[30px]">
-        Reward
-      </h1>
-      <div className="flex gap-[25px] flex-wrap">
+    <section className="reward-wrapper p-4 w-full overflow-scroll">
+      <div className="flex w-full justify-between items-center mb-6">
+        <h1 className="flex w-full text-[#48505E] justify-center items-center text-[16px] font-medium">
+          Rewards
+        </h1>
+        <div
+          className="flex w-[50px] h-[50px] items-center justify-center border-[1px]
+         border-[#F0F1F3] rounded-lg"
+        >
+          <img src={Heart} alt="heart-icon" className="w-5 h-5" />
+        </div>
+      </div>
+      <div className="total-point mb-6">
+        <PointTotal point_data={pointData} />
+      </div>
+      <div className="flex gap-[20px] flex-wrap">
         {rewardData?.map((reward) => (
-          <div key={reward.id} className="w-[185px] h-[200px] cursor-pointer">
+          <div key={reward.id} className="w-[186px] h-[180px] cursor-pointer">
             <RewardCard
               reward={reward}
               onClick={() => {
@@ -62,7 +82,7 @@ const Reward = () => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

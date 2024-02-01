@@ -1,3 +1,14 @@
 .reward-wrapper {
   height: calc(100% - 84px);
+  .total-point {
+    display: flex;
+    .point-total {
+      h3,
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
 }
