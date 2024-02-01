@@ -3,6 +3,8 @@ import { api_routes } from "../../../utils/apiRoute";
 import { getUserBrandMemberId } from "../../../utils/getBrandUserId";
 import api from "../../../api/api";
 import { format } from "date-fns";
+import PointList from "./components/PointList";
+import { Link } from "react-router-dom";
 
 import Loader from "../../../components/loader/Loader";
 
@@ -13,7 +15,20 @@ const TransactionHistory = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { transaction_history } = api_routes;
-  const { brand_id, user_id } = getUserBrandMemberId();
+  const { brand_id, user_id, member_id } = getUserBrandMemberId();
+
+  useEffect(() => {
+    get_transaction();
+    // eslint-disable-next-line
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex flex-col items-center justify-center transaction-history-wrapper">
+        <Loader />
+      </div>
+    );
+  }
 
   const get_transaction = async () => {
     setIsLoading(true);
@@ -28,51 +43,53 @@ const TransactionHistory = () => {
     setIsLoading(false);
   };
 
-  useEffect(() => {
-    get_transaction();
-    // eslint-disable-next-line
-  }, []);
-  if (isLoading) {
-    return (
-      <div className="transaction-history-wrapper items-center flex flex-col justify-center">
-        <Loader />
-      </div>
-    );
-  }
   return (
-    <div className="transaction-history-wrapper flex flex-col py-4 px-6 w-full overflow-scroll">
-      <h1 className="text-[24px] w-full flex justify-center font-medium mb-10">
-        Transaction History
-      </h1>
-      <table className="w-full border-collapse border border-gray-500">
-        <thead>
-          <tr>
-            <th className="border border-gray-500 p-2">Point</th>
-            <th className="border border-gray-500 p-2">Collected Type</th>
-            <th className="border border-gray-500 p-2">Is In</th>
-            <th className="border border-gray-500 p-2">Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data?.map((item) => {
-            const date = new Date(item?.date);
-            const formattedDate = format(date, "yyyy-MM-dd HH:mm");
+    <div className="relative flex flex-col w-full overflow-scroll transaction-history-wrapper no-scrollbar">
+      <header className="flex flex-col z-30 bg-indigo-700 basis-2/12 ps-[20px] pr-[42%]">
+        <section className="flex justify-between mt-[30px]">
+          <Link
+            to="/profile"
+            className="flex flex-col items-start justify-start w-6 h-6"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6 text-white cursor-pointer"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 19.5 8.25 12l7.5-7.5"
+              />
+            </svg>
+          </Link>
+          <h1 className="text-white">Point History</h1>
+        </section>
+      </header>
 
+      {/* point history list */}
+      <main className=" z-50 bg-white absolute left-0 rounded-t-2xl top-20 w-full h-[485px] basis-10/12 overflow-auto no-scrollbar pt-3">
+        {data &&
+          data.map((point, index) => {
             return (
-              <tr key={item?.date}>
-                <td className="border border-gray-500 p-2">{item?.point}</td>
-                <td className="border border-gray-500 p-2">
-                  {item?.collectedType}
-                </td>
-                <td className="border border-gray-500 p-2">
-                  {item?.isIn?.toString()}
-                </td>
-                <td className="border border-gray-500 p-2">{formattedDate}</td>
-              </tr>
+              <PointList
+                key={index}
+                point={point.point}
+                collectedType={point.collectedType}
+                isIn={point.isIn}
+                date={format(point.date, "MMMM dd, yyyy")}
+              />
             );
           })}
-        </tbody>
-      </table>
+
+        <div className="text-gray-400 text-[13px] font-normal  leading-tight mb-1 text-center">
+          No More Result!
+        </div>
+      </main>
+      {/* point history list */}
     </div>
   );
 };
