@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import Loader from "../../components/loader/Loader";
 import RewardCard from "../../components/RewardCard";
+import PointTotal from "../../components/point_total/PointTotal";
 
 import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
@@ -11,7 +12,6 @@ import { getUserBrandMemberId } from "../../utils/getBrandUserId";
 import Heart from "../../assets/icons/heart-icon.svg";
 
 import "./Reward.scss";
-import PointTotal from "../../components/point_total/PointTotal";
 
 const Reward = () => {
   const [pointData, setPointData] = useState(null);
@@ -60,12 +60,12 @@ const Reward = () => {
         <h1 className="flex w-full text-[#48505E] justify-center items-center text-[16px] font-medium">
           Rewards
         </h1>
-        <div
+        <button
           className="flex w-[50px] h-[50px] items-center justify-center border-[1px]
-         border-[#F0F1F3] rounded-lg"
+         border-[#F0F1F3] rounded-lg bg-[#FAFAFA]"
         >
           <img src={Heart} alt="heart-icon" className="w-5 h-5" />
-        </div>
+        </button>
       </div>
       <div className="total-point mb-6">
         <PointTotal point_data={pointData} />

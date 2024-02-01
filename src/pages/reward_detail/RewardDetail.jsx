@@ -8,6 +8,9 @@ import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
 import { getUserBrandMemberId } from "../../utils/getBrandUserId";
 
+import Heart from "../../assets/icons/heart-icon.svg";
+import BackArrow from "../../assets/icons/back_arrow.svg";
+
 import "./RewardDetail.scss";
 
 const RewardDetail = () => {
@@ -51,7 +54,7 @@ const RewardDetail = () => {
   }
 
   return (
-    <div className="reward-detail p-4 w-full overflow-scroll">
+    <div className="reward-detail relative p-4 w-full h-full overflow-scroll no-scrollbar">
       {showPopup && (
         <PopUp
           title="Confirmation"
@@ -59,45 +62,65 @@ const RewardDetail = () => {
           onClick={onClick}
         />
       )}
-      <div className="flex w-full items-center gap-12 mb-10">
-        <button
-          type="button"
-          onClick={() => navigate(-1)}
-          className="px-4 py-2 bg-gray-400 rounded-full text-white"
-        >
-          Back
-        </button>
-        <h1 className="flex-1 flex items-center text-[28px]">Reward Detail</h1>
-      </div>
-      <div className="flex flex-col gap-5 mb-4">
-        <div className="w-full  bg-gray-300 h-[211px]">
-          <img
-            src={data?.image}
-            alt="detail-img"
-            className=" w-full h-full object-contain"
-          />
+      <div className="reward-detail-wrapper w-full relative p-4 overflow-scroll no-scrollbar">
+        <div className="flex w-full items-center justify-between mb-6">
+          <button
+            type="button"
+            onClick={() => navigate(-1)}
+            className="w-[50px] h-[50px] flex items-center justify-center border-[1px] border-[#F0F1F3] rounded-lg bg-[#FAFAFA]  text-white"
+          >
+            <img src={BackArrow} alt="back-icon" className="w-6 h-6" />
+          </button>
+
+          <h1 className="flex w-auto flex-1 text-[#48505E] justify-center items-center text-[16px] font-medium">
+            Reward Details
+          </h1>
+          <button
+            className="flex w-[50px] h-[50px] items-center justify-center border-[1px]
+         border-[#F0F1F3] rounded-lg bg-[#FAFAFA]"
+          >
+            <img src={Heart} alt="heart-icon" className="w-5 h-5" />
+          </button>
         </div>
-        <div className="flex justify-between">
-          <button className="bg-gray-300 p-3 rounded-md">Button 1</button>
-          <button className="bg-gray-300 p-3 rounded-md">Button 2</button>
-          <button className="bg-gray-300 p-3 rounded-md">Button 3</button>
-          <button className="bg-gray-300 p-3 rounded-md">Button 4</button>
+        <div className="flex flex-col gap-2 mb-6">
+          <div className="flex justify-center items-center bg-[#EBF2FF] rounded-lg h-[200px]">
+            <img
+              src={data?.image}
+              alt="detail-img"
+              className=" w-[85%] h-[85%] object-contain"
+            />
+          </div>
+          <div className="flex gap-2 justify-between">
+            {Array.from({ length: 5 }, (_, index) => (
+              <div
+                key={index}
+                className="flex justify-center items-center rounded-lg bg-[#EBF2FF]"
+              >
+                <img
+                  src={data?.image}
+                  alt="detail-img"
+                  className=" w-[85%] items-center h-[85%] object-contain"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="flex justify-between mb-4">
+          <h1 className="text-[20px] text-[#48505E] font-medium">
+            {data?.name}
+          </h1>
+        </div>
+        <div className="w-full flex flex-wrap mb-8">
+          <p className="flex text-[16px] text-justify font-normal text-[#48505E]">
+            {data?.description}
+          </p>
         </div>
       </div>
-      <div className="flex justify-between mb-4">
-        <h1 className="text-[18px] font-medium">{data?.name}</h1>
-        <h1 className="text-[18px] font-medium">
-          price: {data?.pointRequired}
-        </h1>
-      </div>
-      <div className="w-full flex flex-wrap mb-8">
-        <p className="flex text-justify">{data?.description}</p>
-      </div>
-      <div className="flex w-full justify-center items-center">
+      <div className="redeem-btn-wrapper w-full shadow-md flex justify-between z-10 absolute left-0 py-2 px-4 pb-[34px] bottom-0">
         <button
           type="button"
           onClick={() => setShowPopup(true)}
-          className="flex p-4 text-[23px] bg-blue-400 rounded-lg text-white"
+          className="flex w-full p-4 font-bold justify-center bg-[#384BCA] text-[16px] rounded-lg text-[#FFF]"
         >
           Redeem
         </button>

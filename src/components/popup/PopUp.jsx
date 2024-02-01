@@ -4,10 +4,10 @@ import "./PopUp.scss";
 const PopUp = ({ title, desc, onClick }) => {
   return (
     <div
-      className="popup-bg flex w-full h-full justify-center z-10 items-center absolute  left-0 top-0"
+      className="popup-bg flex w-full h-full justify-center z-20 items-center absolute  left-0 top-0"
       onClick={() => onClick(false)}
     >
-      <div className="popup-container p-4 bg-white z-20 border-black border-[1px] rounded-lg">
+      <div className="popup-container p-4 bg-white z-30 border-black border-[1px] rounded-lg">
         <h1 className="text-[22px] font-bold mb-4">{title}</h1>
         <p className="mb-4">{desc}</p>
         <div className="flex gap-5 justify-end items-center">

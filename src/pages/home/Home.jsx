@@ -67,7 +67,7 @@ const Home = () => {
   }
 
   return (
-    <div className="home-wrapper p-5 w-full overflow-scroll">
+    <div className="home-wrapper  p-5 w-full overflow-scroll no-scrollbar">
       <div className="flex justify-between items-center mt-10  mb-10">
         <div className="flex-1">
           <UserInfo user={pointData} />
