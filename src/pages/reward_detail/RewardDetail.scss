@@ -1,4 +1,14 @@
 .reward-detail {
+  .reward-icon-wrapper {
+    svg {
+      path {
+        fill: #384bca;
+      }
+    }
+  }
+  .redeem-container {
+    width: 343px;
+  }
   .reward-detail-wrapper {
     height: calc(100% - 84px);
     .scroll-container {

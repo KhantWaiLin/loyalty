@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-import PopUp from "../../components/popup/PopUp";
 import Loader from "../../components/loader/Loader";
 
 import api from "../../api/api";
@@ -10,8 +9,11 @@ import { getUserBrandMemberId } from "../../utils/getBrandUserId";
 
 import Heart from "../../assets/icons/heart-icon.svg";
 import BackArrow from "../../assets/icons/back_arrow.svg";
+import PointIcon from "../../assets/icons/point_icon.svg";
+import RewardIcon from "../../layouts/icons/RewardIcon";
 
 import "./RewardDetail.scss";
+import RedeemModal from "../../components/modals/redeem_modal/RedeemModal";
 
 const RewardDetail = () => {
   const { id } = useParams();
@@ -19,6 +21,7 @@ const RewardDetail = () => {
   const [data, setData] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isRedeem, setIsRedeem] = useState(false);
 
   const { reward_list } = api_routes;
 
@@ -41,7 +44,9 @@ const RewardDetail = () => {
   }, [id]);
 
   const onClick = (is_ok) => {
-    console.log(is_ok);
+    if (is_ok) {
+      setIsRedeem(true);
+    }
     setShowPopup(false);
   };
 
@@ -56,10 +61,11 @@ const RewardDetail = () => {
   return (
     <div className="reward-detail relative p-4 w-full h-full overflow-hidden">
       {showPopup && (
-        <PopUp
-          title="Confirmation"
-          desc="Are you sure to redeem?"
+        <RedeemModal
+          title="Redeem item?"
+          desc="Sure you want to redeem this item!"
           onClick={onClick}
+          image={RewardIcon}
         />
       )}
       <div className="reward-detail-wrapper w-full relative overflow-hidden">
@@ -118,14 +124,36 @@ const RewardDetail = () => {
           </div>
         </div>
       </div>
-      <div className="redeem-btn-wrapper w-full shadow-md flex justify-between z-10 absolute left-0 py-2 px-4 pb-[34px] bottom-0">
-        <button
-          type="button"
-          onClick={() => setShowPopup(true)}
-          className="redeem-btn flex w-full p-4 font-bold justify-center text-[16px] rounded-lg text-[#FFF]"
-        >
-          Redeem
-        </button>
+      <div className="redeem-btn-wrapper w-full shadow-md flex gap-5 justify-between z-10 absolute left-0 py-2 px-4 pb-[34px] bottom-0">
+        {isRedeem ? (
+          <button
+            type="button"
+            onClick={() => {}}
+            className="redeem-btn flex-1 flex w-full p-4 font-bold justify-center text-[16px] rounded-lg text-[#FFF]"
+          >
+            Collect Reward
+          </button>
+        ) : (
+          <div className="w-full flex gap-5">
+            <button
+              className="flex flex-col h-[52px] px-5 justify-center bg-[#F0F1F3] 
+          items-center rounded-lg"
+            >
+              <p className="text-[#667085] font-normal leading-5">Points</p>
+              <span className="flex text-[#48505E] font-medium  items-center gap-2">
+                {data?.pointRequired} Pts
+                <img src={PointIcon} alt="point-icon" className="w-5 h-5" />
+              </span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowPopup(true)}
+              className="redeem-btn flex-1 flex w-full p-4 font-bold justify-center text-[16px] rounded-lg text-[#FFF]"
+            >
+              Redeem
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

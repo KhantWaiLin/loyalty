@@ -70,7 +70,10 @@ const Reward = () => {
       <div className="total-point mb-6">
         <PointTotal point_data={pointData} />
       </div>
-      <div className="scroll-container overflow-scroll no-scrollbar w-full flex gap-[20px] flex-wrap">
+      <div
+        className="scroll-container overflow-scroll no-scrollbar w-full 
+        flex gap-[20px] flex-col flex-wrap justify-start"
+      >
         {rewardData?.map((reward) => (
           <div key={reward.id} className="w-[186px] h-[180px] cursor-pointer">
             <RewardCard
