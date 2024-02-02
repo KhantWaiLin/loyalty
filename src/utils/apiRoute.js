@@ -10,4 +10,5 @@ export const api_routes = {
   transaction_history: "/api/Customer/GetPointHistory",
   member_tire_level: "/api/Customer/GetTierBenefitList",
   log_out: "/api/Authentication/Logout",
+  membership_level: "/api/Customer/GetMembership"
 };

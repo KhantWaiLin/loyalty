@@ -46,7 +46,7 @@ const TransactionHistory = () => {
   return (
     <div className="relative flex flex-col w-full overflow-scroll transaction-history-wrapper no-scrollbar">
       <header className="flex flex-col z-30 bg-indigo-700 basis-2/12 ps-[20px] pr-[42%]">
-        <section className="flex justify-between mt-[30px]">
+        <section className="flex justify-between mt-[20px]">
           <Link
             to="/profile"
             className="flex flex-col items-start justify-start w-6 h-6"
@@ -71,7 +71,7 @@ const TransactionHistory = () => {
       </header>
 
       {/* point history list */}
-      <main className=" z-50 bg-white absolute left-0 rounded-t-2xl top-20 w-full h-[485px] basis-10/12 overflow-auto no-scrollbar pt-3">
+      <main className=" z-50 bg-white absolute left-0 rounded-t-2xl top-16 w-full h-[485px] basis-10/12 overflow-auto no-scrollbar pt-3">
         {data &&
           data.map((point, index) => {
             return (

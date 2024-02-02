@@ -20,6 +20,7 @@ import TransactionHistory from "./pages/profile/transaction_history/TransactionH
 import MemberTireLevel from "./pages/profile/membership_tire_level/MemberTireLevel";
 import ChangeNumber from "./pages/profile/change_number/ChangeNumber";
 import ChangePassword from "./pages/profile/change_password/ChangePassword";
+import ViewTierBenefits from "./pages/profile/membership_tire_level/view_tier_benefits/ViewTierBenefits";
 
 const Routers = () => {
   return (
@@ -41,6 +42,10 @@ const Routers = () => {
       <Route
         path="/profile/membership-tire-level"
         element={<MemberTireLevel />}
+      />
+      <Route
+        path="/profile/membership-tire-level/view-tier-benefits"
+        element={<ViewTierBenefits />}
       />
 
       <Route path="/qr" element={<QR />} />
