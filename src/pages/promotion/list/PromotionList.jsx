@@ -75,7 +75,7 @@ function PromotionList() {
         </svg>
       </a>
       <h1 style={heading}>Promotions</h1>
-      <div style={cardListStyle}>
+      <div style={cardListStyle} className="no-scrollbar">
         {promotionData &&
           promotionData.map((promotion, index) => (
             <PromotionItem promotion={promotion} key={index} />
