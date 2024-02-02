@@ -124,12 +124,13 @@ const Home = () => {
         <div className="flex flex-col mb-5">
           <div className="flex justify-between mb-5">
             <h1 className="text-[#48505E] font-medium text-[16px]">Blog</h1>
-            <button
+            <a
               type="button"
               className="text-[#384BCA] font-medium text-[12px]"
+              href="/bloglist"
             >
               View all
-            </button>
+            </a>
           </div>
           <Swiper loop={true} modules={[Autoplay]} className="w-full">
             {blog_data?.map((blog) => (

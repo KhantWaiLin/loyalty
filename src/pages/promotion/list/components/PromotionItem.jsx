@@ -9,10 +9,12 @@ const cardStyle = {
   padding: '10px',
 };
 
-const imageStyle = {
+const imageSectionStyle = {
   width: '368px',
   height: '140px',
   borderRadius: '8px',
+  overflow: 'hidden',
+  objectFit: 'cover',
 };
 
 function PromotionItem({ promotion }) {
@@ -26,12 +28,14 @@ function PromotionItem({ promotion }) {
 
   return (
     <a href={`/promotiondetail/${promotion.id}`} style={cardStyle}>
-      <img
-        style={imageStyle}
-        src={promotion.image}
-        alt="Card Image"
-      />
-      <p lassName="text-base font-normal not-italic text-[#48505E]">
+      <div style={imageSectionStyle}>
+        <img
+          className="w-full h-full object-contain"
+          src={promotion.image}
+          alt="Card Image"
+        />
+      </div>
+      <p className="text-base font-normal not-italic text-[#48505E]">
         {promotion.name}
       </p>
       <p className="text-sm font-normal mt-[8px] not-italic text-[#989FAD]">

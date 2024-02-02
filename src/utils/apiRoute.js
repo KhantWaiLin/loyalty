@@ -3,6 +3,7 @@ export const api_routes = {
   promotion_detail: '/api/Customer/GetPromotionDetailById?PromoId=',
   service_list: "/api/Customer/GetCategoryListByCustomer",
   service_detail: '/api/Customer/GetProductListByCategoryAndSubCategory',
+  blog_list: '/api/Customer/GetBlogListByBrandId',
   get_member_info: "/api/Customer/GetMemberInfo",
   change_number: "/api/Customer/ChangePhoneNo",
   change_password: "/api/Customer/ChangePassword",
