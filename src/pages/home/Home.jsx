@@ -134,7 +134,7 @@ const Home = () => {
           <Swiper loop={true} modules={[Autoplay]} className="w-full">
             {blog_data?.map((blog) => (
               <SwiperSlide key={blog.id}>
-                <div className="px-2">
+                <div>
                   <BlogCard blog={blog} onClick={() => {}} />
                 </div>
               </SwiperSlide>
@@ -152,10 +152,15 @@ const Home = () => {
               View all
             </a>
           </div>
-          <Swiper loop={true} modules={[Autoplay]} className="w-full">
+          <Swiper
+            loop={true}
+            modules={[Autoplay]}
+            slidesPerView={2}
+            className="w-full"
+          >
             {serviceData?.map((service) => (
               <SwiperSlide key={service.cateGoryId}>
-                <div className="px-2 h-[180px]">
+                <div className="w-[180px] h-[120px]">
                   <HomeServiceCard
                     service={service}
                     onClick={() => navigate(`/service/${service?.cateGoryId}`)}

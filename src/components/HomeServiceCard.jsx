@@ -7,14 +7,19 @@ const HomeServiceCard = ({ service, onClick }) => {
                relative bg-[#FFF] rounded-[20px] border-[1px] border-[#F0F1F3] p-[10px] cursor-pointer"
       onClick={onClick}
     >
-      <div className="w-full h-full bg-[#EBF2FF] rounded-lg">
+      <div className="w-full h-full relative bg-[#EBF2FF] rounded-lg">
         {service?.categoryImage && (
           <img
             src={service.categoryImage}
             alt="promotion-img"
-            className="w-full h-full object-contain"
+            className="w-full h-full object-cover rounded-lg"
           />
         )}
+        <div className="absolute top-0 flex justify-center items-center left-0 rounded-lg w-full h-full bg-[#00000080]">
+          <h4 className="text-[#FFF] text-[14px] font-medium">
+            {service?.categoryName}
+          </h4>
+        </div>
       </div>
     </div>
   );
