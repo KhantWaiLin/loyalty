@@ -78,6 +78,13 @@ const ChangeNumber = () => {
     }
   };
 
+  const on_change_number = (e) => {
+    const value = e.target.value;
+    if (/^\d*$/.test(value)) {
+      setNumber(value);
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="w-full h-full items-center flex flex-col justify-center">
@@ -122,7 +129,7 @@ const ChangeNumber = () => {
             type="text"
             placeholder="09"
             value={number}
-            onChange={(e) => setNumber(e.target.value)}
+            onChange={on_change_number}
             className="mt-20 focus:outline-none p-3 w-full mb-[40px] shadow-lg rounded-lg"
           />
           <button
