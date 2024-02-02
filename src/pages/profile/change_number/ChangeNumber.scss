@@ -1,6 +1,6 @@
 .change-number-wrapper {
-  height: calc(100% - 84px);
-  .change-number-btn {
+  .change-number-btn,
+  .change-number-confirm-btn {
     background: linear-gradient(213deg, #384bca 19.49%, #7b8cff 194.01%);
   }
 }

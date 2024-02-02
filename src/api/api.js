@@ -24,12 +24,33 @@ const api = {
       const response = await axios.get(URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
+          "Authorization": "Bearer " + token,
         },
         params: data,
       });
       api.checkToken(response);
 
+      return { data: response.data, status: response.status };
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  postOtp: async (url, data) => {
+    const token =
+      "r5RrLgGn6vpdE9W2Oqv5XFiZrYh5rzN5BgGAxQY33oYuNTM56OuncOqiLYbkDeXrZ43YGYJWfmbTHil0MVdkamsTuMZj4tty8C7pPQ14mdlsfgPVhyl19fqierBVPUcO";
+    const URL = api_url + url;
+    try {
+      const response = await axios.post(
+        URL,
+        {},
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": token,
+          },
+          params: data,
+        }
+      );
       return { data: response.data, status: response.status };
     } catch (error) {
       console.log(error);
@@ -45,7 +66,7 @@ const api = {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
+            "Authorization": "Bearer " + token,
           },
           params: data,
         }
@@ -63,7 +84,7 @@ const api = {
       const response = await axios.post(URL, data, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
+          "Authorization": "Bearer " + token,
         },
       });
       api.checkToken(response);

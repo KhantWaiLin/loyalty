@@ -5,7 +5,11 @@ import { useLocation } from "react-router-dom";
 const Layout = ({ children }) => {
   const location = useLocation();
   const isShowFooter = useMemo(() => {
-    if (location.pathname === "/" || location.pathname.includes("/reward/")) {
+    if (
+      location.pathname === "/" ||
+      location.pathname.includes("/reward/") ||
+      location.pathname === "/profile/change-number"
+    ) {
       return false;
     }
     return true;
