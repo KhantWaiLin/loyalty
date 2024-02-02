@@ -15,7 +15,9 @@ const ChangeNumber = () => {
   const [activeTab, setActiveTab] = useState("tab 1");
   const [number, setNumber] = useState("");
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+  const [countdown, setCountdown] = useState(60);
   const [profile, setProfile] = useState(null);
+
   const { get_member_info, change_number, send_otp } = api_routes;
   const { brand_id, user_id } = getUserBrandMemberId();
 
@@ -36,6 +38,20 @@ const ChangeNumber = () => {
     // eslint-disable-next-line
   }, []);
 
+  useEffect(() => {
+    let timer;
+
+    if (activeTab === "tab 3" && countdown > 0) {
+      timer = setInterval(() => {
+        setCountdown((prev) => prev - 1);
+      }, 1000);
+    }
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [activeTab, countdown]);
+
   const on_send_otp = async () => {
     setIsLoading(true);
     const data = {
@@ -45,8 +61,10 @@ const ChangeNumber = () => {
     };
     await api.postOtp(send_otp, data).then((response) => {
       setIsLoading(false);
+      setCountdown(60);
       setActiveTab("tab 3");
     });
+    setActiveTab("tab 3");
   };
 
   const on_update_number = async () => {
@@ -158,18 +176,34 @@ const ChangeNumber = () => {
             <p className="text-[#48505E] text-[14px] font-normal">
               Enter the 6-digit codes sent to {number}
             </p>
-            <div className="w-full mt-5 flex justify-between">
-              {otp.map((digit, index) => (
-                <input
-                  type="text"
-                  id={`otp-input-${index}`}
-                  key={index}
-                  value={digit}
-                  onChange={(e) => handleInputChange(e, index)}
-                  maxLength="1"
-                  className="w-[50px] text-center flex justify-center h-[50px] shadow-lg focus:outline-none border-gray border-[1px] rounded-lg"
-                />
-              ))}
+            <div className="w-full mt-5 flex flex-col justify-between">
+              <div className="w-full  flex justify-between">
+                {otp.map((digit, index) => (
+                  <input
+                    type="text"
+                    id={`otp-input-${index}`}
+                    key={index}
+                    value={digit}
+                    onChange={(e) => handleInputChange(e, index)}
+                    maxLength="1"
+                    className="w-[50px] text-center flex justify-center h-[50px] shadow-lg focus:outline-none border-gray border-[1px] rounded-lg"
+                  />
+                ))}
+              </div>
+              <div className="countdown-timer w-full flex justify-end mt-4 text-[#48505E]">
+                {countdown > 0 ? (
+                  <p className="text-[14px] font-normal">{`Request new code in ${countdown}s`}</p>
+                ) : (
+                  <button
+                    className="resend-btn text-white font-medium rounded-lg
+                    px-4 py-2"
+                    type="button"
+                    onClick={on_send_otp}
+                  >
+                    Resend OTP
+                  </button>
+                )}
+              </div>
             </div>
             <button
               className="change-number-confirm-btn absolute left-0 bottom-5 text-white font-medium rounded-lg
