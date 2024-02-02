@@ -44,7 +44,6 @@ const ChangeNumber = () => {
       userType: 2,
     };
     await api.postOtp(send_otp, data).then((response) => {
-      console.log(response);
       setIsLoading(false);
       setActiveTab("tab 3");
     });
@@ -58,7 +57,6 @@ const ChangeNumber = () => {
       userId: user_id,
     };
     await api.postByBody(change_number, data).then((response) => {
-      console.log(response?.data);
       navigate("/profile");
       setIsLoading(false);
     });

@@ -8,6 +8,7 @@ const UserInfo = ({ user }) => {
       <div className="w-[50px] h-[50px]">
         <img
           src={user?.image ? user?.image : DefaultImage}
+          alt="profile-img"
           className="w-full h-full object-cover rounded-lg"
         />
       </div>

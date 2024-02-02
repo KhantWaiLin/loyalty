@@ -91,7 +91,7 @@ const Home = () => {
         <div className="flex flex-col mb-5">
           <div className="flex justify-between mb-5">
             <h1 className="text-[#48505E] font-medium text-[16px]">
-              Promotion
+              Promotions
             </h1>
             <a
               type="button"
@@ -121,26 +121,6 @@ const Home = () => {
             ))}
           </Swiper>
         </div>
-        <div className="flex flex-col mb-5">
-          <div className="flex justify-between mb-5">
-            <h1 className="text-[#48505E] font-medium text-[16px]">Blog</h1>
-            <button
-              type="button"
-              className="text-[#384BCA] font-medium text-[12px]"
-            >
-              View all
-            </button>
-          </div>
-          <Swiper loop={true} modules={[Autoplay]} className="w-full">
-            {blog_data?.map((blog) => (
-              <SwiperSlide key={blog.id}>
-                <div>
-                  <BlogCard blog={blog} onClick={() => {}} />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
         <div className="flex flex-col">
           <div className="flex justify-between mb-5">
             <h1 className="text-[#48505E] font-medium text-[16px]">Services</h1>
@@ -165,6 +145,28 @@ const Home = () => {
                     service={service}
                     onClick={() => navigate(`/service/${service?.cateGoryId}`)}
                   />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        <div className="flex flex-col mb-5">
+          <div className="flex justify-between mb-5">
+            <h1 className="text-[#48505E] font-medium text-[16px]">
+              Recommended Blogs
+            </h1>
+            <button
+              type="button"
+              className="text-[#384BCA] font-medium text-[12px]"
+            >
+              View all
+            </button>
+          </div>
+          <Swiper loop={true} modules={[Autoplay]} className="w-full">
+            {blog_data?.map((blog) => (
+              <SwiperSlide key={blog.id}>
+                <div>
+                  <BlogCard blog={blog} onClick={() => {}} />
                 </div>
               </SwiperSlide>
             ))}
