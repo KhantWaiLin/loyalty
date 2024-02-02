@@ -60,11 +60,12 @@ const ChangeNumber = () => {
       userType: 2,
     };
     await api.postOtp(send_otp, data).then((response) => {
+      if (response?.data?.code === 200) {
+        setCountdown(60);
+        setActiveTab("tab 3");
+      }
       setIsLoading(false);
-      setCountdown(60);
-      setActiveTab("tab 3");
     });
-    setActiveTab("tab 3");
   };
 
   const on_update_number = async () => {
@@ -75,7 +76,10 @@ const ChangeNumber = () => {
       userId: user_id,
     };
     await api.postByBody(change_number, data).then((response) => {
-      navigate("/profile");
+      console.log(response?.data);
+      if (response?.data?.value?.code === 200) {
+        navigate("/profile");
+      }
       setIsLoading(false);
     });
   };
