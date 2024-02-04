@@ -7,6 +7,7 @@ import RewardDetail from "./pages/reward_detail/RewardDetail";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import QRScanner from "./pages/qr/QRScanner";
+import BlogList from "./pages/blog/BlogList";
 import BlogDetail from "./pages/blog/BlogDetail";
 import ServiceList from "./pages/service/ServiceList";
 import ServiceDetail from "./pages/service/ServiceDetail";
@@ -45,6 +46,7 @@ const Routers = () => {
 
       <Route path="/qr" element={<QR />} />
       <Route path="/scanner" element={<QRScanner />} />
+      <Route path="/bloglist" element={<BlogList />} />
       <Route path="/blog/:id" element={<BlogDetail />} />
       <Route path="/servicelist" element={<ServiceList />} />
       <Route path="/service/:id" element={<ServiceDetail />} />
