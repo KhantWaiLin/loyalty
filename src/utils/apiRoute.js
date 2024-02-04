@@ -11,5 +11,6 @@ export const api_routes = {
   transaction_history: "/api/Customer/GetPointHistory",
   member_tire_level: "/api/Customer/GetTierBenefitList",
   log_out: "/api/Authentication/Logout",
-  send_otp: "/api/Authentication/SendOTP"
+  send_otp: "/api/Authentication/SendOTP",
+  membership_level: "/api/Customer/GetMembership"
 };
