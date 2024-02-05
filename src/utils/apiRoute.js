@@ -4,6 +4,7 @@ export const api_routes = {
   service_list: "/api/Customer/GetCategoryListByCustomer",
   service_detail: '/api/Customer/GetProductListByCategoryAndSubCategory',
   blog_list: '/api/Customer/GetBlogListByBrandId',
+  blog_detail: '/api/Customer/GetBlogDetailById',
   get_member_info: "/api/Customer/GetMemberInfo",
   change_number: "/api/Customer/ChangePhoneNo",
   change_password: "/api/Customer/ChangePassword",

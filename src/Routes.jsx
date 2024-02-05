@@ -9,6 +9,7 @@ import Login from "./pages/login/Login";
 import QRScanner from "./pages/qr/QRScanner";
 import BlogList from "./pages/blog/BlogList";
 import BlogDetail from "./pages/blog/BlogDetail";
+import SavedBlogs from "./pages/blog/SavedBlogs";
 import ServiceList from "./pages/service/ServiceList";
 import ServiceDetail from "./pages/service/ServiceDetail";
 import MyCoupon from "./pages/my-coupon/MyCoupon";
@@ -53,6 +54,7 @@ const Routers = () => {
       <Route path="/scanner" element={<QRScanner />} />
       <Route path="/bloglist" element={<BlogList />} />
       <Route path="/blog/:id" element={<BlogDetail />} />
+      <Route path="/blogsaved" element={<SavedBlogs/>} />
       <Route path="/servicelist" element={<ServiceList />} />
       <Route path="/service/:id" element={<ServiceDetail />} />
       <Route path="/reward" element={<Reward />} />
