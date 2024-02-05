@@ -142,20 +142,24 @@ export const noti_data = [
     id: 1,
     title: "Noti Title 1",
     description: "noti description 1",
+    date: "September 7, 2024",
   },
   {
     id: 2,
     title: "Noti Title 2",
     description: "noti description 2",
+    date: "September 7, 2024",
   },
   {
     id: 3,
     title: "Noti Title 3",
     description: "noti description 3",
+    date: "September 7, 2024",
   },
   {
     id: 4,
     title: "Noti Title 4",
     description: "noti description 4",
+    date: "September 7, 2024",
   },
 ];

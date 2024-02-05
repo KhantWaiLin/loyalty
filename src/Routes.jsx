@@ -23,6 +23,7 @@ import MemberTireLevel from "./pages/profile/membership_tire_level/MemberTireLev
 import ChangeNumber from "./pages/profile/change_number/ChangeNumber";
 import ChangePassword from "./pages/profile/change_password/ChangePassword";
 import ViewTierBenefits from "./pages/profile/membership_tire_level/view_tier_benefits/ViewTierBenefits";
+import NotiPage from "./pages/noti/NotiPage";
 
 const Routers = () => {
   return (
@@ -49,12 +50,13 @@ const Routers = () => {
         path="/profile/membership-tire-level/view-tier-benefits"
         element={<ViewTierBenefits />}
       />
+      <Route path="/notifications" element={<NotiPage />} />
 
       <Route path="/qr" element={<QR />} />
       <Route path="/scanner" element={<QRScanner />} />
       <Route path="/bloglist" element={<BlogList />} />
       <Route path="/blog/:id" element={<BlogDetail />} />
-      <Route path="/blogsaved" element={<SavedBlogs/>} />
+      <Route path="/blogsaved" element={<SavedBlogs />} />
       <Route path="/servicelist" element={<ServiceList />} />
       <Route path="/service/:id" element={<ServiceDetail />} />
       <Route path="/reward" element={<Reward />} />

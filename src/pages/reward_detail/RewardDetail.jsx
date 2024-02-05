@@ -72,7 +72,7 @@ const RewardDetail = () => {
       )}
       {showQr && <QrModal setIsClick={setShowQr} />}
       <div className="reward-detail-wrapper w-full relative overflow-hidden">
-        <div className="flex w-full items-center justify-between mb-6">
+        <div className="flex w-full items-center mt-5 justify-between mb-6">
           <button
             type="button"
             onClick={() => navigate(-1)}

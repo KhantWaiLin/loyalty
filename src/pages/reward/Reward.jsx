@@ -56,7 +56,7 @@ const Reward = () => {
 
   return (
     <section className="reward-wrapper p-4 w-full overflow-hidden">
-      <div className="flex w-full justify-between items-center mb-6">
+      <div className="flex w-full justify-between mt-5 items-center mb-6">
         <h1 className="flex w-auto flex-1 text-[#48505E] justify-center items-center text-[16px] font-medium">
           Rewards
         </h1>
