@@ -11,7 +11,7 @@ const cardStyle = {
 };
 
 const imageSectionStyle = {
-  width: '368px',
+  width: '80%',
   height: '140px',
   borderRadius: '8px',
   overflow: 'hidden',

@@ -17,7 +17,7 @@ const iconStyle = {
 
 const saveStyle = {
     position: 'absolute',
-    left: '380px',
+    left: '85%',
     top: '55px',
     backgroundColor: '#FAFAFA',
     border: '1px',
