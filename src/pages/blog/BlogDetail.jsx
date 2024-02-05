@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import BlogFooter from "./BlogFooter";
 
 import Loader from "../../components/loader/Loader";
 import api from "../../api/api";
@@ -111,6 +112,7 @@ const BlogDetail = () => {
             <div style={blog_content} className="no-scrollbar">
                 {blogDetail?.description}
             </div>
+            <BlogFooter/>
         </div>
     );
 };

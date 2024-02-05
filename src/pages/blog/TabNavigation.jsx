@@ -18,7 +18,7 @@ const TabNavigation = () => {
         <div className="tab-navigation">
             <NavLink
                 style={navstyle}
-                to="#"
+                to="/savedblogs"
                 className={`tab-item ${activeTab === "saved" ? "active" : ""}`}
                 onClick={() => handleTabClick("saved")}
             >
@@ -27,7 +27,7 @@ const TabNavigation = () => {
 
             <NavLink
                 style={navstyle}
-                to="#"
+                to="/likedblogs"
                 className={`tab-item ${activeTab === "liked" ? "active" : ""}`}
                 onClick={() => handleTabClick("liked")}
             >
