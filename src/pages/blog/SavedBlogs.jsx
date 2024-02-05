@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import BlogListCard from "../../components/BlogListCard";
 import TabNavigation from "./TabNavigation";
 import SavedBlogCard from "./SavedBlogCard";
 

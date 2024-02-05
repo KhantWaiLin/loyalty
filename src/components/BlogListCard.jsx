@@ -1,15 +1,17 @@
 import React from "react";
+import Like from "../assets/icons/like-icon.svg";
+import Comment from "../assets/icons/comment-icon.svg";
 
 const cardStyle = {
   width: '388px',
-  height: '220px',
+  height: '240px',
   border: '1px solid #F0F1F3',
   borderRadius: '20px',
   padding: '10px',
 };
 
 const imageSectionStyle = {
-  width: '368px',
+  width: '80%',
   height: '140px',
   borderRadius: '8px',
   overflow: 'hidden',
@@ -40,6 +42,20 @@ function BlogListCard({ blog, link }) {
       <p className="text-sm font-normal mt-[8px] not-italic text-[#989FAD]">
         {formatDate(blog?.startDate)}
       </p>
+      <div className="w-full flex justify-start items-center gap-5">
+          <div className="flex items-center gap-2">
+            <button className="w-5 h-5">
+              <img src={Like} alt="like-icon" className="w-full h-full" />
+            </button>
+            <p className="text-[#667085] text-[12px]">1</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <button className="w-5 h-5">
+              <img src={Comment} alt="like-icon" className="w-full h-full" />
+            </button>
+            <p className="text-[#667085] text-[12px]">Comment</p>
+          </div>
+        </div>
     </a>
   );
 }

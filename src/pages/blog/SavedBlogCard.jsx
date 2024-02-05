@@ -2,7 +2,7 @@ import React from "react";
 
 const cardStyle = {
   display: 'flex',
-  width: '388px',
+  width: '98%',
   height: '120px',
   border: '1px solid #F0F1F3',
   borderRadius: '20px',
@@ -10,13 +10,13 @@ const cardStyle = {
 };
 
 const imageSectionStyle = {
-  flex: '1',
+  flex: '2',
   marginRight: '10px',
 };
 
 const imageStyle = {
-  width: '100px',
-  height: '100px',
+  width: '100%',
+  height: '100%',
   borderRadius: '8px',
   objectFit: 'cover',
 };
