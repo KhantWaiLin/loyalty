@@ -74,7 +74,7 @@ const Home = () => {
 
   return (
     <div className="home-wrapper p-5 w-full overflow-hidden">
-      <div className="flex justify-between items-center mt-2  mb-8">
+      <div className="flex justify-between items-center mt-5  mb-8">
         <div className="flex-1">
           <UserInfo user={pointData} />
         </div>
@@ -94,7 +94,7 @@ const Home = () => {
         </div>
       </div>
       <div className="scroll-container w-full pb-5 overflow-scroll no-scrollbar">
-        <div className="flex flex-col mb-5">
+        <div className="flex flex-col mb-6">
           <div className="flex justify-between mb-5">
             <h1 className="text-[#48505E] font-medium text-[16px]">
               Promotions
@@ -127,7 +127,7 @@ const Home = () => {
             ))}
           </Swiper>
         </div>
-        <div className="flex flex-col mb-5">
+        <div className="flex flex-col mb-6">
           <div className="flex justify-between mb-5">
             <h1 className="text-[#48505E] font-medium text-[16px]">Services</h1>
             <a
