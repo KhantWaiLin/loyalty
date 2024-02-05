@@ -70,50 +70,73 @@ const Profile = () => {
 
   if (isLoading) {
     return (
-      <div className="profile-wrapper items-center flex flex-col justify-center">
+      <div className="flex flex-col items-center justify-center profile-wrapper">
         <Loader />
       </div>
     );
   }
 
   return (
-    <div className="profile-wrapper flex flex-col py-4 px-6 w-full overflow-scroll">
-      <h1 className="text-[24px] w-full flex justify-center font-medium mb-4">
-        Profile
-      </h1>
-      <div className="flex w-full items-center gap-8 mb-5">
-        <div className="w-[100px] h-[100px]">
-          {profile?.image?.length > 0 ? (
-            <img
-              src={profile.image}
-              alt="profile-img"
-              className="w-full h-full rounded-full"
-            />
-          ) : (
-            <div className="w-full h-full border-black border-[1px] rounded-full" />
-          )}
-        </div>
-        <div>
-          <div className="flex gap-2">
-            <label className="font-medium">Name</label>
-            <span>:</span>
-            <p>{profile?.name}</p>
+    <div className="flex flex-col w-full overflow-scroll profile-wrapper no-scrollbar">
+      <section className="flex pb-3 mb-3 bg-indigo-700 shadown-xl basis-3/12">
+        {/* User name and email */}
+        <article className="flex flex-col justify-end px-5 basis-1/2">
+          <div className="flex flex-col basis-2/3 justify-evenly">
+            <p className="text-xl text-white">{profile?.name}</p>
+            <p className="text-base text-white">{profile?.email}</p>
           </div>
-          <div className="flex gap-2">
-            <label className="font-medium">Phone No</label>
-            <span>:</span>
-            <p>{profile?.phoneNo}</p>
+        </article>
+        {/* User name and email */}
+
+        {/* User Image */}
+        <article className="flex items-end justify-end pb-2 pr-5 basis-1/2">
+          <div className="relative z-10 w-24 h-24 bg-white rounded-full">
+            {profile?.image?.length > 0 ? (
+              <img
+                src={profile.image}
+                alt="profile-img"
+                className="w-full h-full rounded-full"
+              />
+            ) : (
+              <div className="w-full h-full border-black border-[1px] rounded-full" />
+            )}
+            {/* camera icon */}
+            <span className="absolute z-50 bottom-1 -right-1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-5 h-5 p-1 m-1 bg-white rounded-full "
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"
+                />
+              </svg>
+            </span>
+            {/* camera icon */}
           </div>
-        </div>
-      </div>
-      <div className="flex flex-col justify-between mb-8">
+        </article>
+        {/* User Image */}
+      </section>
+
+      {/* Personal Information */}
+      <section className="px-4 basis-9/12">
         <Accordion>
           {PROFILE_DATA?.map((item) => (
             <AccordionItem key={item?.accordion_name} item={item}>
               <div className="flex flex-col rounded-lg border-[1px] border-[#F0F1F3] mt-2">
                 {item?.accordion_content?.map((d_item, index) => (
                   <button
-                    className={`p-4 flex hover:bg-gray-200 ${
+                    className={`px-6 py-4 flex hover:bg-gray-200 ${
                       index === 0 && "rounded-t-lg"
                     } ${
                       index + 1 === item?.accordion_content?.length &&
@@ -131,16 +154,15 @@ const Profile = () => {
             </AccordionItem>
           ))}
         </Accordion>
-      </div>
-      <div className="w-full flex justify-center">
         <button
-          className="logout-btn px-4 py-2 w-full rounded-lg text-[#FFF]"
+          className="logout-btn px-4 py-2 w-full mt-5 rounded-lg text-[#FFF]"
           type="button"
           onClick={on_log_out}
         >
           Log out
         </button>
-      </div>
+      </section>
+      {/* Personal Information */}
     </div>
   );
 };
