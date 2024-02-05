@@ -13,10 +13,10 @@ const BlogCard = ({ blog, onClick }) => {
                relative bg-[#FFF] rounded-[20px] border-[1px] border-[#F0F1F3] p-[10px] cursor-pointer"
       onClick={onClick}
     >
-      <div className="h-[180px]">
+      <div className="h-[180px] w-full">
         {blog?.image ? (
           <img
-            src={blog.image}
+            src={blog?.image}
             alt="promotion-img"
             className="w-full h-full object-contain rounded-lg"
           />
@@ -31,9 +31,9 @@ const BlogCard = ({ blog, onClick }) => {
       <div className="w-full flex flex-col gap-1">
         <div className="w-full flex flex-col gap-1">
           <h4 className="w-full text-[14px] font-medium leading-6 justify-start">
-            {blog?.name?.length > MAX_WORDS
-              ? blog?.name?.slice(0, MAX_WORDS) + "..."
-              : blog?.name}
+            {blog?.title?.length > MAX_WORDS
+              ? blog?.title?.slice(0, MAX_WORDS) + "..."
+              : blog?.title}
           </h4>
           <p className="text-[#858D9D] leading-6 text-[12px] font-normal">
             {blog?.time} {blog?.posted_by}

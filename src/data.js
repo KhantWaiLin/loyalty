@@ -16,7 +16,7 @@ export const promotion_data = [
 export const blog_data = [
   {
     id: 1,
-    name: "Schools Were Set to Reopen. Then the Teachers’ Union Stepped In.",
+    title: "Schools Were Set to Reopen. Then the Teachers’ Union Stepped In.",
     desc: "Blog Description 1",
     time: "3h ago",
     posted_by: "Tracey Trully",
@@ -25,7 +25,7 @@ export const blog_data = [
   },
   {
     id: 2,
-    name: "Schools Were Set to Reopen. Then the Teachers’ Union Stepped In.",
+    title: "Schools Were Set to Reopen. Then the Teachers’ Union Stepped In.",
     desc: "Blog Description 2",
     time: "4days ago",
     posted_by: "Tracey Trully",
@@ -34,7 +34,7 @@ export const blog_data = [
   },
   {
     id: 3,
-    name: "Schools Were Set to Reopen. Then the Teachers’ Union Stepped In.",
+    title: "Schools Were Set to Reopen. Then the Teachers’ Union Stepped In.",
     desc: "Blog Description 3",
     time: "1month ago",
     posted_by: "Tracey Trully",
@@ -43,7 +43,7 @@ export const blog_data = [
   },
   {
     id: 4,
-    name: "Schools Were Set to Reopen. Then the Teachers’ Union Stepped In.",
+    title: "Schools Were Set to Reopen. Then the Teachers’ Union Stepped In.",
     desc: "Blog Description 4",
     time: "2moths ago",
     posted_by: "Tracey Trully",
