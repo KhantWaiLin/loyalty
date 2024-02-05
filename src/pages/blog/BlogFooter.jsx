@@ -21,7 +21,7 @@ const styles = {
 };
 
 const BlogFooter = () => {
-    const iconSize = "30px";
+    const iconSize = "25px";
 
     return (
         <div
