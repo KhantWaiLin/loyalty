@@ -10,7 +10,7 @@ const cardStyle = {
 };
 
 const imageSectionStyle = {
-  flex: '1',
+  flex: '2',
   marginRight: '10px',
 };
 
