@@ -1,4 +1,4 @@
-export default (
+export const user = (
   <svg
     width="21"
     height="20"
@@ -22,6 +22,49 @@ export default (
       <clipPath id="clip0_456_1477">
         <rect width="20" height="20" fill="white" transform="translate(0.5)" />
       </clipPath>
+    </defs>
+  </svg>
+);
+
+export const user_active = (
+  <svg
+    width="21"
+    height="20"
+    viewBox="0 0 21 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M10.5 10C13.2614 10 15.5 7.76142 15.5 5C15.5 2.23858 13.2614 0 10.5 0C7.73858 0 5.5 2.23858 5.5 5C5.5 7.76142 7.73858 10 10.5 10Z"
+      fill="url(#paint0_linear_854_378)"
+    />
+    <path
+      d="M10.5 11.666C6.35977 11.6706 3.00461 15.0258 3 19.166C3 19.6262 3.37309 19.9993 3.83332 19.9993H17.1666C17.6269 19.9993 18 19.6262 18 19.166C17.9954 15.0258 14.6402 11.6706 10.5 11.666Z"
+      fill="url(#paint1_linear_854_378)"
+    />
+    <defs>
+      <linearGradient
+        id="paint0_linear_854_378"
+        x1="10.5"
+        y1="1.61794e-07"
+        x2="-2.47793"
+        y2="20.311"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stop-color="#384BCA" />
+        <stop offset="1" stop-color="#7B8CFF" />
+      </linearGradient>
+      <linearGradient
+        id="paint1_linear_854_378"
+        x1="10.5"
+        y1="11.666"
+        x2="2.98556"
+        y2="32.8347"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stop-color="#384BCA" />
+        <stop offset="1" stop-color="#7B8CFF" />
+      </linearGradient>
     </defs>
   </svg>
 );

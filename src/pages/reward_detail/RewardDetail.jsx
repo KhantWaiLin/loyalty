@@ -10,7 +10,7 @@ import { getUserBrandMemberId } from "../../utils/getBrandUserId";
 import Heart from "../../assets/icons/heart-icon.svg";
 import BackArrow from "../../assets/icons/back_arrow.svg";
 import PointIcon from "../../assets/icons/point_icon.svg";
-import RewardIcon from "../../layouts/icons/RewardIcon";
+import { reward } from "../../layouts/icons/RewardIcon";
 
 import "./RewardDetail.scss";
 import RedeemModal from "../../components/modals/redeem_modal/RedeemModal";
@@ -67,7 +67,7 @@ const RewardDetail = () => {
           title="Redeem item?"
           desc="Sure you want to redeem this item!"
           onClick={onClick}
-          image={RewardIcon}
+          image={reward}
         />
       )}
       {showQr && <QrModal setIsClick={setShowQr} />}

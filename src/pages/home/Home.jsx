@@ -121,7 +121,7 @@ const Home = () => {
             ))}
           </Swiper>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col mb-5">
           <div className="flex justify-between mb-5">
             <h1 className="text-[#48505E] font-medium text-[16px]">Services</h1>
             <a
@@ -150,7 +150,7 @@ const Home = () => {
             ))}
           </Swiper>
         </div>
-        <div className="flex flex-col mb-5">
+        <div className="flex flex-col">
           <div className="flex justify-between mb-5">
             <h1 className="text-[#48505E] font-medium text-[16px]">
               Recommended Blogs

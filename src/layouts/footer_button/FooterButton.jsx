@@ -1,7 +1,7 @@
 import React from "react";
 import "./FooterButton.scss";
 
-const FooterButton = ({ label, icon, onClick, isActive }) => {
+const FooterButton = ({ label, icon, onClick, isActive, activeIcon }) => {
   return (
     <button
       type="button"
@@ -10,7 +10,7 @@ const FooterButton = ({ label, icon, onClick, isActive }) => {
       }`}
       onClick={onClick}
     >
-      {icon}
+      {activeIcon && isActive ? activeIcon : icon}
       <span className="text-[#667085] text-[12px] font-medium">{label}</span>
     </button>
   );
