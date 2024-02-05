@@ -16,7 +16,7 @@ import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
 import { getUserBrandMemberId } from "../../utils/getBrandUserId";
 
-import { noti_data } from "../../data";
+import { noti_data, blog_data } from "../../data";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -109,7 +109,7 @@ const Home = () => {
       </div>
       <div className="scroll-container w-full pb-5 overflow-scroll no-scrollbar">
         <div className="flex flex-col mb-6">
-          <div className="flex justify-between mb-5">
+          <div className="flex justify-between mb-4">
             <h1 className="text-[#48505E] font-medium text-[16px]">
               Promotions
             </h1>
@@ -142,7 +142,7 @@ const Home = () => {
           </Swiper>
         </div>
         <div className="flex flex-col mb-6">
-          <div className="flex justify-between mb-5">
+          <div className="flex justify-between mb-4">
             <h1 className="text-[#48505E] font-medium text-[16px]">Services</h1>
             <a
               type="button"
@@ -171,7 +171,7 @@ const Home = () => {
           </Swiper>
         </div>
         <div className="flex flex-col">
-          <div className="flex justify-between mb-5">
+          <div className="flex justify-between mb-4">
             <h1 className="text-[#48505E] font-medium text-[16px]">
               Recommended Blogs
             </h1>
@@ -183,7 +183,7 @@ const Home = () => {
             </button>
           </div>
           <Swiper loop={true} modules={[Autoplay]} className="w-full">
-            {blogData?.map((blog) => (
+            {blog_data?.map((blog) => (
               <SwiperSlide key={blog.id}>
                 <BlogCard blog={blog} onClick={() => {}} />
               </SwiperSlide>
