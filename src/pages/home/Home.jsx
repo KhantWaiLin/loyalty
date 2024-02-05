@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
 
-import Noti from "../../components/Noti";
+import NotiList from "../../components/noti/NotiList";
 import PointTotal from "../../components/point_total/PointTotal";
 import Coupon from "../../components/coupon/Coupon";
 import PromotionCard from "../../components/PromotionCard";
@@ -16,7 +16,7 @@ import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
 import { getUserBrandMemberId } from "../../utils/getBrandUserId";
 
-import { blog_data } from "../../data";
+import { noti_data } from "../../data";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -28,14 +28,20 @@ const Home = () => {
   const [promotionData, setPromotionData] = useState(null);
   const [serviceData, setServiceData] = useState(null);
   const [blogData, setBlogData] = useState(null);
+  const [notiData, setNotiData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { get_member_info, promotion_list, service_list, blog_list } =
-    api_routes;
+  const {
+    get_member_info,
+    promotion_list,
+    service_list,
+    blog_list,
+    noti_list,
+  } = api_routes;
 
   const get_data = async () => {
     setIsLoading(true);
-    const { brand_id, user_id } = getUserBrandMemberId();
+    const { brand_id, user_id, member_id } = getUserBrandMemberId();
     await api
       .get(get_member_info, { brandId: brand_id, userId: user_id })
       .then((response) => {
@@ -56,8 +62,16 @@ const Home = () => {
     await api.postByBody(blog_list, { brandId: brand_id }).then((response) => {
       setBlogData(response?.data?.value?.data?.data);
     });
+
+    await api
+      .postByBody(noti_list, { brandId: brand_id, memberId: member_id })
+      .then((response) => {
+        setNotiData(response?.data?.data?.data);
+      });
     setIsLoading(false);
   };
+
+  console.log(notiData);
 
   useEffect(() => {
     get_data();
@@ -79,7 +93,7 @@ const Home = () => {
           <UserInfo user={pointData} />
         </div>
         <div className="w-[50px] h-[50px]">
-          <Noti />
+          <NotiList noti_list={notiData} />
         </div>
       </div>
       <div className="flex w-full gap-4 mb-5">
