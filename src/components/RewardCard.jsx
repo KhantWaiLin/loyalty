@@ -4,11 +4,11 @@ const RewardCard = ({ reward, onClick }) => {
   return (
     <div
       className="w-full rounded-[20px] h-full border-[1px] flex flex-col items-center 
-      justify-between p-4 border-[#F0F1F3"
+      justify-between p-[10px] border-[#F0F1F3"
       onClick={onClick}
     >
       {reward?.image && (
-        <div className="w-[166px] h-[100px] p-2 rounded-lg bg-[#EBF2FF] flex items-center justify-center">
+        <div className="w-full h-[65%] p-2 rounded-lg bg-[#EBF2FF] flex items-center justify-center">
           <img
             src={reward.image}
             alt="reward-img"

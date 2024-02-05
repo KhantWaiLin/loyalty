@@ -75,7 +75,7 @@ const Reward = () => {
         flex gap-[20px] flex-col flex-wrap justify-start"
       >
         {rewardData?.map((reward) => (
-          <div key={reward.id} className="w-[186px] h-[180px] cursor-pointer">
+          <div key={reward.id} className="w-[47%] h-[36.5%] cursor-pointer">
             <RewardCard
               reward={reward}
               onClick={() => {
