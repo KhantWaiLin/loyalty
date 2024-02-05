@@ -29,7 +29,8 @@ const Layout = ({ children }) => {
     if (
       location.pathname === "/" ||
       location.pathname.includes("/reward/") ||
-      location.pathname === "/profile/change-number"
+      location.pathname === "/profile/change-number" ||
+      location.pathname.includes("/blog/")
     ) {
       return false;
     }
