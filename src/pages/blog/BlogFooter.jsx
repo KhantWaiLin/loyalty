@@ -5,7 +5,6 @@ import Comment from "../../assets/icons/comment-icon.svg";
 import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
 import { getUserBrandMemberId } from "../../utils/getBrandUserId";
-import BlogModel from "./BlogModel";
 
 const styles = {
     footerWrapper: {
@@ -30,27 +29,24 @@ const BlogFooter = ({ BlogId, like, comment }) => {
     const { blog_react } = api_routes;
     const { member_id } = getUserBrandMemberId();
     const [liked, setLiked] = React.useState(false);
-    const [isModalOpen, setIsModalOpen] = React.useState(false);
-
+    
     const react = async () => {
         try {
             const response = await api.post(blog_react, {
                 customerId: member_id,
                 blogId: BlogId,
-                isLike: true,
+                isLike: !liked,
             });
             console.log(response);
-            setLiked(true);
+            setLiked(!liked);
         } catch (error) {
             console.error("Error fetching blog data:", error);
         }
     };
 
     const commentList = () => {
-        setIsModalOpen(true);
-      };
-    
-      const closeModal = () => setIsModalOpen(false);
+        comment();
+    };
 
     return (
         <div
@@ -100,9 +96,6 @@ const BlogFooter = ({ BlogId, like, comment }) => {
                     />
                 </svg>
             </a>
-            <BlogModel isOpen={isModalOpen} onClose={closeModal}>
-                <h2>Comments</h2>
-            </BlogModel>
         </div>
     );
 };

@@ -5,6 +5,7 @@ import BlogFooter from "./BlogFooter";
 import Loader from "../../components/loader/Loader";
 import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
+import BlogModel from "./BlogModel";
 
 const iconStyle = {
     position: 'absolute',
@@ -67,6 +68,13 @@ const BlogDetail = () => {
     const [blogDetail, setBlogDetail] = useState(null);
     const { blog_detail } = api_routes;
     const [isLoading, setIsLoading] = useState(false);
+    const [isModalOpen, setIsModalOpen] = React.useState(false);
+
+    const dataFromFooter = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => setIsModalOpen(false);
 
     const fetchBlogData = async () => {
         setIsLoading(true);
@@ -115,8 +123,12 @@ const BlogDetail = () => {
             <BlogFooter 
             blogId = {id}
             like={blogDetail?.likeCount} 
-            comment={blogDetail?.commentList}
+            //comment={blogDetail?.commentList}
+            comment = {dataFromFooter}
             />
+            <BlogModel isOpen={isModalOpen} onClose={closeModal}>
+                <h2>Comments</h2>
+            </BlogModel>
         </div>
     );
 };

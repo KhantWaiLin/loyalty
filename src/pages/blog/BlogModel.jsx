@@ -2,7 +2,12 @@ import React from 'react';
 
 const modalStyle = {
   position : 'absolute',
-  bottom : '100%'
+  width : '96%',
+  height : '90%',
+  top : '5%',
+  left : '2%',
+  backgroundColor : 'white',
+  overflow : 'auto'
 }
 
 const BlogModel = ({ isOpen, onClose, children }) => {
