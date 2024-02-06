@@ -40,14 +40,14 @@ function BlogListCard({ blog, link }) {
         {blog?.title}
       </p>
       <p className="text-sm font-normal mt-[8px] not-italic text-[#989FAD]">
-        {formatDate(blog?.startDate)}
+        {blog?.createdDate} by {blog?.author}
       </p>
       <div className="w-full flex justify-start items-center gap-5">
           <div className="flex items-center gap-2">
             <button className="w-5 h-5">
               <img src={Like} alt="like-icon" className="w-full h-full" />
             </button>
-            <p className="text-[#667085] text-[12px]">1</p>
+            <p className="text-[#667085] text-[12px]">{blog?.likeCount}</p>
           </div>
           <div className="flex items-center gap-2">
             <button className="w-5 h-5">

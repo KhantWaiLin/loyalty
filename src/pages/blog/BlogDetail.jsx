@@ -73,7 +73,7 @@ const BlogDetail = () => {
 
         try {
             const response = await api.get(blog_detail, { BlogId: id });
-            //console.log(response.data.value.data);
+            console.log(response.data.value.data);
             setBlogDetail(response?.data?.value?.data);
         } catch (error) {
             console.error("Error fetching blog data:", error);
@@ -107,12 +107,16 @@ const BlogDetail = () => {
             </svg>
 
             <div style={title_style}>{blogDetail?.title}</div>
-            <div style={date_style}>September 7, 2024</div>
+            <div style={date_style}>{blogDetail?.createdDate} by {blogDetail?.author}</div>
             <img style={image} src={blogDetail?.image} alt="blog-image" />
             <div style={blog_content} className="no-scrollbar">
                 {blogDetail?.description}
             </div>
-            <BlogFooter/>
+            <BlogFooter 
+            blogId = {id}
+            like={blogDetail?.likeCount} 
+            comment={blogDetail?.commentList}
+            />
         </div>
     );
 };
