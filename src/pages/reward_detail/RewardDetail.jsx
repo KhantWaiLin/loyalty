@@ -25,11 +25,12 @@ const RewardDetail = () => {
   const [isRedeem, setIsRedeem] = useState(false);
   const [showQr, setShowQr] = useState(false);
 
-  const { reward_list } = api_routes;
+  const { reward_list, redeem_pending } = api_routes;
+
+  const { brand_id, user_id } = getUserBrandMemberId();
 
   const get_detail = async (id) => {
     setIsLoading(true);
-    const { brand_id } = getUserBrandMemberId();
     await api
       .postByBody(reward_list, { brandId: brand_id })
       .then((response) => {
@@ -40,6 +41,23 @@ const RewardDetail = () => {
     setIsLoading(false);
   };
 
+  const confirm_redeem = async () => {
+    setIsLoading(true);
+    await api
+      .postByBody(redeem_pending, {
+        redeemProductId: data?.id,
+        brandId: brand_id,
+        memberId: user_id,
+      })
+      .then((response) => {
+        if (response?.data?.value?.code === 200) {
+          setIsRedeem(true);
+        }
+      })
+      .catch((error) => console.log(error));
+    setIsLoading(false);
+  };
+
   useEffect(() => {
     get_detail(id);
     // eslint-disable-next-line
@@ -47,12 +65,12 @@ const RewardDetail = () => {
 
   const onClick = (is_ok) => {
     if (is_ok) {
-      setIsRedeem(true);
+      confirm_redeem();
     }
     setShowPopup(false);
   };
 
-  if (isLoading) {
+  if (isLoading) {  
     return (
       <div className="w-full h-full items-center flex flex-col justify-center">
         <Loader />
