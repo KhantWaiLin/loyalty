@@ -58,7 +58,9 @@ function AccordionHeader({ accordion_name }) {
       {/* icon */}
 
       {/* text */}
-      <span className="text-sm font-normal leading-tight text-gray-600">{accordion_name}</span>
+      <span className="text-sm font-normal leading-tight text-gray-600">
+        {accordion_name}
+      </span>
       {/* text */}
     </div>
   );

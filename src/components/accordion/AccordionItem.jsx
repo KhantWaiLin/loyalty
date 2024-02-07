@@ -13,7 +13,6 @@ const AccordionItem = ({ item, children }) => {
         onClick={() => setIsOpen((prev) => !prev)}
       >
         <AccordionHeader accordion_name={item?.accordion_name} />
-
         <img src={Down_Icon} alt="drop-down-icon" />
       </button>
       {isOpen && <div className="w-full">{children}</div>}

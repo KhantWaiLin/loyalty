@@ -82,11 +82,15 @@ const Profile = () => {
         <article className="flex mx-[20px] mt-[72.5px] mb-[19.5px] justify-between items-center ">
           {/* User name and email */}
           <div className="flex flex-col  justify-evenly w-[155px] h-[80px]">
-            <p className="text-xl font-bold leading-normal text-white">{profile?.name}</p>
-            <p className="text-sm font-medium leading-normal text-white">{profile?.email}</p>
+            <p className="text-xl font-bold leading-normal text-white">
+              {profile?.name}
+            </p>
+            <p className="text-sm font-medium leading-normal text-white">
+              {profile?.email}
+            </p>
           </div>
           {/* User name and email */}
-          
+
           {/* User Image */}
           <div className="relative z-10 w-[80.78px] h-[80.78px] rounded-full  bg-white ">
             {profile?.image?.length > 0 ? (
@@ -145,7 +149,9 @@ const Profile = () => {
                       navigate(d_item.route);
                     }}
                   >
-                    <span className="text-sm font-normal leading-tight text-gray-600">{d_item.name}</span>
+                    <span className="text-sm font-normal leading-tight text-gray-600">
+                      {d_item.name}
+                    </span>
                   </button>
                 ))}
               </div>
