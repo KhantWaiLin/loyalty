@@ -15,7 +15,6 @@ function CouponList({ status }) {
   } else {
     btn = <Expired />;
   }
-
   return myCouponData.map((coupon, index) => {
     if (coupon.status === status) {
       return (

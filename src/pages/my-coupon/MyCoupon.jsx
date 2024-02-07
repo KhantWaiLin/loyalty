@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import CouponList from "./components/CouponList";
 import { useNavigate } from "react-router-dom";
 
+import "./MyCoupon.scss"
+
 function MyCoupon({ couponList }) {
   const [status, setStatus] = useState("Available");
 
@@ -16,7 +18,7 @@ function MyCoupon({ couponList }) {
   }
 
   return (
-    <main className="flex flex-col h-full">
+    <main className="flex flex-col overflow-hidden my-coupon">
       {/* header */}
       <header className="flex items-center mt-8 basis-1/12">
         <div className="w-[50px] cursor-pointer h-[50px] p-[13px] ms-[20px] bg-neutral-50 rounded-lg border border-gray-100 justify-center items-center inline-flex">
@@ -82,7 +84,7 @@ function MyCoupon({ couponList }) {
 
       {/* body or Coupon Data */}
       <section className=" basis-10/12 px-[20px]">
-        <article className="h-[370px] overflow-auto scroll-smooth no-scrollbar">
+        <article className="overflow-auto h-[70%] scroll-smooth no-scrollbar">
           <CouponList status={status} />
         </article>
       </section>
