@@ -6,6 +6,7 @@ import Loader from "../../components/loader/Loader";
 import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
 import BlogModel from "./BlogModel";
+import CommentBox from "./CommentBox";
 
 const iconStyle = {
     position: 'absolute',
@@ -61,12 +62,17 @@ const blog_content = {
     overflow: 'auto',
 }
 
+const commentSection = {
+    position : 'absolute',
+    top : '85%'
+}
+
 const BlogDetail = () => {
 
     const { id } = useParams();
 
     const [blogDetail, setBlogDetail] = useState(null);
-    const { blog_detail } = api_routes;
+    const { blog_detail} = api_routes;
     const [isLoading, setIsLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = React.useState(false);
 
@@ -128,6 +134,14 @@ const BlogDetail = () => {
             />
             <BlogModel isOpen={isModalOpen} onClose={closeModal}>
                 <h2>Comments</h2>
+                <div>
+                    {blogDetail?.commentList.map((blog) => (
+                        <div>{blog.comment}</div>
+                    ))}
+                </div>
+                <div style={commentSection}>
+                    <CommentBox blogId={id} />
+                </div>
             </BlogModel>
         </div>
     );
