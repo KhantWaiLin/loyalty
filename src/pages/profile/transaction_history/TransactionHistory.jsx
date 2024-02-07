@@ -44,12 +44,13 @@ const TransactionHistory = () => {
   };
 
   return (
-    <div className="relative flex flex-col w-full overflow-scroll transaction-history-wrapper no-scrollbar">
-      <header className="flex flex-col z-30 bg-indigo-700 basis-2/12 ps-[20px] pr-[42%]">
-        <section className="flex justify-between mt-[20px]">
+    <div className="transaction-history-wrapper overflow-hidden ">
+      <section className="mt-[52px] mx-[20px] h-full overflow-hidden ">
+        {/* back btn & header */}
+        <article className="h-[50px]  flex items-center">
           <Link
             to="/profile"
-            className="flex flex-col items-start justify-start w-6 h-6"
+            className="w-[50px] h-[50px] p-[13px] bg-neutral-50 rounded-lg border border-gray-100 justify-center items-center inline-flex"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +58,7 @@ const TransactionHistory = () => {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6 text-white cursor-pointer"
+              className="w-6 h-6 text-black "
             >
               <path
                 strokeLinecap="round"
@@ -66,30 +67,42 @@ const TransactionHistory = () => {
               />
             </svg>
           </Link>
-          <h1 className="text-white">Point History</h1>
-        </section>
-      </header>
 
-      {/* point history list */}
-      <main className=" z-50 bg-white absolute left-0 rounded-t-2xl top-16 w-full h-[485px] basis-10/12 overflow-auto no-scrollbar pt-3">
-        {data &&
-          data.map((point, index) => {
-            return (
-              <PointList
-                key={index}
-                point={point.point}
-                collectedType={point.collectedType}
-                isIn={point.isIn}
-                date={format(point.date, "MMMM dd, yyyy")}
+          <h1 className="ms-[66px] text-gray-600 text-base font-medium leading-[18px] font-['Poppins' text-center">
+            Transaction History
+          </h1>
+        </article>
+        {/* back btn & header */}
+
+        {/*  */}
+        <article className="h-5/6 mt-[20px] overflow-auto no-scrollbar">
+          {data === null ? (
+            <div className="h-full overflow-hidden flex flex-col justify-center items-center">
+              <img
+                src="/img/no_data.svg"
+                alt="No Data"
+                className="w-[108.77px] h-[106.17px]"
               />
-            );
-          })}
-
-        <div className="text-gray-400 text-[13px] font-normal  leading-tight mb-1 text-center">
-          No More Result!
-        </div>
-      </main>
-      {/* point history list */}
+              <p className="inline text-gray-500 text-sm font-normal font-['Poppins'] leading-normal pt-[20px]">
+                No History Available
+              </p>
+            </div>
+          ) : (
+            data.map((point, index) => {
+              return (
+                <PointList
+                  key={index}
+                  point={point?.point}
+                  collectedType={point?.collectedType}
+                  isIn={point?.isIn}
+                  date={format(point?.date, "MMMM dd, yyyy")}
+                />
+              );
+            })
+          )}
+        </article>
+        {/*  */}
+      </section>
     </div>
   );
 };
