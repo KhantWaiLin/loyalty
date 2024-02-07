@@ -10,7 +10,7 @@ function AccordionHeader({ accordion_name }) {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="text-indigo-600 w-7 h-7"
+            className="text-indigo-600 w-[24px] h-[24px]"
           >
             <path
               strokeLinecap="round"
@@ -25,7 +25,7 @@ function AccordionHeader({ accordion_name }) {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="text-indigo-600 w-7 h-7"
+            className="text-indigo-600 w-[24px] h-[24px]"
           >
             <path
               strokeLinecap="round"
@@ -40,7 +40,7 @@ function AccordionHeader({ accordion_name }) {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="text-indigo-600 w-7 h-7"
+            className="text-indigo-600 w-[24px] h-[24px]"
           >
             <path
               strokeLinecap="round"
@@ -58,7 +58,7 @@ function AccordionHeader({ accordion_name }) {
       {/* icon */}
 
       {/* text */}
-      <span>{accordion_name}</span>
+      <span className="text-sm font-normal leading-tight text-gray-600">{accordion_name}</span>
       {/* text */}
     </div>
   );

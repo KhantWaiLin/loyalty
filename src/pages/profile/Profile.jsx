@@ -77,20 +77,18 @@ const Profile = () => {
   }
 
   return (
-    <div className="flex flex-col w-full overflow-scroll profile-wrapper no-scrollbar">
-      <section className="flex pb-3 mb-3 bg-indigo-700 shadown-xl basis-3/12">
-        {/* User name and email */}
-        <article className="flex flex-col justify-end px-5 basis-1/2">
-          <div className="flex flex-col basis-2/3 justify-evenly">
-            <p className="text-xl text-white">{profile?.name}</p>
-            <p className="text-base text-white">{profile?.email}</p>
+    <div className="flex flex-col w-full overflow-hidden profile-wrapper no-scrollbar">
+      <section className="bg-indigo-700 min-h-[172px] shadown-xl basis-3/12 flex flex-col">
+        <article className="flex mx-[20px] mt-[72.5px] mb-[19.5px] justify-between items-center ">
+          {/* User name and email */}
+          <div className="flex flex-col  justify-evenly w-[155px] h-[80px]">
+            <p className="text-xl font-bold leading-normal text-white">{profile?.name}</p>
+            <p className="text-sm font-medium leading-normal text-white">{profile?.email}</p>
           </div>
-        </article>
-        {/* User name and email */}
-
-        {/* User Image */}
-        <article className="flex items-end justify-end pb-2 pr-5 basis-1/2">
-          <div className="relative z-10 w-24 h-24 bg-white rounded-full">
+          {/* User name and email */}
+          
+          {/* User Image */}
+          <div className="relative z-10 w-[80.78px] h-[80.78px] rounded-full  bg-white ">
             {profile?.image?.length > 0 ? (
               <img
                 src={profile.image}
@@ -124,12 +122,12 @@ const Profile = () => {
             </span>
             {/* camera icon */}
           </div>
+          {/* User Image */}
         </article>
-        {/* User Image */}
       </section>
 
       {/* Personal Information */}
-      <section className="px-4 basis-9/12">
+      <section className="px-4 py-3 overflow-auto basis-9/12 no-scrollbar">
         <Accordion>
           {PROFILE_DATA?.map((item) => (
             <AccordionItem key={item?.accordion_name} item={item}>
@@ -147,7 +145,7 @@ const Profile = () => {
                       navigate(d_item.route);
                     }}
                   >
-                    {d_item.name}
+                    <span className="text-sm font-normal leading-tight text-gray-600">{d_item.name}</span>
                   </button>
                 ))}
               </div>
