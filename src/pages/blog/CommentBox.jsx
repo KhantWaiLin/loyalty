@@ -35,7 +35,7 @@ const CommentBox = ({BlogId}) => {
                 placeholder="Type your comment here..."
                 value={comment}
                 onChange={handleCommentChange}
-                style={{ marginRight: '10px' }}
+                style={{ marginRight: '10px' , paddingLeft: '5px', paddingTop: '2px', border: '1px solid black'}}
             />
             <button
                 onClick={handleSaveComment}
