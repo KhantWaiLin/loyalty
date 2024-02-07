@@ -1,40 +1,39 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
 import "./TabNavigation.css";
 
 const navstyle = {
-    width: '50%',
-    textAlign: 'center',
-}
+  width: '50%',
+  textAlign: 'center',
+};
 
-const TabNavigation = () => {
-    const [activeTab, setActiveTab] = useState("saved");
+const TabNavigation = ({ savedorliked }) => {
+  const [activeTab, setActiveTab] = useState("saved");
 
-    const handleTabClick = (tabName) => {
-        setActiveTab(tabName);
-    };
+  const handleTabClick = (tabName, event) => {
+    event.preventDefault();
+    savedorliked(tabName);
+    setActiveTab(tabName);
+  };
 
-    return (
-        <div className="tab-navigation">
-            <NavLink
-                style={navstyle}
-                to="#"
-                className={`tab-item ${activeTab === "saved" ? "active" : ""}`}
-                onClick={() => handleTabClick("saved")}
-            >
-                Saved
-            </NavLink>
+  return (
+    <div className="tab-navigation">
+      <button
+        style={navstyle}
+        className={`tab-item ${activeTab === "saved" ? "active" : ""}`}
+        onClick={(e) => handleTabClick("saved", e)}
+      >
+        Saved
+      </button>
 
-            <NavLink
-                style={navstyle}
-                to="#"
-                className={`tab-item ${activeTab === "liked" ? "active" : ""}`}
-                onClick={() => handleTabClick("liked")}
-            >
-                Liked
-            </NavLink>
-        </div>
-    );
+      <button
+        style={navstyle}
+        className={`tab-item ${activeTab === "liked" ? "active" : ""}`}
+        onClick={(e) => handleTabClick("liked", e)}
+      >
+        Liked
+      </button>
+    </div>
+  );
 };
 
 export default TabNavigation;

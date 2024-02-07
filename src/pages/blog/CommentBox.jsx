@@ -13,9 +13,8 @@ const CommentBox = ({BlogId}) => {
     };
 
     const handleSaveComment = async () => {
-        //console.log('Comment saved:', comment);
         try {
-            const response = await api.post(blog_react, {
+            const response = await api.postByBody(blog_react, {
                 customerId: member_id,
                 blogId: BlogId,
                 comment: comment

@@ -26,23 +26,45 @@ const styles = {
 
 const BlogFooter = ({ BlogId, like, comment }) => {
     const iconSize = "25px";
+    const [likeCount, setLikeCount] = React.useState(null);
+    const [commentLength, setCommentLength] = React.useState(null);
     const { blog_react } = api_routes;
     const { member_id } = getUserBrandMemberId();
     const [liked, setLiked] = React.useState(false);
     
     const react = async () => {
         try {
-            const response = await api.post(blog_react, {
+            const response = await api.postByBody(blog_react, {
                 customerId: member_id,
                 blogId: BlogId,
                 isLike: !liked,
             });
-            console.log(response);
+            //console.log(response);
+            setLikeCount(response.data.value.data.likeCount);
             setLiked(!liked);
         } catch (error) {
             console.error("Error fetching blog data:", error);
         }
     };
+    
+    const fetchBlogReact = async () => {
+        try {
+            const response = await api.postByBody(blog_react, {
+                customerId: member_id,
+                blogId: BlogId,
+            });
+            //console.log(response);
+            setLikeCount(response.data.value.data.likeCount);
+            setCommentLength(response.data.value.data.commentList.length);
+            setLiked(!liked);
+        } catch (error) {
+            console.error("Error fetching blog data:", error);
+        }
+    }
+
+    React.useEffect(() => {
+        fetchBlogReact();
+    }, []);
 
     const commentList = () => {
         comment();
@@ -64,7 +86,7 @@ const BlogFooter = ({ BlogId, like, comment }) => {
                     }}
                 />
                 <span className={`text-[#667085] text-[${iconSize}] font-medium`}>
-                    {like}
+                    {likeCount? likeCount : like}
                 </span>
             </button>
             <button
@@ -73,7 +95,7 @@ const BlogFooter = ({ BlogId, like, comment }) => {
                 onClick={commentList}
             >
                 <img src={Comment} alt="comment-icon" className="w-full h-full" style={{ width: iconSize, height: iconSize }} />
-                <span className={`text-[#667085] text-[${iconSize}] font-medium`}>10</span>
+                <span className={`text-[#667085] text-[${iconSize}] font-medium`}>{commentLength}</span>
             </button>
             <a
                 type="button"

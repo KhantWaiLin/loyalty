@@ -6,6 +6,8 @@ export const api_routes = {
   blog_list: '/api/Customer/GetBlogListByBrandId',
   blog_detail: '/api/Customer/GetBlogDetailByBlogId',
   blog_react: '/api/Customer/GetBlogReactByCustomer',
+  saved_blogs: '/api/Customer/GetBlogSavedList',
+  save_blog: '/api/Customer/CreateBlogSavedByCustomer',
   get_member_info: "/api/Customer/GetMemberInfo",
   change_number: "/api/Customer/ChangePhoneNo",
   change_password: "/api/Customer/ChangePassword",
