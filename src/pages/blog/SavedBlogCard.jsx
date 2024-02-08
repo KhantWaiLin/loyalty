@@ -38,11 +38,11 @@ function SavedBlogCard({ blog, link }) {
   };
 
   return (
-    <a href={url + link} style={cardStyle}>
+    <a href={url + blog?.blogId} style={cardStyle}>
       <div style={imageSectionStyle}>
         <img
           style={imageStyle}
-          src='logo192.png'
+          src={blog?.image}
           alt="Card Image"
         />
       </div>
@@ -51,7 +51,7 @@ function SavedBlogCard({ blog, link }) {
           {blog?.title}
         </p>
         <p className="text-sm font-normal mt-[8px] not-italic text-[#989FAD]">
-          {formatDate(blog?.startDate)}
+          {blog?.createdDate} by {blog?.author}
         </p>
       </div>
     </a>

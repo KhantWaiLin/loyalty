@@ -45,18 +45,23 @@ const saveStyle = {
 };
 
 const SavedBlogs = () => {
-  const [blogList, setBlogList] = useState(null);
-  const { blog_list } = api_routes;
+  const [blogSaved, setblogSaved] = useState(null);
+  const { saved_blogs } = api_routes;
   const [isLoading, setIsLoading] = useState(false);
+  const [savedCheck, setSavedCheck] = useState(true);
+
+  const savedTabAssign = (data) => {
+    setSavedCheck(data === "saved");
+  }
 
   const fetchBlogData = async () => {
     setIsLoading(true);
-    const { brand_id } = getUserBrandMemberId();
+    const { user_id } = getUserBrandMemberId();
 
     try {
-      const response = await api.postByBody(blog_list, { brandId: brand_id });
-      console.log(response.data.value.data.data);
-      setBlogList(response?.data?.value?.data?.data);
+      const response = await api.postByBody(saved_blogs, { customerId: user_id , savedTab:savedCheck});
+      //console.log(response.data.value);
+      setblogSaved(response?.data?.value?.data?.data);
     } catch (error) {
       console.error("Error fetching blog data:", error);
     } finally {
@@ -66,7 +71,7 @@ const SavedBlogs = () => {
 
   useEffect(() => {
     fetchBlogData();
-  }, []);
+  }, [savedCheck]);
 
   if (isLoading) {
     return (
@@ -84,9 +89,9 @@ const SavedBlogs = () => {
       </svg>
     </a>
     <h1 style={headingStyle}>Blogs</h1>
-    <TabNavigation/>
+    <TabNavigation savedorliked={savedTabAssign} />
     <div style={cardListStyle} className="no-scrollbar">
-      {blogList?.map((blog) => (
+      {blogSaved?.map((blog) => (
         <SavedBlogCard key={blog.id} blog={blog} link={blog.id} />
       ))}
     </div>

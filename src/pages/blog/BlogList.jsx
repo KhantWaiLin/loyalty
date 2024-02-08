@@ -55,7 +55,7 @@ const BlogList = () => {
 
     try {
       const response = await api.postByBody(blog_list, { brandId: brand_id });
-      console.log(response.data.value.data.data);
+      //console.log(response.data.value.data.data);
       setBlogList(response?.data?.value?.data?.data);
     } catch (error) {
       console.error("Error fetching blog data:", error);

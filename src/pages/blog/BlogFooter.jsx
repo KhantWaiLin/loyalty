@@ -1,6 +1,10 @@
 import React from "react";
-import Like from "../../assets/icons/like-icon.svg";
+import Like from "../../assets/icons/like.svg";
+import Unlike from "../../assets/icons/like-icon.svg";
 import Comment from "../../assets/icons/comment-icon.svg";
+import api from "../../api/api";
+import { api_routes } from "../../utils/apiRoute";
+import { getUserBrandMemberId } from "../../utils/getBrandUserId";
 
 const styles = {
     footerWrapper: {
@@ -20,27 +24,63 @@ const styles = {
     },
 };
 
-const BlogFooter = () => {
+const BlogFooter = ({ BlogId, isLiked, like, comment }) => {
     const iconSize = "25px";
+    const [likeCount, setLikeCount] = React.useState(null);
+    const [commentLength, setCommentLength] = React.useState(null);
+    const { blog_react } = api_routes;
+    const { user_id } = getUserBrandMemberId();
+    const [liked, setLiked] = React.useState(false);
+
+    const react = async () => {
+        try {
+            const response = await api.postByBody(blog_react, {
+                customerId: user_id,
+                blogId: BlogId,
+                isLike: !liked,
+                comment: null
+            });
+            setLikeCount(response.data.value.data.likeCount);
+            setLiked(!liked);
+        } catch (error) {
+            console.error("Error fetching blog data:", error);
+        }
+    };
+
+    const commentList = () => {
+        comment();
+    };
+
+    React.useEffect(() => {
+        setLiked(isLiked);
+    }, []);
 
     return (
         <div
             style={styles.footerWrapper}
             className="footer-wrapper w-full flex justify-between z-10 absolute py-2 px-4 pb-[34px] bottom-0"
         >
-            <button
-                type="button"
-                style={styles.button}
-            >
-                <img src={Like} alt="like-icon" className="w-full h-full" style={{ width: iconSize, height: iconSize }} />
-                <span className={`text-[#667085] text-[${iconSize}] font-medium`}>2</span>
+            <button type="button" style={styles.button} onClick={react}>
+                <img
+                    src={liked ? Like : Unlike}
+                    alt="like-icon"
+                    className="w-full h-full"
+                    style={{
+                        width: iconSize,
+                        height: iconSize
+                    }}
+                />
+                <span className={`text-[#667085] text-[${iconSize}] font-medium`}>
+                    {likeCount ? likeCount : like}
+                </span>
             </button>
             <button
                 type="button"
                 style={styles.button}
+                onClick={commentList}
             >
                 <img src={Comment} alt="comment-icon" className="w-full h-full" style={{ width: iconSize, height: iconSize }} />
-                <span className={`text-[#667085] text-[${iconSize}] font-medium`}>10</span>
+                <span className={`text-[#667085] text-[${iconSize}] font-medium`}>{commentLength}</span>
             </button>
             <a
                 type="button"
