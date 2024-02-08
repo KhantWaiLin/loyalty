@@ -56,10 +56,10 @@ const SavedBlogs = () => {
 
   const fetchBlogData = async () => {
     setIsLoading(true);
-    const { member_id } = getUserBrandMemberId();
+    const { user_id } = getUserBrandMemberId();
 
     try {
-      const response = await api.postByBody(saved_blogs, { customerId: member_id , savedTab:savedCheck});
+      const response = await api.postByBody(saved_blogs, { customerId: user_id , savedTab:savedCheck});
       //console.log(response.data.value);
       setblogSaved(response?.data?.value?.data?.data);
     } catch (error) {

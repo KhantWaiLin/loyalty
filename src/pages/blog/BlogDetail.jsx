@@ -141,7 +141,7 @@ const BlogDetail = () => {
                 {blogDetail?.description}
             </div>
             <BlogFooter
-                blogId={id}
+                BlogId={id}
                 like={blogDetail?.likeCount}
                 comment={dataFromFooter}
             />
@@ -153,7 +153,7 @@ const BlogDetail = () => {
                     ))}
                 </div>
                 <div style={commentSection}>
-                    <CommentBox blogId={id} />
+                    <CommentBox BlogId={id} />
                 </div>
             </BlogModel>
         </div>

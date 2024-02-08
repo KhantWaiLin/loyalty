@@ -29,42 +29,23 @@ const BlogFooter = ({ BlogId, like, comment }) => {
     const [likeCount, setLikeCount] = React.useState(null);
     const [commentLength, setCommentLength] = React.useState(null);
     const { blog_react } = api_routes;
-    const { member_id } = getUserBrandMemberId();
+    const { user_id } = getUserBrandMemberId();
     const [liked, setLiked] = React.useState(false);
     
     const react = async () => {
         try {
             const response = await api.postByBody(blog_react, {
-                customerId: member_id,
+                customerId: user_id,
                 blogId: BlogId,
                 isLike: !liked,
+                comment: null
             });
-            //console.log(response);
             setLikeCount(response.data.value.data.likeCount);
             setLiked(!liked);
         } catch (error) {
             console.error("Error fetching blog data:", error);
         }
     };
-    
-    const fetchBlogReact = async () => {
-        try {
-            const response = await api.postByBody(blog_react, {
-                customerId: member_id,
-                blogId: BlogId,
-            });
-            //console.log(response);
-            setLikeCount(response.data.value.data.likeCount);
-            setCommentLength(response.data.value.data.commentList.length);
-            setLiked(!liked);
-        } catch (error) {
-            console.error("Error fetching blog data:", error);
-        }
-    }
-
-    React.useEffect(() => {
-        fetchBlogReact();
-    }, []);
 
     const commentList = () => {
         comment();

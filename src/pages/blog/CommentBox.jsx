@@ -6,7 +6,7 @@ import { api_routes } from "../../utils/apiRoute";
 const CommentBox = ({BlogId}) => {
     const [comment, setComment] = useState('');
     const { blog_react } = api_routes;
-    const { member_id } = getUserBrandMemberId();
+    const { user_id } = getUserBrandMemberId();
 
     const handleCommentChange = (e) => {
         setComment(e.target.value);
@@ -15,11 +15,12 @@ const CommentBox = ({BlogId}) => {
     const handleSaveComment = async () => {
         try {
             const response = await api.postByBody(blog_react, {
-                customerId: member_id,
+                customerId: user_id,
                 blogId: BlogId,
+                isLike: false,
                 comment: comment
             });
-            console.log(response);
+            //console.log(response);
             setComment('');
         } catch (error) {
             console.error("Error fetching blog data:", error);
