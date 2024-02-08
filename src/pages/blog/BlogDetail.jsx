@@ -69,14 +69,15 @@ const commentSection = {
 }
 
 const BlogDetail = () => {
-
     const { id } = useParams();
-
     const [blogDetail, setBlogDetail] = useState(null);
-    const { blog_detail, save_blog } = api_routes;
+    const { blog_detail, save_blog, saved_blogs } = api_routes;
     const [isLoading, setIsLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = React.useState(false);
     const [saved, setSaved] = React.useState(false);
+    const [liked, setLiked] = React.useState(false);
+    const [blogsSaved, setBlogsSaved] = React.useState(null);
+    const [blogsLiked, setBlogsLiked] = React.useState(null);
 
     const dataFromFooter = () => {
         setIsModalOpen(true);
@@ -88,7 +89,6 @@ const BlogDetail = () => {
         setIsLoading(true);
         try {
             const response = await api.get(blog_detail, { BlogId: id });
-            console.log(response.data.value.data);
             setBlogDetail(response?.data?.value?.data);
         } catch (error) {
             console.error("Error fetching blog data:", error);
@@ -98,19 +98,51 @@ const BlogDetail = () => {
     };
 
     const savedBlog = async () => {
-        const { member_id } = getUserBrandMemberId();
+        const { user_id } = getUserBrandMemberId();
         try {
-            const response = await api.postByBody(save_blog, { customerId: member_id, BlogId: id, isSaved: true });
-            setSaved(true);
-            //console.log(response);
+            await api.postByBody(save_blog, { customerId: user_id, BlogId: id, isSaved: !saved });
+            setSaved(!saved);
         } catch (error) {
-            console.error("Error fetching blog data:", error);
+            console.error("Error saving blog:", error);
+        }
+    };
+
+    const isSavedBlog = async () => {
+        const { user_id } = getUserBrandMemberId();
+        try {
+            const response = await api.postByBody(saved_blogs, { customerId: user_id, savedTab: true });
+            setBlogsSaved(response?.data?.value?.data?.data);
+        } catch (error) {
+            console.error("Error fetching saved blogs:", error);
+        }
+    };
+
+    const isLikedBlog = async () => {
+        const { user_id } = getUserBrandMemberId();
+        try {
+            const response = await api.postByBody(saved_blogs, { customerId: user_id, savedTab: false });
+            setBlogsLiked(response?.data?.value?.data?.data);
+        } catch (error) {
+            console.error("Error fetching saved blogs:", error);
         }
     };
 
     useEffect(() => {
         fetchBlogData();
-    }, []);
+        isSavedBlog();
+        isLikedBlog();
+    }, [id]);
+
+    useEffect(() => {
+        if (blogsSaved) {
+            const isSaved = blogsSaved.some(blog => blog.blogId === id);
+            setSaved(isSaved);
+        }
+        if (blogsLiked) {
+            const isLiked = blogsLiked.some(blog => blog.blogId === id);
+            setLiked(isLiked);
+        }
+    }, [blogsSaved, blogsLiked, id]);
 
     if (isLoading) {
         return (
@@ -119,7 +151,6 @@ const BlogDetail = () => {
             </div>
         );
     }
-
 
     return (
         <div className="text-black-500 text-lg">
@@ -142,6 +173,7 @@ const BlogDetail = () => {
             </div>
             <BlogFooter
                 BlogId={id}
+                isLiked={liked}
                 like={blogDetail?.likeCount}
                 comment={dataFromFooter}
             />

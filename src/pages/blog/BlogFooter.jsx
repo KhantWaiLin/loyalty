@@ -24,14 +24,14 @@ const styles = {
     },
 };
 
-const BlogFooter = ({ BlogId, like, comment }) => {
+const BlogFooter = ({ BlogId, isLiked, like, comment }) => {
     const iconSize = "25px";
     const [likeCount, setLikeCount] = React.useState(null);
     const [commentLength, setCommentLength] = React.useState(null);
     const { blog_react } = api_routes;
     const { user_id } = getUserBrandMemberId();
     const [liked, setLiked] = React.useState(false);
-    
+
     const react = async () => {
         try {
             const response = await api.postByBody(blog_react, {
@@ -51,6 +51,10 @@ const BlogFooter = ({ BlogId, like, comment }) => {
         comment();
     };
 
+    React.useEffect(() => {
+        setLiked(isLiked);
+    }, []);
+
     return (
         <div
             style={styles.footerWrapper}
@@ -67,7 +71,7 @@ const BlogFooter = ({ BlogId, like, comment }) => {
                     }}
                 />
                 <span className={`text-[#667085] text-[${iconSize}] font-medium`}>
-                    {likeCount? likeCount : like}
+                    {likeCount ? likeCount : like}
                 </span>
             </button>
             <button
