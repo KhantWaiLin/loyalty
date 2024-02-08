@@ -7,7 +7,7 @@ import Noti from "../../components/Noti";
 import PointTotal from "../../components/point_total/PointTotal";
 import Coupon from "../../components/coupon/Coupon";
 import PromotionCard from "../../components/PromotionCard";
-import BlogCard from "../../components/BlogCard";
+import BlogListCard from "../../components/BlogListCard";
 import Loader from "../../components/loader/Loader";
 import HomeServiceCard from "../../components/HomeServiceCard";
 import UserInfo from "./components/UserInfo";
@@ -27,9 +27,10 @@ const Home = () => {
   const [pointData, setPointData] = useState(null);
   const [promotionData, setPromotionData] = useState(null);
   const [serviceData, setServiceData] = useState(null);
+  const [blogData, setBlogData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { get_member_info, promotion_list, service_list } = api_routes;
+  const { get_member_info, promotion_list, service_list, blog_list } = api_routes;
 
   const get_data = async () => {
     setIsLoading(true);
@@ -49,6 +50,12 @@ const Home = () => {
       .postByBody(service_list, { brandId: brand_id })
       .then((response) => {
         setServiceData(response?.data?.value?.data?.data[0]?.catList);
+      });
+
+    await api
+      .postByBody(blog_list, { brandId: brand_id })
+      .then((response) => {
+        setBlogData(response?.data?.value?.data?.data);
       });
     setIsLoading(false);
   };
@@ -164,10 +171,10 @@ const Home = () => {
             </a>
           </div>
           <Swiper loop={true} modules={[Autoplay]} className="w-full">
-            {blog_data?.map((blog) => (
+            {blogData?.map((blog) => (
               <SwiperSlide key={blog.id}>
                 <div>
-                  <BlogCard blog={blog} onClick={() => {}} />
+                  <BlogListCard blog={blog} onClick={() => { }} />
                 </div>
               </SwiperSlide>
             ))}
