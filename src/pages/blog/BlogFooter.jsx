@@ -24,7 +24,7 @@ const styles = {
     },
 };
 
-const BlogFooter = ({ BlogId, isLiked, like, comment, commentLength, footerOpen }) => {
+const BlogFooter = ({ BlogId, isLiked, like, comment, commentLength, footerOpen, setFooterOpen}) => {
     const iconSize = "25px";
     const [likeCount, setLikeCount] = useState(null);
     const { blog_react } = api_routes;
@@ -37,8 +37,13 @@ const BlogFooter = ({ BlogId, isLiked, like, comment, commentLength, footerOpen 
     }, [isLiked]);
   
     useEffect(() => {
-      setIsCommentListOpen(footerOpen);
-    }, [footerOpen]);
+        if(footerOpen==false && isCommentListOpen==false){
+            setIsCommentListOpen(true);
+            setFooterOpen(true);
+        }
+    }, [footerOpen, isCommentListOpen]);
+
+    
   
     const react = async () => {
       try {
@@ -53,11 +58,11 @@ const BlogFooter = ({ BlogId, isLiked, like, comment, commentLength, footerOpen 
       } catch (error) {
         console.error("Error fetching blog data:", error);
       }
-    };console.log(isCommentListOpen);
+    };
   
     const toggleCommentList = () => {
       comment();
-      setIsCommentListOpen(!footerOpen);
+      setIsCommentListOpen(false);
     };
 
     return (

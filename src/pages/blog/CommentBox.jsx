@@ -6,7 +6,7 @@ import Send from "../../assets/icons/send.svg";
 
 const commentBoxStyle = {
     display: 'flex',
-    width: '321px',
+    width: '80%',
     padding: '10px 24px',
     alignItems: 'center',
     gap: '16px',
@@ -15,7 +15,7 @@ const commentBoxStyle = {
     background: 'var(--Default-White, #FFF)',
 }
 
-const CommentBox = ({BlogId}) => {
+const CommentBox = ({BlogId, data}) => {
     const [comment, setComment] = useState('');
     const { blog_react } = api_routes;
     const { user_id } = getUserBrandMemberId();
@@ -33,7 +33,7 @@ const CommentBox = ({BlogId}) => {
                 isLike: false,
                 comment: comment
             });
-            //console.log(response);
+            data(response.data.value.data.commentList);
             setComment('');
         } catch (error) {
             console.error("Error fetching blog data:", error);

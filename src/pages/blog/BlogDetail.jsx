@@ -70,10 +70,10 @@ const commentSection = {
 }
 
 const headingStyle = {
-    position : 'absolute',
-    left : '40%',
-    top : '1%'
-  }
+    position: 'absolute',
+    left: '40%',
+    top: '1%'
+}
 
 const comments = {
     position: 'absolute',
@@ -95,6 +95,7 @@ const BlogDetail = () => {
     const [blogsLiked, setBlogsLiked] = React.useState(null);
     const [commentLength, setCommentLength] = React.useState(null);
     const [footerOpen, setFooterOpen] = React.useState(true);
+    const [commentListFromComment, setCommentListFromComment] = React.useState(null);
 
     const dataFromFooter = () => {
         setIsModalOpen(true);
@@ -102,7 +103,7 @@ const BlogDetail = () => {
 
     const closeModal = () => {
         setIsModalOpen(false);
-        setFooterOpen(true);
+        setFooterOpen(false);
     }
 
     const fetchBlogData = async () => {
@@ -147,6 +148,12 @@ const BlogDetail = () => {
             console.error("Error fetching saved blogs:", error);
         }
     };
+
+    const dataFromComment = (data) => {
+        if (data) {
+            setCommentListFromComment(data);
+        }
+    }
 
     useEffect(() => {
         fetchBlogData();
@@ -197,18 +204,27 @@ const BlogDetail = () => {
                 isLiked={liked}
                 like={blogDetail?.likeCount}
                 comment={dataFromFooter}
-                commentLength= {commentLength}
-                footerOpen = {footerOpen}
+                commentLength={commentLength}
+                footerOpen={footerOpen}
+                setFooterOpen={setFooterOpen}
             />
             <BlogModel isOpen={isModalOpen} onClose={closeModal}>
                 <div style={headingStyle}>Comments</div>
                 <div style={comments} className="no-scrollbar">
-                    {blogDetail?.commentList.map((comment) => (
-                        comment.comment? <CommentCard comment= {comment}/> : null
-                    ))}
+                    {commentListFromComment
+                        ? commentListFromComment.map((comment) =>
+                            comment.comment ? (
+                                <CommentCard key={comment.id} comment={comment} />
+                            ) : null
+                        )
+                        : blogDetail?.commentList.map((comment) =>
+                            comment.comment ? (
+                                <CommentCard key={comment.id} comment={comment} />
+                            ) : null
+                        )}
                 </div>
                 <div style={commentSection}>
-                    <CommentBox BlogId={id} />
+                    <CommentBox BlogId={id} data={dataFromComment} />
                 </div>
             </BlogModel>
         </div>
