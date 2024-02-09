@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import BlogFooter from "./BlogFooter";
+import CommentCard from "./CommentCard";
 
 import Loader from "../../components/loader/Loader";
 import api from "../../api/api";
@@ -38,13 +39,13 @@ const title_style = {
 const date_style = {
     position: 'absolute',
     left: '15px',
-    top: '120px',
+    top: '20%',
     fontSize: '10px'
 }
 
 const image = {
     position: 'absolute',
-    top: '150px',
+    top: '25%',
     left: '15px',
     width: '380px',
     height: '175px',
@@ -54,18 +55,32 @@ const image = {
 
 const blog_content = {
     position: 'absolute',
-    top: '330px',
+    top: '50%',
     left: '15px',
     textIndent: '50px',
     textAlign: 'justify',
     width: '390px',
-    height: '270px',
+    height: '50%',
     overflow: 'auto',
 }
 
 const commentSection = {
     position: 'absolute',
     top: '85%'
+}
+
+const headingStyle = {
+    position : 'absolute',
+    left : '40%',
+    top : '1%'
+  }
+
+const comments = {
+    position: 'absolute',
+    top: '10%',
+    width: '90%',
+    height: '80%',
+    overflowY: 'auto',
 }
 
 const BlogDetail = () => {
@@ -78,17 +93,23 @@ const BlogDetail = () => {
     const [liked, setLiked] = React.useState(false);
     const [blogsSaved, setBlogsSaved] = React.useState(null);
     const [blogsLiked, setBlogsLiked] = React.useState(null);
+    const [commentLength, setCommentLength] = React.useState(null);
+    const [footerOpen, setFooterOpen] = React.useState(true);
 
     const dataFromFooter = () => {
         setIsModalOpen(true);
     };
 
-    const closeModal = () => setIsModalOpen(false);
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setFooterOpen(true);
+    }
 
     const fetchBlogData = async () => {
         setIsLoading(true);
         try {
             const response = await api.get(blog_detail, { BlogId: id });
+            setCommentLength(response.data.value.data.commentList.length);
             setBlogDetail(response?.data?.value?.data);
         } catch (error) {
             console.error("Error fetching blog data:", error);
@@ -176,12 +197,14 @@ const BlogDetail = () => {
                 isLiked={liked}
                 like={blogDetail?.likeCount}
                 comment={dataFromFooter}
+                commentLength= {commentLength}
+                footerOpen = {footerOpen}
             />
             <BlogModel isOpen={isModalOpen} onClose={closeModal}>
-                <h2>Comments</h2>
-                <div>
-                    {blogDetail?.commentList.map((blog) => (
-                        <div>{blog.comment}</div>
+                <div style={headingStyle}>Comments</div>
+                <div style={comments} className="no-scrollbar">
+                    {blogDetail?.commentList.map((comment) => (
+                        comment.comment? <CommentCard comment= {comment}/> : null
                     ))}
                 </div>
                 <div style={commentSection}>

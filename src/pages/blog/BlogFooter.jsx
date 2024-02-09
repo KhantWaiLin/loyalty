@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState, useEffect} from "react";
 import Like from "../../assets/icons/like.svg";
 import Unlike from "../../assets/icons/like-icon.svg";
 import Comment from "../../assets/icons/comment-icon.svg";
@@ -24,40 +24,45 @@ const styles = {
     },
 };
 
-const BlogFooter = ({ BlogId, isLiked, like, comment }) => {
+const BlogFooter = ({ BlogId, isLiked, like, comment, commentLength, footerOpen }) => {
     const iconSize = "25px";
-    const [likeCount, setLikeCount] = React.useState(null);
-    const [commentLength, setCommentLength] = React.useState(null);
+    const [likeCount, setLikeCount] = useState(null);
     const { blog_react } = api_routes;
     const { user_id } = getUserBrandMemberId();
-    const [liked, setLiked] = React.useState(false);
-
+    const [liked, setLiked] = useState(false);
+    const [isCommentListOpen, setIsCommentListOpen] = useState(true);
+  
+    useEffect(() => {
+      setLiked(isLiked);
+    }, [isLiked]);
+  
+    useEffect(() => {
+      setIsCommentListOpen(footerOpen);
+    }, [footerOpen]);
+  
     const react = async () => {
-        try {
-            const response = await api.postByBody(blog_react, {
-                customerId: user_id,
-                blogId: BlogId,
-                isLike: !liked,
-                comment: null
-            });
-            setLikeCount(response.data.value.data.likeCount);
-            setLiked(!liked);
-        } catch (error) {
-            console.error("Error fetching blog data:", error);
-        }
+      try {
+        const response = await api.postByBody(blog_react, {
+          customerId: user_id,
+          blogId: BlogId,
+          isLike: !liked,
+          comment: null,
+        });
+        setLikeCount(response.data.value.data.likeCount);
+        setLiked(!liked);
+      } catch (error) {
+        console.error("Error fetching blog data:", error);
+      }
+    };console.log(isCommentListOpen);
+  
+    const toggleCommentList = () => {
+      comment();
+      setIsCommentListOpen(!footerOpen);
     };
-
-    const commentList = () => {
-        comment();
-    };
-
-    React.useEffect(() => {
-        setLiked(isLiked);
-    }, []);
 
     return (
         <div
-            style={styles.footerWrapper}
+            style={!isCommentListOpen ? { ...styles.footerWrapper, display: 'none' } : styles.footerWrapper}
             className="footer-wrapper w-full flex justify-between z-10 absolute py-2 px-4 pb-[34px] bottom-0"
         >
             <button type="button" style={styles.button} onClick={react}>
@@ -77,7 +82,7 @@ const BlogFooter = ({ BlogId, isLiked, like, comment }) => {
             <button
                 type="button"
                 style={styles.button}
-                onClick={commentList}
+                onClick={toggleCommentList}
             >
                 <img src={Comment} alt="comment-icon" className="w-full h-full" style={{ width: iconSize, height: iconSize }} />
                 <span className={`text-[#667085] text-[${iconSize}] font-medium`}>{commentLength}</span>

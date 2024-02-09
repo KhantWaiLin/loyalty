@@ -9,7 +9,7 @@ import { getUserBrandMemberId } from "../utils/getBrandUserId";
 
 const cardStyle = {
   width: '388px',
-  height: '240px',
+  height: '260px',
   border: '1px solid #F0F1F3',
   borderRadius: '20px',
   padding: '10px',

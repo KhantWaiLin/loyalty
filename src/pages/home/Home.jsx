@@ -174,7 +174,7 @@ const Home = () => {
             {blogData?.map((blog) => (
               <SwiperSlide key={blog.id}>
                 <div>
-                  <BlogListCard blog={blog} onClick={() => { }} />
+                  <BlogListCard blog={blog} link={blog.id}/>
                 </div>
               </SwiperSlide>
             ))}
