@@ -9,7 +9,8 @@ const Layout = ({ children }) => {
       location.pathname === "/" ||
       location.pathname.includes("/reward/") ||
       location.pathname === "/profile/change-number" ||
-      location.pathname.includes('/blog/')
+      location.pathname.includes('/blog/') ||
+      location.pathname.includes('/profile/my-account')
     ) {
       return false;
     }
