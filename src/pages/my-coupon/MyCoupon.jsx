@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CouponList from "./components/CouponList";
 import { useNavigate } from "react-router-dom";
 
-function MyCoupon({ couponList }) {
+function MyCoupon() {
   const [status, setStatus] = useState("Available");
-
   let navigate = useNavigate();
 
   const handleStatus = (status) => {
