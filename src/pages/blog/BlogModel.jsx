@@ -2,8 +2,8 @@ import React from 'react';
 
 const modalStyle = {
   position: 'absolute',
-  width: '100%',
-  height: '100%',
+  width: '98%',
+  height: '95%',
   top: '5%',
   left: '2%',
   backgroundColor: 'white',

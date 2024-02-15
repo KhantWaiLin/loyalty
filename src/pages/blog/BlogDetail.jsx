@@ -66,7 +66,7 @@ const blog_content = {
 
 const commentSection = {
     position: 'absolute',
-    top: '85%'
+    top: '90%'
 }
 
 const headingStyle = {
