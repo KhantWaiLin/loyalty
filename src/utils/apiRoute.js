@@ -1,8 +1,8 @@
 export const api_routes = {
   promotion_list: "/api/Customer/GetPromotionListByBrandId",
   promotion_detail: '/api/Customer/GetPromotionDetailById?PromoId=',
-  service_list: "/api/Customer/GetCategoryListByCustomer",
-  service_detail: '/api/Customer/GetProductListByCategoryAndSubCategory',
+  service_list: "/api/Customer/GetProductListByCustomer",
+  //service_detail: '/api/Customer/GetProductListByCategoryAndSubCategory',
   blog_list: '/api/Customer/GetBlogListByBrandId',
   blog_detail: '/api/Customer/GetBlogDetailByBlogId',
   blog_react: '/api/Customer/GetBlogReactByCustomer',

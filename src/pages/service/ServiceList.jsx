@@ -37,7 +37,7 @@ const ServiceList = () => {
     const { brand_id } = getUserBrandMemberId();
     try {
       const response = await api.postByBody(service_list, { brandId: brand_id });
-      setServiceList(response?.data?.value?.data?.data[0].catList);
+      setServiceList(response?.data?.value?.data?.data);
     } catch (error) {
       console.error(error);
     } finally {
@@ -84,9 +84,11 @@ const renderServiceRows = (serviceList) => {
       {row.map((service) => (
         <div key={service.name} className="w-[185px] h-[150px] cursor-pointer">
           <ServiceCard
-            name={service.categoryName}
-            img={service.categoryImage}
+            name={service.title}
+            img={service.image}
             link={service.cateGoryId}
+            price={service.price}
+            description={service.description}
           />
         </div>
       ))}
