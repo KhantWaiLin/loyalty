@@ -7,7 +7,7 @@ import Send from "../../assets/icons/send.svg";
 const commentBoxStyle = {
     display: 'flex',
     width: '80%',
-    padding: '10px 24px',
+    padding: '5px 24px',
     alignItems: 'center',
     gap: '16px',
     borderRadius: '8px',
@@ -19,7 +19,7 @@ const CommentBox = ({BlogId, data}) => {
     const [comment, setComment] = useState('');
     const { blog_react } = api_routes;
     const { user_id } = getUserBrandMemberId();
-    const iconSize = "50px";
+    const iconSize = "65px";
 
     const handleCommentChange = (e) => {
         setComment(e.target.value);
@@ -59,7 +59,8 @@ const CommentBox = ({BlogId, data}) => {
                     className="w-full h-full"
                     style={{
                         width: iconSize,
-                        height: iconSize
+                        height: iconSize,
+                        marginLeft: '5px'
                     }}
                 />
             </button>
