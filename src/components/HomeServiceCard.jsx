@@ -8,16 +8,16 @@ const HomeServiceCard = ({ service, onClick }) => {
       onClick={onClick}
     >
       <div className="w-full h-full relative bg-[#EBF2FF] rounded-lg">
-        {service?.categoryImage && (
+        {service?.img && (
           <img
-            src={service.categoryImage}
+            src={service.img}
             alt="promotion-img"
             className="w-full h-full object-cover rounded-lg"
           />
         )}
         <div className="absolute top-0 flex justify-center items-center left-0 rounded-lg w-full h-full bg-[#00000080]">
           <h4 className="text-[#FFF] text-[14px] font-medium">
-            {service?.categoryName}
+            {service?.title}
           </h4>
         </div>
       </div>

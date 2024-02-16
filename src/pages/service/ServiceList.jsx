@@ -24,7 +24,10 @@ const iconStyle = {
 const cardList = {
   position: 'absolute',
   left: '5%',
-  top: '10%'
+  top: '10%',
+  width: '390px',
+  height: '80%',
+  overflow: 'auto',
 }
 
 const ServiceList = () => {
@@ -65,7 +68,7 @@ const ServiceList = () => {
         </svg>
       </a>
       <h1 style={headingStyle}>Services</h1>
-      <div style={cardList}>
+      <div style={cardList} className="no-scrollbar">
       {serviceList && renderServiceRows(serviceList)}
       </div>
     </div>
@@ -84,11 +87,7 @@ const renderServiceRows = (serviceList) => {
       {row.map((service) => (
         <div key={service.name} className="w-[185px] h-[150px] cursor-pointer">
           <ServiceCard
-            name={service.title}
-            img={service.image}
-            link={service.cateGoryId}
-            price={service.price}
-            description={service.description}
+            data = {service}
           />
         </div>
       ))}

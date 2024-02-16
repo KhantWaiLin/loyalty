@@ -49,7 +49,7 @@ const Home = () => {
     await api
       .postByBody(service_list, { brandId: brand_id })
       .then((response) => {
-        setServiceData(response?.data?.value?.data?.data[0]?.catList);
+        setServiceData(response?.data?.value?.data?.data);
       });
 
     await api
@@ -150,7 +150,7 @@ const Home = () => {
                 <div className="w-[180px] h-[120px]">
                   <HomeServiceCard
                     service={service}
-                    onClick={() => navigate(`/service/${service?.cateGoryId}`)}
+                    onClick={() => navigate(`/service/?${new URLSearchParams(service).toString()}`)}
                   />
                 </div>
               </SwiperSlide>
