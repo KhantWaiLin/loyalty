@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./TabNavigation.css";
 
 const navstyle = {
@@ -7,12 +7,14 @@ const navstyle = {
 };
 
 const TabNavigation = ({ savedorliked }) => {
-  const [activeTab, setActiveTab] = useState("saved");
+  const [activeTab, setActiveTab] = useState(null);
 
   const handleTabClick = (tabName, event) => {
     event.preventDefault();
-    savedorliked(tabName);
-    setActiveTab(tabName);
+    setTimeout(() => {
+      savedorliked(tabName);
+      setActiveTab(tabName);
+    }, 100); // Adjust the delay as needed
   };
 
   return (

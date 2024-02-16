@@ -2,11 +2,24 @@ import React, { useState } from 'react';
 import { getUserBrandMemberId } from "../../utils/getBrandUserId";
 import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
+import Send from "../../assets/icons/send.svg";
 
-const CommentBox = ({BlogId}) => {
+const commentBoxStyle = {
+    display: 'flex',
+    width: '80%',
+    padding: '10px 24px',
+    alignItems: 'center',
+    gap: '16px',
+    borderRadius: '8px',
+    border: '1px solid var(--Primary-Gray-gray-50, #F0F1F3)',
+    background: 'var(--Default-White, #FFF)',
+}
+
+const CommentBox = ({BlogId, data}) => {
     const [comment, setComment] = useState('');
     const { blog_react } = api_routes;
     const { user_id } = getUserBrandMemberId();
+    const iconSize = "50px";
 
     const handleCommentChange = (e) => {
         setComment(e.target.value);
@@ -20,7 +33,7 @@ const CommentBox = ({BlogId}) => {
                 isLike: false,
                 comment: comment
             });
-            //console.log(response);
+            data(response.data.value.data.commentList);
             setComment('');
         } catch (error) {
             console.error("Error fetching blog data:", error);
@@ -32,15 +45,23 @@ const CommentBox = ({BlogId}) => {
             <textarea
                 rows="2"
                 cols="28"
-                placeholder="Type your comment here..."
+                placeholder="Type Something..."
                 value={comment}
                 onChange={handleCommentChange}
-                style={{ marginRight: '10px' , paddingLeft: '5px', paddingTop: '2px', border: '1px solid black'}}
+                style={commentBoxStyle}
             />
             <button
                 onClick={handleSaveComment}
-                style={{ padding: '8px', backgroundColor: '#007BFF', color: '#fff', borderRadius: '5px', cursor: 'pointer' }}>
-                Save
+                >
+                <img
+                    src={Send}
+                    alt="send-icon"
+                    className="w-full h-full"
+                    style={{
+                        width: iconSize,
+                        height: iconSize
+                    }}
+                />
             </button>
         </div>
     );

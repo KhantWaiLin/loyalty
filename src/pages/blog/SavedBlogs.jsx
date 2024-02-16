@@ -73,13 +73,13 @@ const SavedBlogs = () => {
     fetchBlogData();
   }, [savedCheck]);
 
-  if (isLoading) {
-    return (
-      <div className="reward-wrapper items-center flex flex-col justify-center">
-        <Loader />
-      </div>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className="reward-wrapper items-center flex flex-col justify-center">
+  //       <Loader />
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="text-black-500 text-lg">
