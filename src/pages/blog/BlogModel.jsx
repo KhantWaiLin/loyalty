@@ -3,7 +3,7 @@ import React from 'react';
 const modalStyle = {
   position: 'absolute',
   width: '98%',
-  height: '95%',
+  height: '88%',
   top: '5%',
   left: '2%',
   backgroundColor: 'white',

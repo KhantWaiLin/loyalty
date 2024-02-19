@@ -62,11 +62,12 @@ const blog_content = {
     width: '92%',
     height: '40%',
     overflow: 'auto',
+    fontSize: '12px'
 }
 
 const commentSection = {
     position: 'absolute',
-    top: '90%'
+    top: '96%'
 }
 
 const headingStyle = {
@@ -78,8 +79,8 @@ const headingStyle = {
 const comments = {
     position: 'absolute',
     top: '10%',
-    width: '90%',
-    height: '80%',
+    width: '98%',
+    height: '85%',
     overflowY: 'auto',
 }
 

@@ -4,14 +4,14 @@ const cardStyle = {
     display: 'flex',
     flexDirection: 'column',
     gap: '24px',
-    width: '100%',
+    width: '98%',
     height: 'auto',
 };
 
 const imageSectionStyle = {
     display: 'flex',
     alignItems: 'flex-start',
-    width: '100%',
+    width: '98%',
     gap: '8px',
     paddingLeft: '5px'
 };
@@ -28,8 +28,12 @@ const textSectionStyle = {
     backgroundColor: '#FAFAFA',
     border: '1px solid #F0F1F3',
     borderRadius: '20px',
-    padding: '10px',
+    paddingLeft: '10px',
+    paddingBottom: '20px',
     paddingTop: '5px',
+    paddingRight: '2px',
+    width: '90%',
+    wordWrap: 'break-word',
 };
 
 const gapStyle = {
@@ -42,7 +46,8 @@ function CommentCard({ comment }) {
             <div href='#' style={imageSectionStyle}>
                 <img
                     style={imageStyle}
-                    src={comment?.customerImage}
+                    // src={comment?.customerImage}
+                    src="/customer_img.png"
                     alt="Card Image"
                 />
                 <div style={textSectionStyle}>

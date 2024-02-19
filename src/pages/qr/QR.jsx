@@ -47,13 +47,13 @@ const qr_des = {
 
 const name = {
   marginTop : '50px',
-  marginLeft: '33%',
+  textAlign : 'center',
   fontSize : '20px',
 }
 
 const email = {
   marginTop : '10px',
-  marginLeft: '35%',
+  textAlign : 'center',
   fontSize : '14px',
 }
 
@@ -61,6 +61,7 @@ const QR = () => {
   const [pointData, setPointData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
+  const [qrCode, setQrCode] = useState(null);
   const { get_member_info } = api_routes;
 
   const get_reward_list = async () => {
@@ -71,7 +72,7 @@ const QR = () => {
       .then((response) => {
         setPointData(response?.data?.value?.data);
         setUserInfo(response?.data?.value?.data);
-        console.log(response?.data?.value?.data);
+        setQrCode(JSON.stringify(response?.data?.value?.data));
       });
     setIsLoading(false);
   };
@@ -95,7 +96,7 @@ const QR = () => {
         <PointTotal point_data={pointData} style={{textAlign:'center'}}/>
       </div>
       <div style={qrBack}>
-        <QRCode style={qr} value={JSON.stringify(userInfo)} fgColor="#384BCA"/>
+        <QRCode style={qr} value={qrCode? qrCode:'test'} fgColor="#384BCA"/>
       </div>
       <div style={qr_des}>Scan my QR</div>
       <div style={name}>{userInfo?.name}</div>
