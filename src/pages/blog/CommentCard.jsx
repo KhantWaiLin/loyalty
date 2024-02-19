@@ -1,4 +1,5 @@
 import React from "react";
+import DefaultImage from "../../assets/images/profile_img.svg"
 
 const cardStyle = {
     display: 'flex',
@@ -47,7 +48,7 @@ function CommentCard({ comment }) {
                 <img
                     style={imageStyle}
                     // src={comment?.customerImage}
-                    src="/customer_img.png"
+                    src={DefaultImage}
                     alt="Card Image"
                 />
                 <div style={textSectionStyle}>
