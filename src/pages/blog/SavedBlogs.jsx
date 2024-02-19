@@ -48,7 +48,7 @@ const SavedBlogs = () => {
   const [blogSaved, setblogSaved] = useState(null);
   const { saved_blogs } = api_routes;
   const [isLoading, setIsLoading] = useState(false);
-  const [savedCheck, setSavedCheck] = useState(true);
+  const [savedCheck, setSavedCheck] = useState("true");
 
   const savedTabAssign = (data) => {
     setSavedCheck(data === "saved");

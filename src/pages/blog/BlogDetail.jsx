@@ -59,8 +59,8 @@ const blog_content = {
     left: '15px',
     textIndent: '50px',
     textAlign: 'justify',
-    width: '390px',
-    height: '50%',
+    width: '92%',
+    height: '40%',
     overflow: 'auto',
 }
 
@@ -93,7 +93,7 @@ const BlogDetail = () => {
     const [liked, setLiked] = React.useState(false);
     const [blogsSaved, setBlogsSaved] = React.useState(null);
     const [blogsLiked, setBlogsLiked] = React.useState(null);
-    const [commentLength, setCommentLength] = React.useState(null);
+    const [commentLength, setCommentLength] = React.useState(0);
     const [footerOpen, setFooterOpen] = React.useState(true);
     const [commentListFromComment, setCommentListFromComment] = React.useState(null);
 
@@ -108,9 +108,13 @@ const BlogDetail = () => {
 
     const fetchBlogData = async () => {
         setIsLoading(true);
+        let i = 1;
         try {
             const response = await api.get(blog_detail, { BlogId: id });
-            setCommentLength(response.data.value.data.commentList.length);
+            //setCommentLength(response.data.value.data.commentList.length);
+            response?.data?.value?.data?.commentList.map((comment)=>
+                comment.comment? setCommentLength(i++) : null
+            );
             setBlogDetail(response?.data?.value?.data);
         } catch (error) {
             console.error("Error fetching blog data:", error);

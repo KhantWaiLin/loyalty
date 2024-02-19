@@ -1,119 +1,105 @@
-import React from 'react';
+import {React, useState, useEffect} from 'react';
 import QRCode from "react-qr-code";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import PointTotal from "./PointTotal";
 
-const image = {
-  width: '103px',
-  height: '103px',
-  border: '5.29px linear-gradient(#1746A2, #FFFFFF) solid',
-  borderRadius: '100%',
+import api from "../../api/api";
+import { api_routes } from "../../utils/apiRoute";
+import { getUserBrandMemberId } from "../../utils/getBrandUserId";
+import Loader from "../../components/loader/Loader";
+
+const heading = {
+  marginLeft: '200px',
+  marginTop: '52px',
+  fontSize: '16px'
 }
 
-const profile = {
-  position: 'relative',
-  left: '40%',
-  top: '112px'
-}
-
-const des = {
-  fontFamily: 'Satoshi-Black',
+const point = {
+  marginTop: '40px',
   textAlign: 'center',
-  position: 'absolute',
-  left: '-30px',
-  color: 'black',
-  fontSize: '16px',
-  top: '110px'
-}
-
-const qr_back = {
-  width: '254px',
-  height: '254px',
-  borderRadius: '20px',
-  backgroundColor: 'white',
-  position: 'absolute',
-  left: '22%',
-  top: '280px',
+  width: '90%',
+  marginLeft: '5%'
 }
 
 const qr = {
-  width: '180px',
-  height: '180px',
-  top: '37px',
   position: 'absolute',
-  left: '37px'
+  marginTop: '20px',
+  width: '162px',
+  height: '162px',
+  marginLeft: '20px',
 }
 
-const qr_dec = {
-  fontFamily: 'Satoshi-Black',
-  textAlign: 'center',
-  position: 'absolute',
-  color: 'black',
-  fontSize: '20px',
-  top: '535px',
-  left: '38%'
+const qrBack = {
+  width: '200px',
+  height: '200px',
+  marginTop: '50px',
+  marginLeft: '28%',
+  borderRadius: '20px',
+  background: 'var(--Default-White, #FFF)',
+  boxShadow: '0px 1.316px 3.947px 0px rgba(64, 83, 209, 0.10), 0px 17.105px 10.526px 0px rgba(64, 83, 209, 0.05), 0px 31.579px 13.158px 0px rgba(64, 83, 209, 0.01), 0px 48.684px 13.158px 0px rgba(64, 83, 209, 0.00)',
+};
+
+const qr_des = {
+  marginTop : '10px',
+  marginLeft: '43%',
+  fontSize : '14px',
+  opacity: '0.5'
 }
 
-const btn_style = {
-  backgroundColor: '#ffffff',
-  padding: '14px 24px 14px 24px',
-  border: '1px solid #F0F1F3',
-  borderRadius: '8px',
-  fontSize: '15px',
-  position: 'absolute',
-  top: '580px',
-  width: '376px',
-  height: '60px',
-  left: '6%'
+const name = {
+  marginTop : '50px',
+  marginLeft: '33%',
+  fontSize : '20px',
 }
 
-const icon_style = {
-  float: 'left',
-  marginTop: '5px',
-}
-
-const btn_des = {
-  marginLeft: '10%',
-  marginTop: '5px',
-  float: 'left'
-}
-
-const arr_style = {
-  width: '24px',
-  height: '24px',
-  marginLeft: '90%',
-  marginTop: '5px'
+const email = {
+  marginTop : '10px',
+  marginLeft: '35%',
+  fontSize : '14px',
 }
 
 const QR = () => {
+  const [pointData, setPointData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
+  const { get_member_info } = api_routes;
+
+  const get_reward_list = async () => {
+    setIsLoading(true);
+    const { brand_id, user_id } = getUserBrandMemberId();
+    await api
+      .get(get_member_info, { brandId: brand_id, userId: user_id })
+      .then((response) => {
+        setPointData(response?.data?.value?.data);
+        setUserInfo(response?.data?.value?.data);
+        console.log(response?.data?.value?.data);
+      });
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    get_reward_list();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="reward-wrapper items-center flex flex-col justify-center">
+        <Loader />
+      </div>
+    );
+  }
+
   return (
-    <div>
-      <div style={profile}>
-        <img style={image} src='logo192.png' />
-        <div style={des}>
-          Profile Name <br />
-          profilename@profile.com
-        </div>
+    <div className="text-black-500 text-lg">
+      <h1 style={heading}>QR</h1>
+      <div style={point}>
+        <PointTotal point_data={pointData} style={{textAlign:'center'}}/>
       </div>
-      <div style={qr_back}>
-        <QRCode style={qr} value="test" />
+      <div style={qrBack}>
+        <QRCode style={qr} value={JSON.stringify(userInfo)} fgColor="#384BCA"/>
       </div>
-      <div style={qr_dec}>
-        Scan my QR
-      </div>
-      <a href='/scanner' style={btn_style}>
-        <svg style={icon_style} xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="24" height="24">
-          <path d="M19,24H17a1,1,0,0,1,0-2h2a3,3,0,0,0,3-3V17a1,1,0,0,1,2,0v2A5.006,5.006,0,0,1,19,24Z" />
-          <path d="M1,8A1,1,0,0,1,0,7V5A5.006,5.006,0,0,1,5,0H7A1,1,0,0,1,7,2H5A3,3,0,0,0,2,5V7A1,1,0,0,1,1,8Z" />
-          <path d="M7,24H5a5.006,5.006,0,0,1-5-5V17a1,1,0,0,1,2,0v2a3,3,0,0,0,3,3H7a1,1,0,0,1,0,2Z" />
-          <path d="M23,8a1,1,0,0,1-1-1V5a3,3,0,0,0-3-3H17a1,1,0,0,1,0-2h2a5.006,5.006,0,0,1,5,5V7A1,1,0,0,1,23,8Z" />
-        </svg>
-        <div style={btn_des}>
-          Scan QR Code
-        </div>
-        <svg style={arr_style} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-          <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
-        </svg>
-      </a>
+      <div style={qr_des}>Scan my QR</div>
+      <div style={name}>{userInfo?.name}</div>
+      <div style={email}>{userInfo?.email}</div>
     </div>
   )
 }

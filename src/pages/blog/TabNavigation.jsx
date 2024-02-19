@@ -7,15 +7,19 @@ const navstyle = {
 };
 
 const TabNavigation = ({ savedorliked }) => {
-  const [activeTab, setActiveTab] = useState(null);
+  const [activeTab, setActiveTab] = useState('saved');
 
   const handleTabClick = (tabName, event) => {
     event.preventDefault();
     setTimeout(() => {
       savedorliked(tabName);
       setActiveTab(tabName);
-    }, 100); // Adjust the delay as needed
+    }, 100);
   };
+
+  useEffect(() => {
+    savedorliked('saved');
+  }, []);
 
   return (
     <div className="tab-navigation">

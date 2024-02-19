@@ -103,8 +103,8 @@ const ServiceDetail = () => {
                 </svg>
             </a>
             <h1 style={headingStyle}>Services</h1>
-            <img style={image} src={data.img} alt="image" />
-            <div style={title_style}>{data.name}</div>
+            <img style={image} src={data.image} alt="image" />
+            <div style={title_style}>{data.title}</div>
             <div style={date_style}>{data.price}</div>
             <div style={blog_content} className="no-scrollbar">
                 {data.description}
