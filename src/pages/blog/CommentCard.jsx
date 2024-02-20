@@ -47,8 +47,8 @@ function CommentCard({ comment }) {
             <div href='#' style={imageSectionStyle}>
                 <img
                     style={imageStyle}
-                    // src={comment?.customerImage}
-                    src={DefaultImage}
+                    src={comment?.customerImage || DefaultImage}
+                    //placeholder={DefaultImage}
                     alt="Card Image"
                 />
                 <div style={textSectionStyle}>
