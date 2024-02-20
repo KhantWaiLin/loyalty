@@ -31,7 +31,7 @@ const qr = {
 const qrBack = {
   width: '200px',
   height: '200px',
-  marginTop: '50px',
+  marginTop: '30px',
   marginLeft: '28%',
   borderRadius: '20px',
   background: 'var(--Default-White, #FFF)',
@@ -46,7 +46,7 @@ const qr_des = {
 }
 
 const name = {
-  marginTop : '50px',
+  marginTop : '30px',
   textAlign : 'center',
   fontSize : '20px',
 }
@@ -92,8 +92,8 @@ const QR = () => {
   return (
     <div className="text-black-500 text-lg">
       <h1 style={heading}>QR</h1>
-      <div style={point}>
-        <PointTotal point_data={pointData} style={{textAlign:'center'}}/>
+      <div>
+        <PointTotal point_data={pointData} user_info={userInfo}/>
       </div>
       <div style={qrBack}>
         <QRCode style={qr} value={qrCode? qrCode:'test'} fgColor="#384BCA"/>
