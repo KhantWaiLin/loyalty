@@ -87,7 +87,8 @@ const Login = () => {
               onChange={onChange}
             />
           </div>
-          <div className="flex justify-end">
+          <div className="flex justify-between">
+            <a href="/register" style={{color:'blue'}}>Register Account</a>
             <button
               className="px-2 py-1 bg-blue-400 rounded-md text-white"
               type="submit"

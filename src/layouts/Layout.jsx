@@ -31,7 +31,8 @@ const Layout = ({ children }) => {
       location.pathname.includes("/reward/") ||
       location.pathname === "/profile/change-number" ||
       location.pathname.includes('/blog/') ||
-      location.pathname.includes('/profile/my-account')
+      location.pathname.includes('/profile/my-account') ||
+      location.pathname.includes('/register')
     ) {
       return false;
     }

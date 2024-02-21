@@ -12,6 +12,7 @@ import BlogDetail from "./pages/blog/BlogDetail";
 import SavedBlogs from "./pages/blog/SavedBlogs";
 import ServiceList from "./pages/service/ServiceList";
 import ServiceDetail from "./pages/service/ServiceDetail";
+import Register from "./pages/register/Register";
 import MyCoupon from "./pages/my-coupon/MyCoupon";
 import PromotionDetail from "./pages/promotion/detail/PromotionDetail";
 import PromotionList from "./pages/promotion/list/PromotionList";
@@ -59,6 +60,7 @@ const Routers = () => {
       <Route path="/blogsaved" element={<SavedBlogs />} />
       <Route path="/servicelist" element={<ServiceList />} />
       <Route path="/service/" element={<ServiceDetail />} />
+      <Route path="/register" element={<Register/>} />
       <Route path="/reward" element={<Reward />} />
       <Route path="/reward/:id" element={<RewardDetail />} />
       <Route path="/my-coupon" element={<MyCoupon />} />
