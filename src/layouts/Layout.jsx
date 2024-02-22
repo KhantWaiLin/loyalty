@@ -32,7 +32,8 @@ const Layout = ({ children }) => {
       location.pathname === "/profile/change-number" ||
       location.pathname.includes('/blog/') ||
       location.pathname.includes('/profile/my-account') ||
-      location.pathname.includes('/register')
+      location.pathname.includes('/register') ||
+      location.pathname.includes('/login')
     ) {
       return false;
     }

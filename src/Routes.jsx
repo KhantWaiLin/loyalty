@@ -5,6 +5,7 @@ import QR from "./pages/qr/QR";
 import Reward from "./pages/reward/Reward";
 import RewardDetail from "./pages/reward_detail/RewardDetail";
 import Home from "./pages/home/Home";
+import Intro from "./pages/intro/Intro";
 import Login from "./pages/login/Login";
 import QRScanner from "./pages/qr/QRScanner";
 import BlogList from "./pages/blog/BlogList";
@@ -29,7 +30,8 @@ import NotiPage from "./pages/noti/NotiPage";
 const Routers = () => {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
+      <Route path="/" element={<Intro />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/home" element={<Home />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/profile/my-account" element={<MyAccount />} />

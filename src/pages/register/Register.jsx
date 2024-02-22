@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Email from "../../assets/icons/email.svg";
 import User from "../../assets/icons/user-icon.svg";
 import Phone from "../../assets/icons/phon.svg";
+import View from "../../assets/icons/view.svg";
 
 import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
@@ -103,6 +104,14 @@ const emailIconStyle = {
 const phoneIconStyle = {
     position: 'absolute',
     top: '65%',
+    right: '8px',
+    transform: 'translateY(-50%)',
+    color: '#333',
+}
+
+const viewStyle = {
+    position: 'absolute',
+    top: '90%',
     right: '8px',
     transform: 'translateY(-50%)',
     color: '#333',
@@ -223,6 +232,15 @@ const Register = () => {
             setIsLoading(false);
         }
     };
+
+    const passwordView = () => {
+        let viewToggle = document.getElementById('password');
+        if(viewToggle.type == "password"){
+          viewToggle.type = "text"
+        }else{
+          viewToggle.type = "password"
+        }
+      }
     
     useEffect(() => {
         let timer;
@@ -250,7 +268,7 @@ const Register = () => {
         <div>
             {activeTab === "tab 1" && (
                 <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
-                    <a style={iconStyle} href="/profile">
+                    <a style={iconStyle} href="/login">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                         </svg>
@@ -271,7 +289,10 @@ const Register = () => {
                             <img src={Email} style={{ width: "16px", height: '16px' }} />
                         </span>
                         <div style={{ fontSize: '14px' }}>Passwod</div>
-                        <input type="text" placeholder="Enter Password" style={inputBoxStyle} name="password" value={data.password} onChange={handleInputChange} />
+                        <input id="password" type="password" placeholder="Enter Password" style={inputBoxStyle} name="password" value={data.password} onChange={handleInputChange} />
+                        <span style={viewStyle} onClick={passwordView}>
+                            <img src={View} style={{ width: "16px", height: '16px' }} />
+                        </span>
                     </div>
                     <button style={buttonStyle} onClick={send_otp_fun}>Next</button>
                 </div>
