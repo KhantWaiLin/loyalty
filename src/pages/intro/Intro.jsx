@@ -18,9 +18,9 @@ const Intro = () => {
     }, []);
 
     return (
-        <div className="text-black-500 text-lg" style={{overflow:'hidden'}}>
+        <div  style={{overflow:'hidden'}}>
             <Link id="toLink" to="modal" spy={true} smooth={true} duration={500}></Link>
-            <img src={Login} style={{ width: '100%', height: '100%', position: 'absolute' }} />
+            <img src={Login} style={{ width: '100%', height: '100vh', objectFit: 'cover' }} />
             {showModal && <IntroModal />}
         </div>
     );
