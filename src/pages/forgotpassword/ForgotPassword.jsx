@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Phone from "../../assets/icons/phon.svg";
-
+import Reset from "../../assets/icons/reset.svg";
 import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
 import Loader from "../../components/loader/Loader";
@@ -108,6 +108,18 @@ const buttonStyle = {
   left: '5%'
 };
 
+const resetStyle = {
+    textAlign: 'center',
+    marginTop: '50%'
+}
+
+const imageStyle = {
+    margin: '50% auto',
+    width: '20%',
+    height: '20%',
+    display: 'block',
+}
+
 const ForgotPassword = () => {
     const [number, setNumber] = useState("");
     const [activeTab, setActiveTab] = useState("tab 1");
@@ -180,9 +192,9 @@ const ForgotPassword = () => {
             //console.log(response.data.statusCode);
     
             if (response?.data?.statusCode === 200) {
-                const strigify_data = JSON.stringify(response?.data?.value?.data);
-                localStorage.setItem("authenticate_data", strigify_data);
-                navigate("/home");
+                //const strigify_data = JSON.stringify(response?.data?.value?.data);
+                //localStorage.setItem("authenticate_data", strigify_data);
+                setActiveTab("tab 3");
             } else {
                 console.log("Registration Failed.");
             }
@@ -276,6 +288,24 @@ const ForgotPassword = () => {
                                 )}
                         </div>
                         <button style={buttonStyle} onClick={register}>Confirm</button>
+                    </div>
+
+                </>
+            )}
+            {activeTab === "tab 3" && (
+                <>
+                    <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
+                        <a style={iconStyle} href="/login">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                            </svg>
+                        </a>
+                        <div style={headingStyle}>Password Reset</div>
+                        <img src={Reset} style={imageStyle}/>
+                        <div style={resetStyle}>
+                            "Your password has been reset. Please Log in again"
+                        </div>
+                        <button style={buttonStyle} onClick={()=> navigate('/login')}>Login</button>
                     </div>
 
                 </>
