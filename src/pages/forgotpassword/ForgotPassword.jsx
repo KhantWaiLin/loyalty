@@ -126,9 +126,12 @@ const ForgotPassword = () => {
     const [activeTab, setActiveTab] = useState("tab 1");
     const [activeInputIndex, setActiveInputIndex] = useState(null);
     const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+    const [otpStr, setOtpStr] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [countdown, setCountdown] = useState(60);
     const { send_otp, forget_password } = api_routes;
+    const [newPassword, setNewPassword] = useState(null);
+    const [confirmPassword, setConfirmPassword] = useState(null);
     const navigate = useNavigate();
 
     const handleInputChange = (e) => {
@@ -172,9 +175,9 @@ const ForgotPassword = () => {
             setIsLoading(true);
     
             const formatedData = {
-                otp: otp.join(""),
-                newPassword: otp.join(""),
-                confirmPassword: otp.join(""),
+                otp: otpStr,
+                newPassword: newPassword,
+                confirmPassword: confirmPassword,
                 phoneNo: number
             };
     
@@ -195,7 +198,7 @@ const ForgotPassword = () => {
             if (response?.data?.statusCode === 200) {
                 //const strigify_data = JSON.stringify(response?.data?.value?.data);
                 //localStorage.setItem("authenticate_data", strigify_data);
-                setActiveTab("tab 3");
+                setActiveTab("tab 4");
             } else {
                 console.log("Registration Failed.");
             }
@@ -205,6 +208,11 @@ const ForgotPassword = () => {
             setIsLoading(false);
         }
     };
+
+    const nextTab = () => {
+        setActiveTab("tab 3");
+        setOtpStr(otp.join(''));
+    }
     
     useEffect(() => {
         let timer;
@@ -288,12 +296,34 @@ const ForgotPassword = () => {
                                     </button>
                                 )}
                         </div>
-                        <button style={buttonStyle} onClick={register}>Confirm</button>
+                        <button style={buttonStyle} onClick={nextTab}>Confirm</button>
                     </div>
 
                 </>
             )}
             {activeTab === "tab 3" && (
+                <>
+                    <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
+                        <button style={iconStyle} onClick={()=>setActiveTab("tab 1")}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                            </svg>
+                        </button>
+                        <div style={headingStyle}>New Password</div>
+                        <div style={inputContainerStyle}>
+                            <div style={{ fontSize: '14px' }}>New Password</div>
+                            <input type="text" style={inputBoxStyle} name="new" value={newPassword} onChange={(e)=>setNewPassword(e.target.value)} />
+                            {/* <span style={inputIconStyle}><img src={Phone} /></span> */}
+                            <div style={{ fontSize: '14px' }}>Confirm Password</div>
+                            <input type="text" style={inputBoxStyle} name="confirm" value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)} />
+                            {/* <span style={inputIconStyle}><img src={Phone} /></span> */}
+                        </div>
+                        <button style={buttonStyle} onClick={register}>Reset Password</button>
+                    </div>
+
+                </>
+            )}
+            {activeTab === "tab 4" && (
                 <>
                     <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
                         <a style={iconStyle} href="/login">
