@@ -90,7 +90,7 @@ const inputIconStyle = {
 
 const text = {
     position: 'absolute',
-    top: '24%',
+    top: '25%',
     opacity: '0.5',
     fontSize: '10px'
 }
@@ -110,13 +110,14 @@ const buttonStyle = {
 
 const resetStyle = {
     textAlign: 'center',
-    marginTop: '50%'
+    marginTop: '5px'
 }
 
 const imageStyle = {
     margin: '50% auto',
-    width: '20%',
-    height: '20%',
+    marginBottom: '20px',
+    width: '10%',
+    height: '10%',
     display: 'block',
 }
 
