@@ -117,6 +117,12 @@ const viewStyle = {
     color: '#333',
 }
 
+const terms = {
+    position: 'absolute',
+    top: '63%',
+    fontSize: '12px'
+}
+
 const buttonStyle = {
     width: '90%',
     padding: '10px',
@@ -294,6 +300,7 @@ const Register = () => {
                             <img src={View} style={{ width: "16px", height: '16px' }} />
                         </span>
                     </div>
+                    <p style={terms}>By Signing Up, You’re Agreed To Our <span style={{color:'blue'}}>Terms & Conditions</span></p>
                     <button style={buttonStyle} onClick={send_otp_fun}>Next</button>
                 </div>
             )
