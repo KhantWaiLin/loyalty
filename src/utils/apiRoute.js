@@ -10,6 +10,7 @@ export const api_routes = {
   saved_blogs: '/api/Customer/GetBlogSavedList',
   save_blog: '/api/Customer/CreateBlogSavedByCustomer',
   register_user: '/api/Customer/CreateMember',
+  forget_password: '/api/Customer/ForgetPassword',
   get_member_info: "/api/Customer/GetMemberInfo",
   update_member_info: "/api/Customer/UpdateCustomerProfile",
   change_number: "/api/Customer/ChangePhoneNo",

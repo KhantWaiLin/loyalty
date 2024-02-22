@@ -49,7 +49,6 @@ const inputIconStyle = {
   right: '8px',
   transform: 'translateY(-50%)',
   color: '#333',
-  color: 'blue'
 };
 
 const passwordVisible = {
@@ -58,8 +57,16 @@ const passwordVisible = {
   right: '8px',
   transform: 'translateY(-50%)',
   color: '#333',
-  color: 'blue'
 };
+
+const forgotStyle = {
+  position: 'absolute',
+  top: '42%',
+  left: '65%',
+  fontSize: '14px',
+  color: 'blue',
+  textDecoration: 'underline',
+}
 
 const buttonStyle = {
   width: '90%',
@@ -159,6 +166,7 @@ const Login = () => {
             <img src={View} />
           </span>
         </div>
+        <a href="/forgotpassword" style={forgotStyle}>Forgot Password?</a>
         <button style={buttonStyle} onClick={onSubmit}>Login</button>
       </div>
     </div>
