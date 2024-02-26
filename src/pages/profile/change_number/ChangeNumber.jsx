@@ -5,13 +5,109 @@ import api from "../../../api/api";
 import { api_routes } from "../../../utils/apiRoute";
 import { getUserBrandMemberId } from "../../../utils/getBrandUserId";
 
-import BackArrow from "../../../assets/icons/back_arrow.svg";
+import Phone from "../../../assets/images/phone.svg";
+import PhoneIcon from "../../../assets/icons/phon.svg";
 
 import Loader from "../../../components/loader/Loader";
 import "./ChangeNumber.scss";
 
+const iconStyle = {
+  position: 'absolute',
+  left: '15px',
+  top: '52px',
+  backgroundColor: '#FAFAFA',
+  padding: '8px',
+  border: '1px solid #ddd',
+  borderRadius: '5px'
+}
+
+const inputContainerStyle = {
+  width: '90%',
+  position: 'absolute',
+  top: '20%',
+  left: '5%'
+};
+
+const headingStyle = {
+  position: 'absolute',
+  left: '50%',
+  top: '60px',
+  transform: 'translateX(-50%)',
+  fontSize: '16px',
+}
+
+const inputContainerStyle2 = {
+  width: '90%',
+  position: 'absolute',
+  top: '20%',
+  left: '5%',
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+};
+
+const countStyle = {
+  position: 'absolute',
+  top: '25%',
+  left: '50%'
+}
+
+const opt_des = {
+  position: 'absolute',
+  top: '15%',
+}
+
+const otpInputStyle = {
+  width: '50px',
+  height: '50px',
+  textAlign: 'center',
+  marginLeft: '10px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'flex-end',
+  borderBottom: '1px solid #000',
+  opacity: '0.5'
+};
+
+const activeInputStyle = {
+  borderBottomColor: 'blue',
+};
+
+const inputBoxStyle = {
+  width: '100%',
+  border: 'none',
+  borderBottom: '1px solid #48505E',
+  padding: '8px',
+  fontSize: '14px',
+  margin: '8px 0',
+  outline: 'none',
+};
+
+const phoneIconStyle = {
+  position: 'absolute',
+  top: '65%',
+  right: '8px',
+  transform: 'translateY(-50%)',
+  color: '#333',
+}
+
+const buttonStyle = {
+  width: '90%',
+  padding: '10px',
+  backgroundColor: 'blue',
+  color: 'white',
+  border: 'none',
+  borderRadius: '5px',
+  cursor: 'pointer',
+  position: 'absolute',
+  top: '90%',
+  left: '5%'
+};
+
 const ChangeNumber = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [activeInputIndex, setActiveInputIndex] = useState(null);
   const [activeTab, setActiveTab] = useState("tab 1");
   const [number, setNumber] = useState("");
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -92,8 +188,10 @@ const ChangeNumber = () => {
       setOtp(newOtp);
       if (index < otp.length - 1 && value !== "") {
         document.getElementById(`otp-input-${index + 1}`).focus();
+        setActiveInputIndex((index + 1));
       } else if (index > 0 && value === "") {
         document.getElementById(`otp-input-${index + -1}`).focus();
+        setActiveInputIndex((index - 1));
       }
     }
   };
@@ -114,108 +212,78 @@ const ChangeNumber = () => {
   }
 
   return (
-    <div className="change-number-wrapper h-full relative flex flex-col py-4 px-6 w-full overflow-scroll">
+    <div>
       {activeTab === "tab 1" && (
-        <div className="absolute flex flex-col items-center justify-center w-full top-[40%] left-0">
-          <div className="flex items-center justify-center gap-3 mb-5">
-            <h2 className="text-[18px] font-semibold">Your Number</h2>
-            <span className="font-semibold text-[18px]">:</span>
-            <h2 className="text-[18px] font-semibold">{profile?.phoneNo}</h2>
-          </div>
-          <button
-            className="change-number-btn text-white font-medium rounded-lg
-          w-[80%]  p-4"
-            onClick={() => setActiveTab("tab 2")}
-          >
-            Change Number
-          </button>
+        <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
+          <a style={iconStyle} href="/profile">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+            </svg>
+          </a>
+          <div style={headingStyle}>Change Number</div>
+          <img src={Phone} width="30%" height="60%" style={{ marginTop: "50%", marginLeft: '35%' }} />
+          <h2 className="text-[16px]" style={{ textAlign: 'center', marginTop: '10px' }}>{profile?.phoneNo}</h2>
+          <p style={{ textAlign: 'center', fontSize: '12px' }}>You can update your phone number to ensure your account information is up-to-date. We'll send a verification code to your new number for security.</p>
+          <button style={buttonStyle} onClick={() => setActiveTab("tab 2")}>Change Number</button>
         </div>
       )}
       {activeTab === "tab 2" && (
-        <div className="w-full h-full flex flex-col">
-          <div className="flex absolute p-2 top-0 left-0 bg-[#FFF] shadow-lg w-full justify-between">
-            <button
-              type="button"
-              onClick={() => setActiveTab("tab 1")}
-              className="w-[50px] h-[50px] flex items-center justify-center border-[1px] border-[#F0F1F3] rounded-lg bg-[#FAFAFA]  text-white"
-            >
-              <img src={BackArrow} alt="back-icon" className="w-6 h-6" />
-            </button>
-            <h1 className="flex w-auto flex-1 text-[#48505E] justify-center items-center text-[16px] font-medium">
-              Update Number
-            </h1>
-          </div>
-          <input
-            type="text"
-            placeholder="09"
-            value={number}
-            onChange={on_change_number}
-            className="mt-20 focus:outline-none p-3 w-full mb-[40px] shadow-lg rounded-lg"
-          />
-          <button
-            className="change-number-btn absolute left-0 bottom-5 text-white font-medium rounded-lg
-          w-full p-4"
-            onClick={on_send_otp}
-          >
-            Update Number
+        <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
+          <button style={iconStyle} onClick={() => setActiveTab("tab 1")}>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+            </svg>
           </button>
+          <div style={headingStyle}>Change Number</div>
+          <div style={inputContainerStyle}>
+            <div style={{ fontSize: '14px' }}>New Phone Number</div>
+            <input type="text" placeholder="Enter New Phone Number" style={inputBoxStyle} name="phoneNo" value={number} onChange={on_change_number} />
+            <span style={phoneIconStyle}><img src={PhoneIcon} /></span>
+          </div>
+          <button style={buttonStyle} onClick={on_send_otp}>Update</button>
         </div>
       )}
 
       {activeTab === "tab 3" && (
         <>
-          <div className="flex absolute p-2 top-0 left-0 bg-[#FFF] shadow-lg w-full justify-between">
-            <button
-              type="button"
-              onClick={() => setActiveTab("tab 2")}
-              className="w-[50px] h-[50px] flex items-center justify-center border-[1px] border-[#F0F1F3] rounded-lg bg-[#FAFAFA]  text-white"
-            >
-              <img src={BackArrow} alt="back-icon" className="w-6 h-6" />
+          <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
+            <button style={iconStyle} onClick={() => setActiveTab("tab 1")}>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+              </svg>
             </button>
-            <h1 className="flex w-auto flex-1 text-[#48505E] justify-center items-center text-[16px] font-medium">
-              OTP
-            </h1>
-          </div>
-          <div className="w-full mt-20 h-full relative flex flex-col">
-            <p className="text-[#48505E] text-[14px] font-normal">
+            <div style={headingStyle}>Verification</div>
+            <p style={opt_des}>
               Enter the 6-digit codes sent to {number}
             </p>
-            <div className="w-full mt-5 flex flex-col justify-between">
-              <div className="w-full  flex justify-between">
-                {otp.map((digit, index) => (
-                  <input
-                    type="text"
-                    id={`otp-input-${index}`}
-                    key={index}
-                    value={digit}
-                    onChange={(e) => handleInputChange(e, index)}
-                    maxLength="1"
-                    className="w-[50px] text-center flex justify-center h-[50px] shadow-lg focus:outline-none border-gray border-[1px] rounded-lg"
-                  />
-                ))}
-              </div>
-              <div className="countdown-timer w-full flex justify-end mt-4 text-[#48505E]">
-                {countdown > 0 ? (
-                  <p className="text-[14px] font-normal">{`Request new code in ${countdown}s`}</p>
-                ) : (
-                  <button
-                    className="resend-btn text-white font-medium rounded-lg
-                    px-4 py-2"
-                    type="button"
-                    onClick={on_send_otp}
-                  >
-                    Resend OTP
-                  </button>
-                )}
-              </div>
+            <div style={inputContainerStyle2}>
+              {otp.map((digit, index) => (
+                <input
+                  type="text"
+                  id={`otp-input-${index}`}
+                  key={index}
+                  value={digit}
+                  onChange={(e) => handleInputChange(e, index)}
+                  maxLength="1"
+                  style={{ ...otpInputStyle, ...(activeInputIndex === index ? activeInputStyle : {}) }}
+                // className="w-[50px] text-center flex justify-center h-[50px] shadow-lg focus:outline-none border-gray border-[1px] rounded-lg"
+                />
+              ))}
             </div>
-            <button
-              className="change-number-confirm-btn absolute left-0 bottom-5 text-white font-medium rounded-lg
-          w-full p-4"
-              onClick={on_update_number}
-            >
-              Next
-            </button>
+            <div style={countStyle} className="countdown-timer flex justify-end mt-4 text-[#48505E]">
+              {countdown > 0 ? (
+                <p className="text-[14px] font-normal">{`Request new code in ${countdown}s`}</p>
+              ) : (
+                <button
+                  className="resend-btn text-white ml-10 font-medium rounded-lg px-4 py-2 bg-blue-500"
+                  type="button"
+                  onClick={on_send_otp}
+                >
+                  Resend OTP
+                </button>
+              )}
+            </div>
+            <button style={buttonStyle} onClick={on_update_number}>Confirm</button>
           </div>
         </>
       )}
