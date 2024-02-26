@@ -2,10 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const modalStyle = {
-position: 'absolute',
-top : '98%',
+  
   width: '100%',
-  height: '18%',
+  height: '20%',
   backgroundColor: '#fff',
   border: '1px solid #ccc',
   borderRadius: '20px',

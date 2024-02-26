@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import View from "../../../assets/icons/view.svg";
 
 import { api_routes } from "../../../utils/apiRoute";
 import api from "../../../api/api";
@@ -7,6 +8,78 @@ import { getUserBrandMemberId } from "../../../utils/getBrandUserId";
 
 import "./ChangePassword.scss";
 import Loader from "../../../components/loader/Loader";
+
+const iconStyle = {
+  position: 'absolute',
+  left: '15px',
+  top: '52px',
+  backgroundColor: '#FAFAFA',
+  padding: '8px',
+  border: '1px solid #ddd',
+  borderRadius: '5px'
+}
+
+const inputContainerStyle = {
+  width: '90%',
+  position: 'absolute',
+  top: '20%',
+  left: '5%'
+};
+
+const headingStyle = {
+  position: 'absolute',
+  left: '50%',
+  top: '60px',
+  transform: 'translateX(-50%)',
+  fontSize: '16px',
+}
+
+const inputBoxStyle = {
+  width: '100%',
+  border: 'none',
+  borderBottom: '1px solid #48505E',
+  padding: '8px',
+  fontSize: '14px',
+  margin: '8px 0',
+  outline: 'none',
+};
+
+const viewStyle = {
+  position: 'absolute',
+  top: '22%',
+  right: '8px',
+  transform: 'translateY(-50%)',
+  color: '#333',
+}
+
+const viewStyle1 = {
+  position: 'absolute',
+  top: '55%',
+  right: '8px',
+  transform: 'translateY(-50%)',
+  color: '#333',
+}
+
+const viewStyle2 = {
+  position: 'absolute',
+  top: '90%',
+  right: '8px',
+  transform: 'translateY(-50%)',
+  color: '#333',
+}
+
+const buttonStyle = {
+  width: '90%',
+  padding: '10px',
+  backgroundColor: 'blue',
+  color: 'white',
+  border: 'none',
+  borderRadius: '5px',
+  cursor: 'pointer',
+  position: 'absolute',
+  top: '90%',
+  left: '5%'
+};
 
 const ChangePassword = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -53,6 +126,15 @@ const ChangePassword = () => {
     });
   };
 
+  const passwordView = (idName) => {
+    let viewToggle = document.getElementById(idName);
+    if (viewToggle.type == "password") {
+      viewToggle.type = "text"
+    } else {
+      viewToggle.type = "password"
+    }
+  }
+
   if (isLoading) {
     return (
       <div className="change-password-wrapper items-center flex flex-col justify-center">
@@ -61,45 +143,34 @@ const ChangePassword = () => {
     );
   }
   return (
-    <div className="relative change-password-wrapper flex flex-col py-4 px-6 w-full overflow-scroll">
-      <h2 className="text-[18px] font-semibold mb-8">Change Password</h2>
-      <form>
-        <input
-          type="text"
-          className="focus:outline-none p-3 w-full shadow-lg rounded-lg mb-8"
-          name="current_password"
-          value={passwords.current_password}
-          onChange={onChange}
-          placeholder="Current password"
-        />
-        <input
-          type="text"
-          className="focus:outline-none p-3 w-full shadow-lg rounded-lg mb-8"
-          name="new_password"
-          value={passwords.new_password}
-          onChange={onChange}
-          placeholder="New password"
-        />
-        <input
-          type="text"
-          className="focus:outline-none p-3 w-full shadow-lg rounded-lg mb-8"
-          name="confirm_password"
-          value={passwords.confirm_password}
-          onChange={onChange}
-          placeholder="Confirm password"
-        />
-        <div className="absolute w-full flex justify-center bottom-5 left-0">
-          <button
-            className="update-password-btn text-white font-medium rounded-lg
-          w-[80%] p-4"
-            type="button"
-            onClick={onSubmit}
-          >
-            Update
-          </button>
+    <>
+      <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
+        <a style={iconStyle} href="/profile">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+          </svg>
+        </a>
+        <div style={headingStyle}>Change Password</div>
+        <div style={inputContainerStyle}>
+          <div style={{ fontSize: '14px' }}>Current Password</div>
+          <input id="password" type="password" placeholder="Enter Current Password" style={inputBoxStyle} name="current_password" value={passwords.current_password} onChange={onChange} />
+          <span style={viewStyle} onClick={() => passwordView("password")}>
+            <img src={View} style={{ width: "16px", height: '16px' }} />
+          </span>
+          <div style={{ fontSize: '14px' }}>New Password</div>
+          <input id="password1" type="password" placeholder="Enter New Password" style={inputBoxStyle} name="new_password" value={passwords.new_password} onChange={onChange} />
+          <span style={viewStyle1} onClick={() => passwordView("password1")}>
+            <img src={View} style={{ width: "16px", height: '16px' }} />
+          </span>
+          <div style={{ fontSize: '14px' }}>Confirm Password</div>
+          <input id="password2" type="password" placeholder="Enter Confirm Password" style={inputBoxStyle} name="confirm_password" value={passwords.confirm_password} onChange={onChange} />
+          <span style={viewStyle2} onClick={() => passwordView("password2")}>
+            <img src={View} style={{ width: "16px", height: '16px' }} />
+          </span>
         </div>
-      </form>
-    </div>
+        <button style={buttonStyle} onClick={onSubmit}>Update</button>
+      </div>
+    </>
   );
 };
 
