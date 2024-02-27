@@ -103,7 +103,7 @@ const PointTotal = ({ point_data, user_info }) => {
           </div>
         </div>
         <div style={imageSection}>
-          <img src={Default} style={imageStyle} />
+          <img src={user_info? user_info.image : Default} style={imageStyle} />
         </div>
       </div>
 

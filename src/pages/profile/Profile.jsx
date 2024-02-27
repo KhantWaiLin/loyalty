@@ -41,7 +41,7 @@ const Profile = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const { get_member_info, log_out } = api_routes;
+  const { get_member_info, log_out, upload_photo } = api_routes;
   const { brand_id, user_id } = getUserBrandMemberId();
 
   const get_profile_detail = async () => {
@@ -67,6 +67,29 @@ const Profile = () => {
     });
     setIsLoading(false);
   };
+
+  const handleFileChange = async (event) => {
+    const picture = event.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = async () => {
+      const base64String = reader.result.split(",")[1]; // Extract Base64 content without the prefix
+  
+      try {
+        await api.postByFile(upload_photo, {
+          brandId: brand_id,
+          memberId: user_id,
+          image: base64String,
+        });
+      } catch (error) {
+        console.error("Error saving blog:", error);
+      }
+    };
+  
+    if (picture) {
+      reader.readAsDataURL(picture);
+    }
+  };
+  
 
   if (isLoading) {
     return (
@@ -103,7 +126,7 @@ const Profile = () => {
               <div className="w-full h-full border-black border-[1px] rounded-full" />
             )}
             {/* camera icon */}
-            <span className="absolute z-50 bottom-1 -right-1">
+            <label htmlFor="fileInput" className="absolute z-50 bottom-1 -right-1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -123,7 +146,8 @@ const Profile = () => {
                   d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"
                 />
               </svg>
-            </span>
+              <input type="file" id="fileInput" className="hidden" onChange={handleFileChange} />
+            </label>
             {/* camera icon */}
           </div>
           {/* User Image */}
