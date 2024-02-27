@@ -24,7 +24,7 @@ const PROFILE_DATA = [
     accordion_name: "Loyalty",
     accordion_content: [
       { name: "Transaction History", route: "transaction-history" },
-      { name: "Membership Tire Level", route: "membership-tire-level" },
+      { name: "Membership Tier Level", route: "membership-tire-level" },
     ],
   },
   {
