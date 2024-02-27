@@ -28,13 +28,12 @@ const cardListStyle = {
   display: 'flex',
   flexWrap: 'wrap',
   gap: '8px',
-  left: '17px',
   top: '80px',
   height: '80%',
   width: '90%',
   overflow: 'auto',
-  ovarflowY: 'scroll',
-  scrollbarWidth: 'thin',
+  justifyContent: 'center',
+  alignItems: 'center',
 };
 
 
@@ -68,7 +67,7 @@ function PromotionList() {
   }
 
   return (
-    <div className="text-black-500 text-lg">
+    <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
       <a style={icon_style} href="/home">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />

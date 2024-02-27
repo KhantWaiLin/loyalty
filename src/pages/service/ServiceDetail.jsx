@@ -20,14 +20,14 @@ const iconStyle = {
 const title_style = {
     position: 'absolute',
     left: '15px',
-    top: '30%',
+    top: '35%',
     fontSize: '20px'
 }
 
 const date_style = {
     position: 'absolute',
     left: '320px',
-    top: '30%',
+    top: '35%',
     fontSize: '14px'
 }
 
@@ -43,12 +43,12 @@ const image = {
 
 const blog_content = {
     position: 'absolute',
-    top: '35%',
+    top: '40%',
     left: '15px',
     textIndent: '50px',
     textAlign: 'justify',
     width: '390px',
-    height: '65%',
+    height: '55%',
     overflow: 'auto',
     fontSize: '12px'
 }
