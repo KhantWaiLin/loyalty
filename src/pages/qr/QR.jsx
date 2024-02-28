@@ -8,9 +8,9 @@ import { getUserBrandMemberId } from "../../utils/getBrandUserId";
 import Loader from "../../components/loader/Loader";
 
 const heading = {
-  marginLeft: '200px',
   marginTop: '52px',
-  fontSize: '16px'
+  fontSize: '16px',
+  textAlign: 'center'
 }
 
 const point = {
