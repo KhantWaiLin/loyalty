@@ -5,26 +5,22 @@ const buttonStyle = {
     textAlign: 'left',
     padding: '10px',
     marginTop: '5px',
-    borderRadius: '8px'
+    borderRadius: '8px',
+    marginBottom: '10px',
 }
 
-const qStyle = {
-
-}
-
-const HelpCenterCard = ({faq_type_list, setType}) => {
-
+const HelpCenterCard = ({ faq_type_list, setType }) => {
     return (
-        <div style={{marginTop: '20%'}}>
-            <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
-                {faq_type_list? 
-                faq_type_list.map((item) => (
-                    <div style={buttonStyle}>
-                        <div style={{marginBottom:'5px'}}>Q: {item?.question}</div>
-                        <div>A: {item?.answer}</div>
-                    </div>
-                ))
-                : null}
+        <div >
+            <div className="personal-information-wrapper flex flex-col p-4 w-full overflow-scroll no-scrollbar">
+                {faq_type_list ?
+                    faq_type_list.map((item, index) => (
+                        <div key={index} style={buttonStyle}>
+                            <div style={{ marginBottom: '5px' }}>Q: {item?.question}</div>
+                            <div>A: {item?.answer}</div>
+                        </div>
+                    ))
+                    : null}
             </div>
         </div>
     );

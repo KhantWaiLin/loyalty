@@ -91,7 +91,9 @@ const HelpCenter = () => {
                         </svg>
                     </a>
                     <div style={headingStyle}>Help Center</div>
-                    <QACard faq_type_list={faqListByType} />
+                    <div style={{ marginTop: '20%', height: '85vh', overflow: 'auto' }} className="no-scrollbar">
+                        <QACard faq_type_list={faqListByType} />
+                    </div>
                 </div>
             )}
 
