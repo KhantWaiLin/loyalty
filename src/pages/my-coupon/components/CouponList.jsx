@@ -1,9 +1,11 @@
 import {React, useState, useEffect} from "react";
 import Img from "../image 4.png";
 import { myCouponData } from "../../../data";
+import QRCode from "react-qr-code";
 import Available from "./Available";
 import Used from "./Used";
 import Expired from "./Expired";
+import QrModal from "../../../components/modals/qr_modal/QrModal";
 
 import Loader from "../../../components/loader/Loader";
 import api from "../../../api/api";
@@ -16,9 +18,10 @@ function CouponList({ status }) {
   const { coupon_list } = api_routes;
   const [couponList, setCouponList] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [showQr, setShowQr] = useState(false);
 
   if (status === "Available") {
-    btn = <Available />;
+    
     type = 0;
   } else if (status === "Used") {
     btn = <Used />;
@@ -68,12 +71,14 @@ function CouponList({ status }) {
 
   return couponList?.map((coupon) => {
       return (
+        
         <div
           className=" w-full h-[100px] my-[20px] bg-white rounded-[20px] flex gap-[8px] px-[12px] py-[10px] border border-gray-100 shadow-md"
         >
+          {showQr && <QrModal setIsClick={setShowQr} image={<QRCode value={coupon?.itemName} fgColor="#384BCA"/>}/>}
           <section className="flex justify-center basis-1/4">
             <div className="inline-flex items-center justify-center w-20 h-20 py-4 rounded-lg bg-indigo-50">
-              <div className="w-20 h-12 mix-blend-darken ">
+              <div className="mb-7 w-20 h-12 mix-blend-darken ">
                 <img src={coupon.image} alt={coupon.itemName}/>
               </div>
             </div>
@@ -95,7 +100,7 @@ function CouponList({ status }) {
             )}
           </section>
           <section className="flex items-center h-full basis-1/4">
-            {btn}
+            {status === "Available"? <Available setShowQr={setShowQr}/> : btn}
           </section>
         </div>
       );

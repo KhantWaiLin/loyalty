@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import QRCode from "react-qr-code";
 
 import Loader from "../../components/loader/Loader";
 
@@ -88,7 +89,8 @@ const RewardDetail = () => {
           image={reward}
         />
       )}
-      {showQr && <QrModal setIsClick={setShowQr} />}
+      
+      {showQr && <QrModal setIsClick={setShowQr} image={<QRCode value={data?.id} fgColor="#384BCA"/>}/>}
       <div className="reward-detail-wrapper w-full relative overflow-hidden">
         <div className="flex w-full items-center mt-5 justify-between mb-6">
           <button

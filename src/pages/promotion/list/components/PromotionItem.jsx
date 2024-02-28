@@ -2,11 +2,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const cardStyle = {
-  width: '388px',
+  width: '360px',
   height: '220px',
   border: '1px solid #F0F1F3',
   borderRadius: '20px',
-  padding: '10px',
+  paddingLeft: '2px'
 };
 
 const imageSectionStyle = {

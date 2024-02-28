@@ -8,9 +8,9 @@ const HomeServiceCard = ({ service, onClick }) => {
       onClick={onClick}
     >
       <div className="w-full h-full relative bg-[#EBF2FF] rounded-lg">
-        {service?.img && (
+        {service?.image && (
           <img
-            src={service.img}
+            src={service.image}
             alt="promotion-img"
             className="w-full h-full object-cover rounded-lg"
           />

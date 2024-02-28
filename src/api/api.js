@@ -94,6 +94,28 @@ const api = {
       console.log(error);
     }
   },
+  postByFile: async (url, data) => {
+    const token = api.getToken();
+    const URL = api_url + url;
+  
+    try {
+        
+      const response = await axios.post(URL, data, {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + token,
+        },
+      });
+  
+      api.checkToken(response);
+  
+      return { data: response.data, status: response.status };
+    } catch (error) {
+      console.error("Error in postByBody:", error);
+    }
+  },
+  
+  
 };
 
 export default api;

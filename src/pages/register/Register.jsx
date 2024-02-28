@@ -95,7 +95,7 @@ const inputIconStyle = {
 
 const emailIconStyle = {
     position: 'absolute',
-    top: '40%',
+    top: '65%',
     right: '8px',
     transform: 'translateY(-50%)',
     color: '#333',
@@ -103,7 +103,7 @@ const emailIconStyle = {
 
 const phoneIconStyle = {
     position: 'absolute',
-    top: '65%',
+    top: '40%',
     right: '8px',
     transform: 'translateY(-50%)',
     color: '#333',
@@ -290,7 +290,7 @@ const Register = () => {
                         <span style={phoneIconStyle}><img src={Phone} /></span>
                         <br />
                         <div style={{ fontSize: '14px' }}>Email</div>
-                        <input type="text" placeholder="Enter Email (Optional)" style={inputBoxStyle} name="email" value={data.email} onChange={handleInputChange} />
+                        <input type="email" placeholder="Enter Email (Optional)" style={inputBoxStyle} name="email" value={data.email} onChange={handleInputChange} />
                         <span style={emailIconStyle}>
                             <img src={Email} style={{ width: "16px", height: '16px' }} />
                         </span>

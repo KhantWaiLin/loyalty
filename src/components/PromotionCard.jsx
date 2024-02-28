@@ -1,5 +1,5 @@
 import React from "react";
-import DefaultImage from "../assets/images/profile_img.svg"
+import DefaultImage from "../assets/images/blog_default_img.png"
 
 const PromotionCard = ({ promotion, onClick }) => {
   return (

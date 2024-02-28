@@ -22,7 +22,7 @@ function PointList({ index, point, collectedType, isIn, date }) {
             isIn === true ? "text-emerald-500" : "text-red-500"
           }`}
         >
-          + {point} Points
+          {isIn? '+' : '-'} {point} Points
         </p>
       </div>
     </section>
