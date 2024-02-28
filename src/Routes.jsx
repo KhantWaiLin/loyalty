@@ -15,7 +15,9 @@ import ServiceList from "./pages/service/ServiceList";
 import ServiceDetail from "./pages/service/ServiceDetail";
 import Register from "./pages/register/Register";
 import ForgotPassword from "./pages/forgotpassword/ForgotPassword";
-import ExpirePoints from "./pages/profile/membership_tire_level/ExpirePoints"
+import ExpirePoints from "./pages/profile/membership_tire_level/ExpirePoints";
+import Language from "./pages/profile/setting/Language";
+import Setting from "./pages/profile/setting/Setting";
 import MyCoupon from "./pages/my-coupon/MyCoupon";
 import PromotionDetail from "./pages/promotion/detail/PromotionDetail";
 import PromotionList from "./pages/promotion/list/PromotionList";
@@ -28,6 +30,8 @@ import ChangeNumber from "./pages/profile/change_number/ChangeNumber";
 import ChangePassword from "./pages/profile/change_password/ChangePassword";
 import ViewTierBenefits from "./pages/profile/membership_tire_level/view_tier_benefits/ViewTierBenefits";
 import NotiPage from "./pages/noti/NotiPage";
+import HelpCenter from "./pages/profile/setting/HelpCenter";
+import TermsConditions from "./pages/profile/setting/TermsConditions";
 
 const Routers = () => {
   return (
@@ -75,6 +79,10 @@ const Routers = () => {
       <Route path="/my-coupon" element={<MyCoupon />} />
       <Route path="/promotiondetail/:id" element={<PromotionDetail />} />
       <Route path="/promotionlist" element={<PromotionList />} />
+      <Route path="/profile/language" element={<Language/>} />
+      <Route path="/profile/general" element={<Setting/>} />
+      <Route path="/profile/help-center" element={<HelpCenter />} />
+      <Route path="/profile/terms" element={<TermsConditions />} />
       <Route path="/use-coupon" element={<UseCoupon />} />
     </Routes>
   );

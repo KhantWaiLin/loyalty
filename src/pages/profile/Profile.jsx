@@ -28,8 +28,10 @@ const PROFILE_DATA = [
     ],
   },
   {
-    accordion_name: "General Setting",
+    accordion_name: "Setting",
     accordion_content: [
+      { name: "Language", route: "language"},
+      { name: "General", route: 'general'},
       { name: "Help Center", route: "help-center" },
       { name: "Terms & Condition", route: "terms" },
     ],
