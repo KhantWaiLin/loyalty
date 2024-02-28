@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import "./Setting.css"; // Import your CSS file for styling
 
 const headingStyle = {
   textAlign: 'center',
@@ -15,7 +16,20 @@ const iconStyle = {
   borderRadius: '5px',
 };
 
+const sectionStyle = {
+  display: 'flex',
+  marginTop: '10%',
+  marginLeft: '5%',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  margin: '15px 0',
+  fontSize: '14px',
+  width: '90%'
+};
+
 const Setting = () => {
+  const [notification1, setNotification1] = useState(false);
+  const [notification2, setNotification2] = useState(false);
 
   return (
     <div className="text-black-500 text-lg">
@@ -25,6 +39,31 @@ const Setting = () => {
         </svg>
       </a>
       <h1 style={headingStyle}>Settings</h1>
+
+      <div style={sectionStyle}>
+        <div>Receive Notification</div>
+        <label className="switch">
+          <input
+            type="checkbox"
+            checked={notification1}
+            onChange={() => setNotification1(!notification1)}
+          />
+          <span className="slider"></span>
+        </label>
+      </div>
+      <hr style={{opacity: '0.5'}}/>
+      <div style={sectionStyle}>
+        <div>Receive Offers By Email</div>
+        <label className="switch">
+          <input
+            type="checkbox"
+            checked={notification2}
+            onChange={() => setNotification2(!notification2)}
+          />
+          <span className="slider"></span>
+        </label>
+      </div>
+      <hr style={{opacity: '0.5'}}/>
     </div>
   );
 };
