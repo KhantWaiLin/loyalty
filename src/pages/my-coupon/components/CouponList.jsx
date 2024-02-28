@@ -75,7 +75,7 @@ function CouponList({ status }) {
         <div
           className=" w-full h-[100px] my-[20px] bg-white rounded-[20px] flex gap-[8px] px-[12px] py-[10px] border border-gray-100 shadow-md"
         >
-          {showQr && <QrModal setIsClick={setShowQr} image={<QRCode value={coupon?.itemName} fgColor="#384BCA"/>}/>}
+          {showQr && <QrModal setIsClick={setShowQr} image={<QRCode value={coupon?.id} fgColor="#384BCA"/>}/>}
           <section className="flex justify-center basis-1/4">
             <div className="inline-flex items-center justify-center w-20 h-20 py-4 rounded-lg bg-indigo-50">
               <div className="mb-7 w-20 h-12 mix-blend-darken ">
