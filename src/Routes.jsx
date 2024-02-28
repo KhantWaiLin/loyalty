@@ -15,6 +15,7 @@ import ServiceList from "./pages/service/ServiceList";
 import ServiceDetail from "./pages/service/ServiceDetail";
 import Register from "./pages/register/Register";
 import ForgotPassword from "./pages/forgotpassword/ForgotPassword";
+import ExpirePoints from "./pages/profile/membership_tire_level/ExpirePoints"
 import MyCoupon from "./pages/my-coupon/MyCoupon";
 import PromotionDetail from "./pages/promotion/detail/PromotionDetail";
 import PromotionList from "./pages/promotion/list/PromotionList";
@@ -49,6 +50,10 @@ const Routers = () => {
       <Route
         path="/profile/membership-tire-level"
         element={<MemberTireLevel />}
+      />
+      <Route
+        path="/profile/expire-point"
+        element={<ExpirePoints />}
       />
       <Route
         path="/profile/membership-tire-level/view-tier-benefits"

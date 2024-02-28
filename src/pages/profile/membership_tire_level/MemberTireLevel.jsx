@@ -122,7 +122,7 @@ const MemberTireLevel = () => {
 
         {/* View expire points Link */}
         <section className="basis-1/12  flex items-center">
-          <Link className="text-base font-normal w-full h-full hover:bg-slate-200 flex items-center">
+          <Link to="/profile/expire-point" className="text-base font-normal w-full h-full hover:bg-slate-200 flex items-center">
             <div className="px-[13px]">View expire points</div>
           </Link>
         </section>
