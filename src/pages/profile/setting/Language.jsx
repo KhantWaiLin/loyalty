@@ -1,4 +1,5 @@
 import React from "react";
+import US from "../../../assets/icons/US.svg";
 
 const headingStyle = {
   textAlign: 'center',
@@ -15,8 +16,24 @@ const iconStyle = {
   borderRadius: '5px',
 };
 
-const Language = () => {
+const selectSectionStyle = {
+  marginTop: '10%',
+  textAlign: 'center',
+};
 
+const selectStyle = {
+  width: '80%',
+  padding: '10px',
+  paddingLeft: '30px',
+  borderRadius: '10px',
+  borderTop: 'none',
+  backgroundImage: `url(${US})`,
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'left center',
+  appearance: 'none',
+};
+
+const Language = () => {
   return (
     <div className="text-black-500 text-lg">
       <a style={iconStyle} href="/profile">
@@ -25,6 +42,13 @@ const Language = () => {
         </svg>
       </a>
       <h1 style={headingStyle}>Language</h1>
+
+      <div style={selectSectionStyle}>
+        <select style={selectStyle}>
+          <option value="english">English</option>
+          <option value="myanmar">Myanmar</option>
+        </select>
+      </div>
     </div>
   );
 };
