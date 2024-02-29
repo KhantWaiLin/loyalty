@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { LanguageContext } from "../../../LanguageContext";
 import HelpCenterCard from "./HelpCenterCard";
 import QACard from "./QACard";
 
@@ -42,6 +43,7 @@ const buttonStyle1 = {
 
 
 const HelpCenter = () => {
+    const { t, changeLanguage } = useContext(LanguageContext);
     const [isLoading, setIsLoading] = useState(false);
     const [faqTypeList, setfaqTypeList] = useState(null);
     const [faqListByType, setfaqListByType] = useState(null);
@@ -75,6 +77,7 @@ const HelpCenter = () => {
 
     useEffect(() => {
         get_faq_type_list();
+        changeLanguage(localStorage.getItem("language"));
     }, []);
 
     if (isLoading) {
@@ -120,7 +123,7 @@ const HelpCenter = () => {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                             </svg>
                         </a>
-                        <div style={headingStyle}>Help Center</div>
+                        <div style={headingStyle}>{t('help')}</div>
                         <div style={{marginTop: '20%'}}>
                             <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
                             <button style={buttonStyle1} onClick={() => setActiveTab("tab 4")}>

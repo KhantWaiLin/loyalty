@@ -1,5 +1,5 @@
-import React from "react";
-import US from "../../../assets/icons/US.svg";
+import US from "../../../assets/icons/US.svg";import React, { useContext, useState } from "react";
+import { LanguageContext } from "../../../LanguageContext";
 
 const headingStyle = {
   textAlign: 'center',
@@ -34,6 +34,15 @@ const selectStyle = {
 };
 
 const Language = () => {
+  const { t, changeLanguage } = useContext(LanguageContext);
+  const [selectedLanguage, setSelectedLanguage] = useState("en");
+
+  const handleChangeLanguage = (event) => {
+    const selectedLang = event.target.value;
+    setSelectedLanguage(selectedLang);
+    changeLanguage(selectedLang);
+  };
+
   return (
     <div className="text-black-500 text-lg">
       <a style={iconStyle} href="/profile">
@@ -41,12 +50,12 @@ const Language = () => {
           <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
         </svg>
       </a>
-      <h1 style={headingStyle}>Language</h1>
+      <h1 style={headingStyle}>{t('key')}</h1>
 
       <div style={selectSectionStyle}>
-        <select style={selectStyle}>
-          <option value="english">English</option>
-          <option value="myanmar">Myanmar</option>
+        <select style={selectStyle} value={selectedLanguage} onChange={handleChangeLanguage}>
+          <option value="en">English</option>
+          <option value="mm">Myanmar</option>
         </select>
       </div>
     </div>
