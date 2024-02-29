@@ -1,23 +1,33 @@
 import React from "react";
 
 const buttonStyle = {
-    background: '#ffa',
+    background: 'blue',
+    color: '#fff',
     textAlign: 'left',
     padding: '10px',
-    marginTop: '5px',
-    borderRadius: '8px'
+    marginTop: '10px',
+    borderRadius: '8px',
+    width: '90%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    opacity: '0.7'
 }
 
 const HelpCenterCard = ({faq_type_list, setType}) => {
-
     return (
         <div style={{marginTop: '20%'}}>
             <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
                 {faq_type_list? 
-                faq_type_list.map((item) => (
-                    <button style={buttonStyle} onClick={() => setType(item.type)}>{item.name}</button>
-                ))
-                : null}
+                    faq_type_list.map((item) => (
+                        <button style={buttonStyle} onClick={() => setType(item.type)}>
+                            {item.name}
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                            </svg>
+                        </button>
+                    ))
+                    : null}
             </div>
         </div>
     );
