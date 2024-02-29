@@ -35,10 +35,11 @@ const selectStyle = {
 
 const Language = () => {
   const { t, changeLanguage } = useContext(LanguageContext);
-  const [selectedLanguage, setSelectedLanguage] = useState("en");
+  const [selectedLanguage, setSelectedLanguage] = useState(localStorage.getItem('language'));
 
   const handleChangeLanguage = (event) => {
     const selectedLang = event.target.value;
+    localStorage.setItem('language',selectedLang);
     setSelectedLanguage(selectedLang);
     changeLanguage(selectedLang);
   };
