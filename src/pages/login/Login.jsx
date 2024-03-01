@@ -155,6 +155,7 @@ const Login = () => {
           </svg>
         </a>
         <div style={headingStyle}>Get Started</div>
+        <form onSubmit={onSubmit}>
         <div style={inputContainerStyle}>
           <div style={{ fontSize: '14px' }}>Phone Number</div>
           <input type="text" style={inputBoxStyle} name="userName" value={form.userName} onChange={onChange} />
@@ -167,7 +168,8 @@ const Login = () => {
           </span>
         </div>
         <a href="/forgotpassword" style={forgotStyle}>Forgot Password?</a>
-        <button style={buttonStyle} onClick={onSubmit}>Login</button>
+        <button type="submit" style={buttonStyle} onClick={onSubmit}>Login</button>
+        </form>
       </div>
     </div>
   );

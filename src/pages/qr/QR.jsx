@@ -8,9 +8,9 @@ import { getUserBrandMemberId } from "../../utils/getBrandUserId";
 import Loader from "../../components/loader/Loader";
 
 const heading = {
-  marginLeft: '200px',
   marginTop: '52px',
-  fontSize: '16px'
+  fontSize: '16px',
+  textAlign: 'center'
 }
 
 const point = {
@@ -61,18 +61,23 @@ const QR = () => {
   const [pointData, setPointData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
-  const [qrCode, setQrCode] = useState(null);
+
+  const { brand_id, user_id } = getUserBrandMemberId();
+
+  const [qrCode, setQrCode] = useState({
+    brand_id : brand_id,
+    member_id: user_id
+  });
   const { get_member_info } = api_routes;
 
   const get_reward_list = async () => {
     setIsLoading(true);
-    const { brand_id, user_id } = getUserBrandMemberId();
     await api
       .get(get_member_info, { brandId: brand_id, userId: user_id })
       .then((response) => {
         setPointData(response?.data?.value?.data);
         setUserInfo(response?.data?.value?.data);
-        setQrCode(JSON.stringify(response?.data?.value?.data));
+        setQrCode(JSON.stringify(qrCode));
       });
     setIsLoading(false);
   };

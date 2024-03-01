@@ -16,6 +16,8 @@ export const api_routes = {
   change_number: "/api/Customer/ChangePhoneNo",
   change_password: "/api/Customer/ChangePassword",
   upload_photo: '/api/Customer/UploadProfilePicture',
+  faq_type_list: '/api/Customer/GetFAQTypeList',
+  faq_list_byType: '/api/Customer/GetFAQListByType',
   reward_list: "/api/Customer/GetRedeemListByBrandId",
   redeem_pending: "/api/Customer/CustomerRedeemItem",
   coupon_list: "/api/Customer/GetRedeemListByCustomer",

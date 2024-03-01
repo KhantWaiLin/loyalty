@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Loader from "../../components/loader/Loader";
@@ -11,35 +11,40 @@ import "./Profile.scss";
 import Accordion from "../../components/accordion/Accordion";
 import AccordionItem from "../../components/accordion/AccordionItem";
 
-const PROFILE_DATA = [
-  {
-    accordion_name: "Personal Information",
-    accordion_content: [
-      { name: "My Account", route: "my-account" },
-      { name: "Change Number", route: "change-number" },
-      { name: "Change Password", route: "change-password" },
-    ],
-  },
-  {
-    accordion_name: "Loyalty",
-    accordion_content: [
-      { name: "Transaction History", route: "transaction-history" },
-      { name: "Membership Tier Level", route: "membership-tire-level" },
-    ],
-  },
-  {
-    accordion_name: "General Setting",
-    accordion_content: [
-      { name: "Help Center", route: "help-center" },
-      { name: "Terms & Condition", route: "terms" },
-    ],
-  },
-];
+import { LanguageContext } from "../../LanguageContext";
 
 const Profile = () => {
+  const { t, changeLanguage } = useContext(LanguageContext);
   const [profile, setProfile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+
+  const PROFILE_DATA = [
+    {
+      accordion_name: t('personalInformation'),
+      accordion_content: [
+        { name: t('myAccount'), route: "my-account" },
+        { name: t('changeNumber'), route: "change-number" },
+        { name: t('changePassword'), route: "change-password" },
+      ],
+    },
+    {
+      accordion_name: "Loyalty",
+      accordion_content: [
+        { name: "Transaction History", route: "transaction-history" },
+        { name: "Membership Tier Level", route: "membership-tire-level" },
+      ],
+    },
+    {
+      accordion_name: "Setting",
+      accordion_content: [
+        { name: "Language", route: "language"},
+        { name: "General", route: 'general'},
+        { name: "Help Center", route: "help-center" },
+        { name: "Terms & Condition", route: "terms" },
+      ],
+    },
+  ];
 
   const { get_member_info, log_out, upload_photo } = api_routes;
   const { brand_id, user_id } = getUserBrandMemberId();
@@ -55,6 +60,7 @@ const Profile = () => {
   };
   useEffect(() => {
     get_profile_detail();
+    changeLanguage(localStorage.getItem("language"));
     // eslint-disable-next-line
   }, []);
 

@@ -41,10 +41,10 @@ const Intro = () => {
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             setShowModal(true);
-        }, 3000);
+        }, 1000);
         const timeOut = setTimeout(() => {
             document.getElementById('toLink').click();
-        }, 4000);
+        }, 2000);
 
         return () => clearTimeout(timeoutId,timeOut);
     }, []);
