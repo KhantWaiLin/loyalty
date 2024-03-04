@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Phone from "../../assets/icons/phon.svg";
+import View from "../../assets/icons/view.svg";
 import Reset from "../../assets/icons/reset.svg";
 import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
@@ -82,11 +83,18 @@ const inputContainerStyle2 = {
 
 const inputIconStyle = {
   position: 'absolute',
-  top: '70%',
+  top: '35%',
   right: '8px',
   transform: 'translateY(-50%)',
   color: '#333',
 };
+const inputIconStyle1 = {
+    position: 'absolute',
+    top: '85%',
+    right: '8px',
+    transform: 'translateY(-50%)',
+    color: '#333',
+  };
 
 const text = {
     position: 'absolute',
@@ -236,6 +244,15 @@ const ForgotPassword = () => {
         );
     }
 
+    const passwordView = (idName) => {
+        let viewToggle = document.getElementById(idName);
+        if (viewToggle.type == "password") {
+          viewToggle.type = "text"
+        } else {
+          viewToggle.type = "password"
+        }
+      }
+
     return (
         <div>
             {activeTab === "tab 1" && (
@@ -312,11 +329,11 @@ const ForgotPassword = () => {
                         <div style={headingStyle}>New Password</div>
                         <div style={inputContainerStyle}>
                             <div style={{ fontSize: '14px' }}>New Password</div>
-                            <input type="text" style={inputBoxStyle} name="new" value={newPassword} onChange={(e)=>setNewPassword(e.target.value)} />
-                            {/* <span style={inputIconStyle}><img src={Phone} /></span> */}
+                            <input id="password" type="password" style={inputBoxStyle} name="new" value={newPassword} onChange={(e)=>setNewPassword(e.target.value)} />
+                            <span style={inputIconStyle} onClick={() => passwordView("password")}><img src={View} /></span>
                             <div style={{ fontSize: '14px' }}>Confirm Password</div>
-                            <input type="text" style={inputBoxStyle} name="confirm" value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)} />
-                            {/* <span style={inputIconStyle}><img src={Phone} /></span> */}
+                            <input id="password1" type="password" style={inputBoxStyle} name="confirm" value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)} />
+                            <span style={inputIconStyle1} onClick={() => passwordView("password1")}><img src={View} /></span>
                         </div>
                         <button style={buttonStyle} onClick={register}>Reset Password</button>
                     </div>

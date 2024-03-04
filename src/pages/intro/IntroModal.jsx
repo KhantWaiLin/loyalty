@@ -2,7 +2,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const modalStyle = {
-  
+  position: 'absolute',
+  top: '80%',
   width: '100%',
   height: '20%',
   backgroundColor: '#fff',
@@ -20,12 +21,13 @@ const btnStyle = {
   borderRadius: '6px',
   cursor: 'pointer',
   margin: '5px 0',
-  backgroundColor: 'grey'
+  backgroundColor: '#F0F1F3',
 };
 
 const blueBtnStyle = {
   ...btnStyle,
   backgroundColor: 'blue',
+  opacity: '0.5',
   color: 'white'
 };
 
