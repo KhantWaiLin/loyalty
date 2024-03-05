@@ -1,6 +1,7 @@
 import React from "react";
 import PromotionItem from "./components/PromotionItem";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { LanguageContext } from "../../../LanguageContext";
 
 import Loader from "../../../components/loader/Loader";
 import api from "../../../api/api";
@@ -38,6 +39,7 @@ const cardListStyle = {
 
 
 function PromotionList() {
+  const { t, changeLanguage } = useContext(LanguageContext);
   const [promotionData, setPromotionData] = useState("");
 
   const { promotion_list } = api_routes;
@@ -56,6 +58,7 @@ function PromotionList() {
 
   useEffect(() => {
     promotionList();
+    changeLanguage(localStorage.getItem("language"));
   }, []);
 
   if (isLoading) {
@@ -73,7 +76,7 @@ function PromotionList() {
           <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
         </svg>
       </a>
-      <h1 style={heading}>Promotions</h1>
+      <h1 style={heading}>{t('promotions')}</h1>
       <div style={cardListStyle} className="no-scrollbar">
         {promotionData &&
           promotionData.map((promotion, index) => (

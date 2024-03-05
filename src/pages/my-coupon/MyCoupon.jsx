@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import CouponList from "./components/CouponList";
 import { useNavigate } from "react-router-dom";
 import "./MyCoupon.scss";
+import { LanguageContext } from "../../LanguageContext";
 
 function MyCoupon() {
+  const { t, changeLanguage } = useContext(LanguageContext);
   const [status, setStatus] = useState("Available");
   let navigate = useNavigate();
 
@@ -14,6 +16,11 @@ function MyCoupon() {
   const handleBack = () => {
     navigate(`/home`);
   };
+
+  useEffect(() => {
+    changeLanguage(localStorage.getItem("language"));
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <main className="flex flex-col overflow-hidden my-coupon">
@@ -41,7 +48,7 @@ function MyCoupon() {
           </div>
         </div>
         <h1 className="ms-28 text-gray-600 text-base font-medium leading-[18px]">
-          Coupons
+          {t('coupons')}
         </h1>
       </header>
       {/* header */}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { api_routes } from "../../../utils/apiRoute";
 import { getUserBrandMemberId } from "../../../utils/getBrandUserId";
 import api from "../../../api/api";
@@ -7,10 +7,12 @@ import PointList from "./components/PointList";
 import { Link } from "react-router-dom";
 
 import Loader from "../../../components/loader/Loader";
+import { LanguageContext } from "../../../LanguageContext";
 
 import "./TransactionHistory.scss";
 
 const TransactionHistory = () => {
+  const { t, changeLanguage } = useContext(LanguageContext);
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -19,6 +21,7 @@ const TransactionHistory = () => {
 
   useEffect(() => {
     get_transaction();
+    changeLanguage(localStorage.getItem("language"));
     // eslint-disable-next-line
   }, []);
 
@@ -69,7 +72,7 @@ const TransactionHistory = () => {
           </Link>
 
           <h1 className="ms-[66px] text-gray-600 text-base font-medium leading-[18px] font-['Poppins' text-center">
-            Transaction History
+            {t('transaction')}
           </h1>
         </article>
         {/* back btn & header */}

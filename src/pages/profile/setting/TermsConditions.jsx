@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { LanguageContext } from "../../../LanguageContext";
 import terms from "./terms.json";
 
 const headingStyle = {
@@ -17,6 +18,11 @@ const iconStyle = {
 };
 
 const TermsConditions = () => {
+  const { t, changeLanguage } = useContext(LanguageContext);
+
+  useEffect(() => {
+    changeLanguage(localStorage.getItem("language"));
+}, []);
 
   return (
     <div className="text-black-500 text-lg">
@@ -26,7 +32,7 @@ const TermsConditions = () => {
             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
           </svg>
         </a>
-        <h1 style={headingStyle}>Terms&Conditions</h1>
+        <h1 style={headingStyle}>{t('terms')}</h1>
         <div style={{ marginTop: '10%', height: '80vh', overflow: 'auto', textAlign: 'justify' }} className="no-scrollbar">
           <div style={{ marginTop: '10%' }}>{terms.versionAlertInfo}</div>
           <div>{terms.termsIntro.map((terms) => <div>{terms}</div>)}</div>

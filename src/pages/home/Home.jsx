@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
@@ -18,11 +18,14 @@ import { getUserBrandMemberId } from "../../utils/getBrandUserId";
 
 import { blog_data } from "../../data";
 
+import { LanguageContext } from "../../LanguageContext";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import "./Home.scss";
 
 const Home = () => {
+  const { t, changeLanguage } = useContext(LanguageContext);
   const navigate = useNavigate();
   const [pointData, setPointData] = useState(null);
   const [promotionData, setPromotionData] = useState(null);
@@ -62,6 +65,7 @@ const Home = () => {
 
   useEffect(() => {
     get_data();
+    changeLanguage(localStorage.getItem("language"));
     // eslint-disable-next-line
   }, []);
 
@@ -98,14 +102,14 @@ const Home = () => {
         <div className="flex flex-col mb-6">
           <div className="flex justify-between mb-4">
             <h1 className="text-[#48505E] font-medium text-[16px]">
-              Promotions
+              {t('promotions')}
             </h1>
             <a
               type="button"
               className="text-[#384BCA] font-normal text-[14px]"
               href="/promotionlist"
             >
-              View all
+              {t('viewAll')}
             </a>
           </div>
           <Swiper
@@ -130,13 +134,13 @@ const Home = () => {
         </div>
         <div className="flex flex-col mb-6">
           <div className="flex justify-between mb-4">
-            <h1 className="text-[#48505E] font-medium text-[16px]">Services</h1>
+            <h1 className="text-[#48505E] font-medium text-[16px]">{t('services')}</h1>
             <a
               type="button"
               className="text-[#384BCA] font-medium text-[12px]"
               href="/servicelist"
             >
-              View all
+              {t('viewAll')}
             </a>
           </div>
           <Swiper
@@ -160,14 +164,14 @@ const Home = () => {
         <div className="flex flex-col">
           <div className="flex justify-between mb-4">
             <h1 className="text-[#48505E] font-medium text-[16px]">
-              Recommended Blogs
+              {t('recBlogs')}
             </h1>
             <a
               type="button"
               className="text-[#384BCA] font-medium text-[12px]"
               href="/bloglist"
             >
-              View all
+              {t('viewAll')}
             </a>
           </div>
           <Swiper loop={true} modules={[Autoplay]} className="w-full">

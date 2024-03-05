@@ -1,0 +1,12 @@
+{
+    "en": {
+      "translation": {
+        "key": "Language",
+        "help": "Help Center",
+        "personalInformation": "Personal Information",
+        "myAccount":"My Account",
+        "changeNumber":"Change Number",
+        "changePassword":"Change Password"
+      }
+    }
+  }
