@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from 'js-cookie';
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Phone from "../../assets/icons/phon.svg";
@@ -107,8 +108,6 @@ const Login = () => {
   const { brand_id, user_id } = getUserBrandMemberId();
   const api_url =
     process.env.REACT_APP_API_URL + "/api/Authentication/Authenticate";
-  
-  // Remember Me
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleRememberMe = () => {
@@ -153,11 +152,11 @@ const Login = () => {
         const strigify_data = JSON.stringify(response?.data?.data);
         localStorage.setItem("authenticate_data", strigify_data);
         if (rememberMe) {
-          localStorage.setItem("remembered_user", JSON.stringify(form.userName));
-          localStorage.setItem("remembered_password", JSON.stringify(form.password));
+          Cookies.set('remembered_user', form.userName, { expires: 365 });
+          Cookies.set('remembered_password', form.password, { expires: 365 });
         } else {
-          localStorage.removeItem("remembered_user");
-          localStorage.removeItem("remembered_password");
+          Cookies.remove('remembered_user');
+          Cookies.remove('remembered_password');
         }
         navigate("/home");
       } else {
@@ -168,27 +167,27 @@ const Login = () => {
 
   const passwordView = () => {
     let viewToggle = document.getElementById('password');
-    if(viewToggle.type == "password"){
+    if (viewToggle.type == "password") {
       viewToggle.type = "text"
-    }else{
+    } else {
       viewToggle.type = "password"
     }
   }
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("remembered_user");
-    const storedPassword = localStorage.getItem("remembered_password");
-  
+    const storedUser = Cookies.get('remembered_user');
+    const storedPassword = Cookies.get('remembered_password');
+
     if (storedUser && storedPassword) {
       setForm((prev) => ({
         ...prev,
-        userName: JSON.parse(storedUser),
-        password: JSON.parse(storedPassword),
+        userName: storedUser,
+        password: storedPassword,
       }));
       setRememberMe(true);
     }
   }, []);
-  
+
 
   return (
     <div>
@@ -200,28 +199,28 @@ const Login = () => {
         </a>
         <div style={headingStyle}>Get Started</div>
         <form onSubmit={onSubmit}>
-        <div style={inputContainerStyle}>
-          <div style={{ fontSize: '14px' }}>Phone Number</div>
-          <input type="text" style={inputBoxStyle} name="userName" value={form.userName} onChange={onChange} />
-          <span style={inputIconStyle}><img src={Phone} /></span>
-          <br />
-          <div style={{ fontSize: '14px' }}>Password</div>
-          <input type="password" id="password" placeholder="Enter Password" style={inputBoxStyle} name="password" value={form.password} onChange={onChange} />
-          <span style={passwordVisible} onClick={passwordView}>
-            <img src={View} />
-          </span>
-        </div>
-        <input
-          style={checkbox}
-          type="checkbox"
-          id="rememberMe"
-          name="rememberMe"
-          checked={rememberMe}
-          onChange={handleRememberMe}
-        />
-        <label htmlFor="rememberMe" style={checkbox_label}>Remember Me</label>
-        <a href="/forgotpassword" style={forgotStyle}>Forgot Password?</a>
-        <button type="submit" style={buttonStyle} onClick={onSubmit}>Login</button>
+          <div style={inputContainerStyle}>
+            <div style={{ fontSize: '14px' }}>Phone Number</div>
+            <input type="text" style={inputBoxStyle} name="userName" value={form.userName} onChange={onChange} />
+            <span style={inputIconStyle}><img src={Phone} /></span>
+            <br />
+            <div style={{ fontSize: '14px' }}>Password</div>
+            <input type="password" id="password" placeholder="Enter Password" style={inputBoxStyle} name="password" value={form.password} onChange={onChange} />
+            <span style={passwordVisible} onClick={passwordView}>
+              <img src={View} />
+            </span>
+          </div>
+          <input
+            style={checkbox}
+            type="checkbox"
+            id="rememberMe"
+            name="rememberMe"
+            checked={rememberMe}
+            onChange={handleRememberMe}
+          />
+          <label htmlFor="rememberMe" style={checkbox_label}>Remember Me</label>
+          <a href="/forgotpassword" style={forgotStyle}>Forgot Password?</a>
+          <button type="submit" style={buttonStyle} onClick={onSubmit}>Login</button>
         </form>
       </div>
     </div>
