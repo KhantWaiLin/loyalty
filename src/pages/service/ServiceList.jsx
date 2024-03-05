@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import ServiceCard from "../../components/ServiceCard";
 import Loader from "../../components/loader/Loader";
 import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
 import { getUserBrandMemberId } from "../../utils/getBrandUserId";
+import { LanguageContext } from "../../LanguageContext";
 
 const headingStyle = {
   marginLeft: '200px',
@@ -34,8 +35,10 @@ const ServiceList = () => {
   const [serviceList, setServiceList] = useState(null);
   const { service_list } = api_routes;
   const [isLoading, setIsLoading] = useState(false);
-
+  const { t, changeLanguage } = useContext(LanguageContext);
+  
   const serviceData = async () => {
+    
     setIsLoading(true);
     const { brand_id } = getUserBrandMemberId();
     try {
@@ -50,6 +53,7 @@ const ServiceList = () => {
 
   useEffect(() => {
     serviceData();
+    changeLanguage(localStorage.getItem("language"));
   }, []);
 
   if (isLoading) {
@@ -67,7 +71,7 @@ const ServiceList = () => {
           <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
         </svg>
       </a>
-      <h1 style={headingStyle}>Services</h1>
+      <h1 style={headingStyle}>{t('services')}</h1>
       <div style={cardList} className="no-scrollbar">
       {serviceList && renderServiceRows(serviceList)}
       </div>

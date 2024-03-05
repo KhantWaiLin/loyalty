@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { LanguageContext } from "../../LanguageContext";
+
 import { useLocation } from "react-router-dom";
 
 const headingStyle = {
@@ -54,6 +56,7 @@ const blog_content = {
 }
 
 const ServiceDetail = () => {
+    const { t, changeLanguage } = useContext(LanguageContext);
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const data = Object.fromEntries(queryParams.entries());
@@ -95,6 +98,10 @@ const ServiceDetail = () => {
     //     );
     // }
 
+    useEffect(() => {
+        changeLanguage(localStorage.getItem("language"));
+      }, []);
+
     return (
         <div className="text-black-500 text-lg">
             <a style={iconStyle} href="/servicelist">
@@ -102,7 +109,7 @@ const ServiceDetail = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                 </svg>
             </a>
-            <h1 style={headingStyle}>Services</h1>
+            <h1 style={headingStyle}>{t('services')}</h1>
             <img style={image} src={data.image} alt="image" />
             <div style={title_style}>{data.title}</div>
             <div style={date_style}>{data.price}</div>

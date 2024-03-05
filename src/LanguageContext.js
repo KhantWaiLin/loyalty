@@ -48,7 +48,7 @@ i18next.init({
         "available": "Available",
         "used": "Used",
         "expired": "Expired",
-        
+        "blogs": "Blogs",
       }
     },
     mm: {
@@ -93,7 +93,8 @@ i18next.init({
         "coupons": "ကူပွန်များ",
         "available": "အသုံးပြုနိုင်သော",
         "used": "အသုံးပြုပြီးသော",
-        "expired": "သက်တမ်းကုန်သော"
+        "expired": "သက်တမ်းကုန်သော",
+        "blogs": "ဘလော့များ"
       }
     }
   }
