@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Phone from "../../assets/icons/phon.svg";
 import View from "../../assets/icons/view.svg";
@@ -81,6 +81,21 @@ const buttonStyle = {
   left: '5%'
 };
 
+const checkbox = {
+  marginTop: "95%",
+  position: 'relative',
+  top: '0.2rem',
+  fontSize: '1rem',
+};
+
+const checkbox_label = {
+  position: 'relative',
+  top: '0.2rem',
+  fontSize: '1rem',
+  marginLeft: '1rem',
+};
+
+
 const Login = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({
@@ -92,6 +107,13 @@ const Login = () => {
   const { brand_id, user_id } = getUserBrandMemberId();
   const api_url =
     process.env.REACT_APP_API_URL + "/api/Authentication/Authenticate";
+  
+  // Remember Me
+  const [rememberMe, setRememberMe] = useState(false);
+
+  const handleRememberMe = () => {
+    setRememberMe(!rememberMe);
+  };
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -130,6 +152,13 @@ const Login = () => {
       if (response?.data?.code === 200) {
         const strigify_data = JSON.stringify(response?.data?.data);
         localStorage.setItem("authenticate_data", strigify_data);
+        if (rememberMe) {
+          localStorage.setItem("remembered_user", JSON.stringify(form.userName));
+          localStorage.setItem("remembered_password", JSON.stringify(form.password));
+        } else {
+          localStorage.removeItem("remembered_user");
+          localStorage.removeItem("remembered_password");
+        }
         navigate("/home");
       } else {
         console.log("Login Failed.");
@@ -145,6 +174,21 @@ const Login = () => {
       viewToggle.type = "password"
     }
   }
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("remembered_user");
+    const storedPassword = localStorage.getItem("remembered_password");
+  
+    if (storedUser && storedPassword) {
+      setForm((prev) => ({
+        ...prev,
+        userName: JSON.parse(storedUser),
+        password: JSON.parse(storedPassword),
+      }));
+      setRememberMe(true);
+    }
+  }, []);
+  
 
   return (
     <div>
@@ -167,6 +211,15 @@ const Login = () => {
             <img src={View} />
           </span>
         </div>
+        <input
+          style={checkbox}
+          type="checkbox"
+          id="rememberMe"
+          name="rememberMe"
+          checked={rememberMe}
+          onChange={handleRememberMe}
+        />
+        <label htmlFor="rememberMe" style={checkbox_label}>Remember Me</label>
         <a href="/forgotpassword" style={forgotStyle}>Forgot Password?</a>
         <button type="submit" style={buttonStyle} onClick={onSubmit}>Login</button>
         </form>
