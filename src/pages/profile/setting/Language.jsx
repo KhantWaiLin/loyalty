@@ -1,4 +1,6 @@
-import US from "../../../assets/icons/US.svg";import React, { useContext, useState } from "react";
+import US from "../../../assets/icons/US.svg";
+import MM from "../../../assets/icons/myanmar.svg";
+import React, { useContext, useState } from "react";
 import { LanguageContext } from "../../../LanguageContext";
 
 const headingStyle = {
@@ -24,22 +26,32 @@ const selectSectionStyle = {
 const selectStyle = {
   width: '80%',
   padding: '10px',
-  paddingLeft: '30px',
+  paddingLeft: '40px',
   borderRadius: '10px',
-  borderTop: 'none',
-  backgroundImage: `url(${US})`,
   backgroundRepeat: 'no-repeat',
-  backgroundPosition: 'left center',
+  backgroundPosition: '15px center',
   appearance: 'none',
+  backgroundSize: '20px',
 };
 
 const Language = () => {
   const { t, changeLanguage } = useContext(LanguageContext);
   const [selectedLanguage, setSelectedLanguage] = useState(localStorage.getItem('language'));
 
+  const getFlagImage = () => {
+    switch (selectedLanguage) {
+      case 'en':
+        return `url(${US})`;
+      case 'mm':
+        return `url(${MM})`;
+      default:
+        return `url(${US})`;
+    }
+  };
+
   const handleChangeLanguage = (event) => {
     const selectedLang = event.target.value;
-    localStorage.setItem('language',selectedLang);
+    localStorage.setItem('language', selectedLang);
     setSelectedLanguage(selectedLang);
     changeLanguage(selectedLang);
   };
@@ -54,7 +66,7 @@ const Language = () => {
       <h1 style={headingStyle}>{t('key')}</h1>
 
       <div style={selectSectionStyle}>
-        <select style={selectStyle} value={selectedLanguage} onChange={handleChangeLanguage}>
+        <select style={{ ...selectStyle, backgroundImage: getFlagImage() }} value={selectedLanguage} onChange={handleChangeLanguage}>
           <option value="en">English</option>
           <option value="mm">Myanmar</option>
         </select>
