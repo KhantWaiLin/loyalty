@@ -112,7 +112,6 @@ const BlogDetail = () => {
         let i = 1;
         try {
             const response = await api.get(blog_detail, { BlogId: id });
-            //setCommentLength(response.data.value.data.commentList.length);
             response?.data?.value?.data?.commentList.map((comment)=>
                 comment.comment? setCommentLength(i++) : null
             );
@@ -188,19 +187,19 @@ const BlogDetail = () => {
     return (
         <div className="text-black-500 text-lg">
             <a style={iconStyle} href="/bloglist">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                 </svg>
             </a>
-            <a onClick={savedBlog}>
-                <svg style={saveStyle} xmlns="http://www.w3.org/2000/svg" fill={saved ? 'red' : 'none'} viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+            <button onClick={savedBlog}>
+                <svg style={saveStyle} xmlns="http://www.w3.org/2000/svg" fill={saved ? 'red' : 'none'} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-10 h-10">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
                 </svg>
-            </a>
+            </button>
 
             <div style={title_style}>{blogDetail?.title}</div>
             <div style={date_style}>{blogDetail?.createdDate} by {blogDetail?.author}</div>
-            <img style={image} src={blogDetail?.image} alt="blog-image" />
+            <img style={image} src={blogDetail?.image} alt="blog" />
             <div style={blog_content} className="no-scrollbar">
                 {blogDetail?.description}
             </div>
