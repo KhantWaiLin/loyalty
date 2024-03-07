@@ -31,7 +31,7 @@ return (
     <div className="flex-col">
       <div className="flex items-center gap-1">
         <p className="text-[#667085] text-[14px]">{greeting}</p>
-        <img src={Cloud} className="w-[18px] h-[18px]" />
+        {/* <img src={Cloud} className="w-[18px] h-[18px]" /> */}
       </div>
       <h4 className="text-[#48505E] text-[20px] font-medium">
         {user?.name}
