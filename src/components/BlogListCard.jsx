@@ -41,7 +41,7 @@ function BlogListCard({ blog, link }) {
       const response = await api.postByBody(blog_react, {
         customerId: user_id,
         blogId: link,
-        isLike: !liked,
+        isLike: true,
         comment: null
       });
       setLiked(!liked);
