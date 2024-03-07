@@ -101,7 +101,7 @@ const QR = () => {
         <PointTotal point_data={pointData} user_info={userInfo}/>
       </div>
       <div style={qrBack}>
-        <QRCode style={qr} value={qrCode? qrCode:'test'} fgColor="#384BCA"/>
+        <QRCode style={qr} value={qrCode} fgColor="#384BCA"/>
       </div>
       <div style={qr_des}>Scan my QR</div>
       <div style={name}>{userInfo?.name}</div>

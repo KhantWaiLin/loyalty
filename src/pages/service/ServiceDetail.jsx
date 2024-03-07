@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { LanguageContext } from "../../LanguageContext";
 
 import { useLocation } from "react-router-dom";
@@ -61,43 +61,6 @@ const ServiceDetail = () => {
     const queryParams = new URLSearchParams(location.search);
     const data = Object.fromEntries(queryParams.entries());
 
-    // const [serviceDetail, setServiceDetail] = React.useState([]);
-
-    // const { service_detail } = api_routes;
-    // const [isLoading, setIsLoading] = useState(false);
-
-    // const [preData, setPreData] = React.useState({
-    //     "keyword": "",
-    //     "rowLimit": 10,
-    //     "currentPage": 1,
-    //     "sortBy": "",
-    //     "isDesc": true,
-    //     "categoryId": id,
-    //     'subCategoryId': []
-    // });
-
-    // const serviceData = async () => {
-    //     setIsLoading(true);
-    //     await api
-    //         .postByBody(service_detail, preData)
-    //         .then((response) => {
-    //             setServiceDetail(response.data.value.data.data[0][0]);
-    //         });
-    //     setIsLoading(false);
-    // };
-
-    // useEffect(() => {
-    //     serviceData();
-    // }, []);
-
-    // if (isLoading) {
-    //     return (
-    //         <div className="reward-wrapper items-center flex flex-col justify-center">
-    //             <Loader />
-    //         </div>
-    //     );
-    // }
-
     useEffect(() => {
         changeLanguage(localStorage.getItem("language"));
       }, []);
@@ -110,7 +73,7 @@ const ServiceDetail = () => {
                 </svg>
             </a>
             <h1 style={headingStyle}>{t('services')}</h1>
-            <img style={image} src={data.image} alt="image" />
+            <img style={image} src={data.image} alt="service" />
             <div style={title_style}>{data.title}</div>
             <div style={date_style}>{data.price}</div>
             <div style={blog_content} className="no-scrollbar">
