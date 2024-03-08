@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import PointIcon from "../../assets/icons/point_icon.svg";
 import Crown from "../../assets/icons/crown.svg";
 import Default from "../../assets/images/blog_default_img.png";
@@ -78,8 +79,19 @@ const imageStyle = {
 }
 
 const imageSection = {
-
+  
 }
+
+PointTotal.propTypes = {
+  point_data: PropTypes.shape({
+    point: PropTypes.string,
+  }),
+  user_info: PropTypes.shape({
+    memberType: PropTypes.string,
+    image: PropTypes.string,
+    expireDate: PropTypes.string,
+  }),
+};
 
 const PointTotal = ({ point_data, user_info }) => {
   const formatDate = (date) => {

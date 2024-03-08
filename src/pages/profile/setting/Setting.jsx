@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import "./Setting.css"; // Import your CSS file for styling
+import React, { useState, useContext, useEffect } from "react";
+import "./Setting.css";
+import { LanguageContext } from "../../../LanguageContext";
 
 const headingStyle = {
   textAlign: 'center',
@@ -28,8 +29,13 @@ const sectionStyle = {
 };
 
 const Setting = () => {
+  const { t, changeLanguage } = useContext(LanguageContext);
   const [notification1, setNotification1] = useState(false);
   const [notification2, setNotification2] = useState(false);
+
+  useEffect(() => {
+    changeLanguage(localStorage.getItem("language"));
+  }, []);
 
   return (
     <div className="text-black-500 text-lg">
@@ -38,10 +44,10 @@ const Setting = () => {
           <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
         </svg>
       </a>
-      <h1 style={headingStyle}>Settings</h1>
+      <h1 style={headingStyle}>{t('setting')}</h1>
 
       <div style={sectionStyle}>
-        <div>Receive Notification</div>
+        <div>{t('receiveNoti')}</div>
         <label className="switch">
           <input
             type="checkbox"
@@ -53,7 +59,7 @@ const Setting = () => {
       </div>
       <hr style={{opacity: '0.5'}}/>
       <div style={sectionStyle}>
-        <div>Receive Offers By Email</div>
+        <div>{t('receiveEmail')}</div>
         <label className="switch">
           <input
             type="checkbox"

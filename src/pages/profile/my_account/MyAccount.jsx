@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./MyAccount.scss";
@@ -9,6 +9,8 @@ import Loader from "../../../components/loader/Loader";
 import api from "../../../api/api";
 import { api_routes } from "../../../utils/apiRoute";
 import { getUserBrandMemberId } from "../../../utils/getBrandUserId";
+
+import { LanguageContext } from "../../../LanguageContext";
 
 const iconStyle = {
   position: 'absolute',
@@ -76,6 +78,7 @@ const buttonStyle = {
 };
 
 const MyAccount = () => {
+  const { t, changeLanguage } = useContext(LanguageContext);
   const [isLoading, setIsLoading] = useState(false);
   const [profile, setProfile] = useState(null);
   const [data, setData] = useState({
@@ -132,6 +135,7 @@ const MyAccount = () => {
 
   useEffect(() => {
     get_profile_detail();
+    changeLanguage(localStorage.getItem("language"));
   }, []);
 
   if (isLoading && profile === null) {
@@ -149,19 +153,19 @@ const MyAccount = () => {
           <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
         </svg>
       </a>
-      <div style={headingStyle}>My Account</div>
+      <div style={headingStyle}>{t('myAccount')}</div>
       <div style={inputContainerStyle}>
-        <div style={{fontSize:'14px'}}>Username</div>
+        <div style={{fontSize:'14px'}}>{t('userName')}</div>
         <input type="text" style={inputBoxStyle} name="name" value={data.name} onChange={handleInputChange} />
         <span style={inputIconStyle}><img src={User} /></span>
         <br/><br/>
-        <div style={{fontSize:'14px'}}>Email</div>
+        <div style={{fontSize:'14px'}}>{t('email')}</div>
         <input type="text" style={inputBoxStyle} name="email" value={data.email} onChange={handleInputChange} />
         <span style={emailIconStyle}>
           <img src={Email} style={{width: "16px", height: '16px'}}/>
         </span>
       </div>
-      <button style={buttonStyle} onClick={handleUpdateClick}>Update</button>
+      <button style={buttonStyle} onClick={handleUpdateClick}>{t('update')}</button>
     </div>
   );
 };

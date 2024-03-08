@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import api from "../../../api/api";
@@ -10,6 +10,8 @@ import PhoneIcon from "../../../assets/icons/phon.svg";
 
 import Loader from "../../../components/loader/Loader";
 import "./ChangeNumber.scss";
+
+import { LanguageContext } from "../../../LanguageContext";
 
 const iconStyle = {
   position: 'absolute',
@@ -106,6 +108,7 @@ const buttonStyle = {
 };
 
 const ChangeNumber = () => {
+  const { t, changeLanguage } = useContext(LanguageContext);
   const [isLoading, setIsLoading] = useState(false);
   const [activeInputIndex, setActiveInputIndex] = useState(null);
   const [activeTab, setActiveTab] = useState("tab 1");
@@ -131,10 +134,12 @@ const ChangeNumber = () => {
 
   useEffect(() => {
     get_profile_detail();
+    changeLanguage(localStorage.getItem("language"));
     // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
+    
     let timer;
 
     if (activeTab === "tab 3" && countdown > 0) {
@@ -220,11 +225,11 @@ const ChangeNumber = () => {
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
             </svg>
           </a>
-          <div style={headingStyle}>Change Number</div>
+          <div style={headingStyle}>{t('changeNumber')}</div>
           <img src={Phone} width="30%" height="60%" style={{ marginTop: "50%", marginLeft: '35%' }} />
           <h2 className="text-[16px]" style={{ textAlign: 'center', marginTop: '10px' }}>{profile?.phoneNo}</h2>
-          <p style={{ textAlign: 'center', fontSize: '12px' }}>You can update your phone number to ensure your account information is up-to-date. We'll send a verification code to your new number for security.</p>
-          <button style={buttonStyle} onClick={() => setActiveTab("tab 2")}>Change Number</button>
+          <p style={{ textAlign: 'center', fontSize: '12px' }}>{t('chNumberNote')}</p>
+          <button style={buttonStyle} onClick={() => setActiveTab("tab 2")}>{t('changeNumber')}</button>
         </div>
       )}
       {activeTab === "tab 2" && (
@@ -234,13 +239,13 @@ const ChangeNumber = () => {
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
             </svg>
           </button>
-          <div style={headingStyle}>Change Number</div>
+          <div style={headingStyle}>{t('changeNumber')}</div>
           <div style={inputContainerStyle}>
-            <div style={{ fontSize: '14px' }}>New Phone Number</div>
+            <div style={{ fontSize: '14px' }}>{t('newNumber')}</div>
             <input type="text" placeholder="Enter New Phone Number" style={inputBoxStyle} name="phoneNo" value={number} onChange={on_change_number} />
             <span style={phoneIconStyle}><img src={PhoneIcon} /></span>
           </div>
-          <button style={buttonStyle} onClick={on_send_otp}>Update</button>
+          <button style={buttonStyle} onClick={on_send_otp}>{t('update')}</button>
         </div>
       )}
 
@@ -252,7 +257,7 @@ const ChangeNumber = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
               </svg>
             </button>
-            <div style={headingStyle}>Verification</div>
+            <div style={headingStyle}>{t('verification')}</div>
             <p style={opt_des}>
               Enter the 6-digit codes sent to {number}
             </p>
@@ -283,7 +288,7 @@ const ChangeNumber = () => {
                 </button>
               )}
             </div>
-            <button style={buttonStyle} onClick={on_update_number}>Confirm</button>
+            <button style={buttonStyle} onClick={on_update_number}>{t('verification1')}</button>
           </div>
         </>
       )}

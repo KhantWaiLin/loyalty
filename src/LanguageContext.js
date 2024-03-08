@@ -1,5 +1,5 @@
-// LanguageContext.js
 import React, { createContext, useState } from 'react';
+import {mm, en} from './data.js';
 import i18next from 'i18next';
 
 i18next.init({
@@ -7,25 +7,11 @@ i18next.init({
   debug: true,
   resources: {
     en: {
-      translation: {
-        "key": "Language",
-        "help": 'Help Center',
-        "personalInformation": "Personal Information",
-        "myAccount":"My Account",
-        "changeNumber":"Change Number",
-        "changePassword":"Change Password"
-      }
+      translation: en
     },
     mm: {
-      translation: {
-        "key": "ဘာသာာစကား",
-        "help": 'အကူအညီ',
-        "personalInformation": "ကိုယ်ရေးအချက်အလက်",
-        "myAccount": "ကျွန်ုပ်အကောင့်",
-        "changeNumber": "ဖုန်းနံပါတ်ပြောင်းမည်",
-        "changePassword": "လျှို့ဝျက်ကုဒ်ပြောင်းမည်"
-      }
-    }
+      translation: mm,
+    },
   }
 });
 

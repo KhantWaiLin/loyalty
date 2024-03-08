@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import View from "../../../assets/icons/view.svg";
 
@@ -8,6 +8,8 @@ import { getUserBrandMemberId } from "../../../utils/getBrandUserId";
 
 import "./ChangePassword.scss";
 import Loader from "../../../components/loader/Loader";
+
+import { LanguageContext } from "../../../LanguageContext";
 
 const iconStyle = {
   position: 'absolute',
@@ -82,6 +84,7 @@ const buttonStyle = {
 };
 
 const ChangePassword = () => {
+  const { t, changeLanguage } = useContext(LanguageContext);
   const [isLoading, setIsLoading] = useState(true);
   const { get_member_info, change_password } = api_routes;
   const navigate = useNavigate();
@@ -99,6 +102,7 @@ const ChangePassword = () => {
   };
   useEffect(() => {
     get_profile_detail();
+    changeLanguage(localStorage.getItem("language"));
     // eslint-disable-next-line
   }, []);
 
@@ -150,25 +154,25 @@ const ChangePassword = () => {
             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
           </svg>
         </a>
-        <div style={headingStyle}>Change Password</div>
+        <div style={headingStyle}>{t('changePassword')}</div>
         <div style={inputContainerStyle}>
-          <div style={{ fontSize: '14px' }}>Current Password</div>
+          <div style={{ fontSize: '14px' }}>{t('currentP')}</div>
           <input id="password" type="password" placeholder="Enter Current Password" style={inputBoxStyle} name="current_password" value={passwords.current_password} onChange={onChange} />
           <span style={viewStyle} onClick={() => passwordView("password")}>
             <img src={View} style={{ width: "16px", height: '16px' }} />
           </span>
-          <div style={{ fontSize: '14px' }}>New Password</div>
+          <div style={{ fontSize: '14px' }}>{t('newP')}</div>
           <input id="password1" type="password" placeholder="Enter New Password" style={inputBoxStyle} name="new_password" value={passwords.new_password} onChange={onChange} />
           <span style={viewStyle1} onClick={() => passwordView("password1")}>
             <img src={View} style={{ width: "16px", height: '16px' }} />
           </span>
-          <div style={{ fontSize: '14px' }}>Confirm Password</div>
+          <div style={{ fontSize: '14px' }}>{t('confirmP')}</div>
           <input id="password2" type="password" placeholder="Enter Confirm Password" style={inputBoxStyle} name="confirm_password" value={passwords.confirm_password} onChange={onChange} />
           <span style={viewStyle2} onClick={() => passwordView("password2")}>
             <img src={View} style={{ width: "16px", height: '16px' }} />
           </span>
         </div>
-        <button style={buttonStyle} onClick={onSubmit}>Update</button>
+        <button style={buttonStyle} onClick={onSubmit}>{t('update')}</button>
       </div>
     </>
   );

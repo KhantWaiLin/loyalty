@@ -31,17 +31,17 @@ const Profile = () => {
     {
       accordion_name: "Loyalty",
       accordion_content: [
-        { name: "Transaction History", route: "transaction-history" },
-        { name: "Membership Tier Level", route: "membership-tire-level" },
+        { name: t('transaction'), route: "transaction-history" },
+        { name: t('membership'), route: "membership-tire-level" },
       ],
     },
     {
-      accordion_name: "Setting",
+      accordion_name: t('setting'),
       accordion_content: [
-        { name: "Language", route: "language"},
-        { name: "General", route: 'general'},
-        { name: "Help Center", route: "help-center" },
-        { name: "Terms & Condition", route: "terms" },
+        { name: t('language'), route: "language"},
+        { name: t('general'), route: 'general'},
+        { name: t('helpCenter'), route: "help-center" },
+        { name: t('terms'), route: "terms" },
       ],
     },
   ];
@@ -193,7 +193,7 @@ const Profile = () => {
           type="button"
           onClick={on_log_out}
         >
-          Log out
+          {t('logout')}
         </button>
       </section>
       {/* Personal Information */}

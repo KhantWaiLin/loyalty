@@ -50,7 +50,7 @@ const BlogFooter = ({ BlogId, isLiked, like, comment, commentLength, footerOpen,
         const response = await api.postByBody(blog_react, {
           customerId: user_id,
           blogId: BlogId,
-          isLike: !liked,
+          isLike: true,
           comment: null,
         });
         setLikeCount(response.data.value.data.likeCount);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 
 const cardStyle = {
@@ -18,6 +18,7 @@ const imageSectionStyle = {
 };
 
 function PromotionItem({ promotion }) {
+  
   let navigate = useNavigate();
 
   const formatDate = (dateString) => {

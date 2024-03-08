@@ -97,7 +97,7 @@ const HelpCenter = () => {
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                         </svg>
                     </a>
-                    <div style={headingStyle}>FAQ</div>
+                    <div style={headingStyle}>{t('faq')}</div>
                     <HelpCenterCard faq_type_list={faqTypeList} setType={setType} />
                 </div>
             )}
@@ -108,7 +108,7 @@ const HelpCenter = () => {
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                         </svg>
                     </a>
-                    <div style={headingStyle}>FAQ</div>
+                    <div style={headingStyle}>{t('faq')}</div>
                     <div style={{ marginTop: '20%', height: '85vh', overflow: 'auto' }} className="no-scrollbar">
                         <QACard faq_type_list={faqListByType} />
                     </div>
@@ -123,12 +123,12 @@ const HelpCenter = () => {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                             </svg>
                         </a>
-                        <div style={headingStyle}>{t('help')}</div>
+                        <div style={headingStyle}>{t('helpCenter')}</div>
                         <div style={{marginTop: '20%'}}>
                             <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
                             <button style={buttonStyle1} onClick={() => setActiveTab("tab 4")}>
                                 <div>
-                                    Contact Us
+                                    {t('contactUs')}
                                 </div>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
@@ -136,7 +136,7 @@ const HelpCenter = () => {
                             </button>
                             <button style={buttonStyle1} onClick={() => setActiveTab("tab 2")}>
                                 <div>
-                                    FAQ
+                                    {t('faq')}
                                 </div>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
@@ -156,11 +156,11 @@ const HelpCenter = () => {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                             </svg>
                         </a>
-                        <div style={headingStyle}>Help Center</div>
+                        <div style={headingStyle}>{t('helpCenter')}</div>
                         <div style={{marginTop: '20%'}}>
                             <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
-                                Contact: 09*******<br/>
-                                Email: *****.com
+                                {t('contactUs')}: 09*******<br/>
+                                {t('email')}: *****.com
                             </div>
                         </div>
                     </div>
