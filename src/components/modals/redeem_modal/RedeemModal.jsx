@@ -1,7 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import "./RedeemModal.scss";
 
+import { LanguageContext } from "../../../LanguageContext";
+
 const RedeemModal = ({ title, desc, onClick, image }) => {
+  const { t, changeLanguage } = useContext(LanguageContext);
+
   return (
     <div
       className="redeem-modal flex w-full h-full justify-center z-20 items-center absolute  left-0 top-0"
@@ -35,7 +39,7 @@ const RedeemModal = ({ title, desc, onClick, image }) => {
             }}
             className="confirm-btn flex-1 p-4 font-bold text-[16px] text-[#FFF] rounded-lg"
           >
-            Confirm
+            {t('verification1')}
           </button>
         </div>
       </div>

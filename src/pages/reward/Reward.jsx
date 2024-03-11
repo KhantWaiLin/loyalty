@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Loader from "../../components/loader/Loader";
@@ -11,9 +11,12 @@ import { getUserBrandMemberId } from "../../utils/getBrandUserId";
 
 import Heart from "../../assets/icons/heart-icon.svg";
 
+import { LanguageContext } from "../../LanguageContext";
+
 import "./Reward.scss";
 
 const Reward = () => {
+  const { t, changeLanguage } = useContext(LanguageContext);
   const [pointData, setPointData] = useState(null);
   const [rewardData, setRewardData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -43,6 +46,7 @@ const Reward = () => {
 
   useEffect(() => {
     get_reward_list();
+    changeLanguage(localStorage.getItem("language"));
     // eslint-disable-next-line
   }, []);
 
@@ -58,14 +62,14 @@ const Reward = () => {
     <section className="reward-wrapper p-4 w-full overflow-hidden no-scrollbar">
       <div className="flex w-full justify-between mt-5 items-center mb-6">
         <h1 className="flex w-auto flex-1 text-[#48505E] justify-center items-center text-[16px] font-medium">
-          Rewards
+          {t('rewards')}
         </h1>
-        <button
+        {/* <button
           className="flex w-[50px] h-[50px] items-center justify-center border-[1px]
          border-[#F0F1F3] rounded-lg bg-[#FAFAFA]"
         >
           <img src={Heart} alt="heart-icon" className="w-5 h-5" />
-        </button>
+        </button> */}
       </div>
       <div className="total-point mb-6">
         <PointTotal point_data={pointData} />

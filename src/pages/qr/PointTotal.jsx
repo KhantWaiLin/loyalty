@@ -82,16 +82,16 @@ const imageSection = {
   
 }
 
-PointTotal.propTypes = {
-  point_data: PropTypes.shape({
-    point: PropTypes.string,
-  }),
-  user_info: PropTypes.shape({
-    memberType: PropTypes.string,
-    image: PropTypes.string,
-    expireDate: PropTypes.string,
-  }),
-};
+// PointTotal.propTypes = {
+//   point_data: PropTypes.shape({
+//     point: PropTypes.string,
+//   }),
+//   user_info: PropTypes.shape({
+//     memberType: PropTypes.string,
+//     image: PropTypes.string,
+//     expireDate: PropTypes.string,
+//   }),
+// };
 
 const PointTotal = ({ point_data, user_info }) => {
   const formatDate = (date) => {
@@ -115,7 +115,7 @@ const PointTotal = ({ point_data, user_info }) => {
           </div>
         </div>
         <div style={imageSection}>
-          <img src={user_info? user_info.image : Default} style={imageStyle} />
+          <img src={user_info? user_info.image : Default} alt="user" style={imageStyle} />
         </div>
       </div>
 

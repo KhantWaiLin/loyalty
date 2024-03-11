@@ -4,8 +4,8 @@ import { LanguageContext } from "../../LanguageContext";
 import { useLocation } from "react-router-dom";
 
 const headingStyle = {
-    marginLeft: '200px',
-    marginTop: '30px',
+    textAlign: 'center',
+    marginTop: '25px',
     fontSize: '16px'
 };
 
@@ -20,27 +20,26 @@ const iconStyle = {
 };
 
 const title_style = {
-    position: 'absolute',
-    left: '15px',
-    top: '35%',
+    marginLeft: '15px',
+    marginTop: '5px',
     fontSize: '20px'
 }
 
 const date_style = {
-    position: 'absolute',
-    left: '320px',
-    top: '35%',
+    marginLeft: '320px',
+    marginTop: '5px',
     fontSize: '14px'
 }
 
 const image = {
-    position: 'absolute',
-    top: '80px',
-    left: '15px',
+    marginTop: '20px',
+    marginLeft: '15px',
+    objectFit: 'cover', 
     width: '390px',
     height: '175px',
     border: '5.29px linear-gradient(#1746A2, #FFFFFF) solid',
     borderRadius: '5px',
+    overflow: 'hidden',
 }
 
 const blog_content = {

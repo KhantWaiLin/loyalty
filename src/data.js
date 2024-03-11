@@ -248,7 +248,16 @@ export const mm = {
 
   "expired": "သက်တမ်းကုန်သော",
 
-  "blogs": "ဘလော့များ"
+  "usecode": "အသုံးပြုမည်",
+
+  "blogs": "ဘလော့များ",
+
+  // Reward Screen
+
+  "rewards": "ဆုများ",
+  "rewardDetail": "ဆုအကြောင်းအသေးစိတ်အချက်အလက်များ",
+  "redeem": "လဲလည်မည်",
+  "collectreward": "ဆုအားရယူမည်"
 
 };
 
@@ -294,5 +303,12 @@ export const en = {
   "available": "Available",
   "used": "Used",
   "expired": "Expired",
+  "usecode": "Use Code",
   "blogs": "Blogs",
+
+  // Reward Screen
+  "rewards": "Rewards",
+  "rewardDetail": "Reward Details",
+  "redeem": "Redeem",
+  "collectreward": "Collect Reward",
 };

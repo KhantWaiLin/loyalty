@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import QRCode from "react-qr-code";
 
@@ -17,7 +17,10 @@ import "./RewardDetail.scss";
 import RedeemModal from "../../components/modals/redeem_modal/RedeemModal";
 import QrModal from "../../components/modals/qr_modal/QrModal";
 
+import { LanguageContext } from "../../LanguageContext";
+
 const RewardDetail = () => {
+  const { t, changeLanguage } = useContext(LanguageContext);
   const { id } = useParams();
   const navigate = useNavigate();
   const [data, setData] = useState(null);
@@ -61,6 +64,7 @@ const RewardDetail = () => {
 
   useEffect(() => {
     get_detail(id);
+    changeLanguage(localStorage.getItem("language"));
     // eslint-disable-next-line
   }, [id]);
 
@@ -102,14 +106,14 @@ const RewardDetail = () => {
           </button>
 
           <h1 className="flex w-auto flex-1 text-[#48505E] justify-center items-center text-[16px] font-medium">
-            Reward Details
+            {t('rewardDetail')}
           </h1>
-          <button
+          {/* <button
             className="flex w-[50px] h-[50px] items-center justify-center border-[1px]
          border-[#F0F1F3] rounded-lg bg-[#FAFAFA]"
           >
             <img src={Heart} alt="heart-icon" className="w-5 h-5" />
-          </button>
+          </button> */}
         </div>
         <div className="scroll-container w-full overflow-scroll no-scrollbar">
           <div className="flex flex-col gap-2 mb-6">
@@ -159,7 +163,7 @@ const RewardDetail = () => {
             onClick={() => setShowQr((prev) => !prev)}
             className="redeem-btn flex-1 flex w-full p-4 font-bold justify-center text-[16px] rounded-lg text-[#FFF]"
           >
-            Collect Reward
+            {t('collectreward')}
           </button>
         ) : (
           <div className="w-full flex gap-5">
@@ -178,7 +182,7 @@ const RewardDetail = () => {
               onClick={() => setShowPopup(true)}
               className="redeem-btn flex-1 flex w-full p-4 font-bold justify-center text-[16px] rounded-lg text-[#FFF]"
             >
-              Redeem
+              {t('redeem')}
             </button>
           </div>
         )}
