@@ -10,7 +10,6 @@ const pointTotalContainer = {
   padding: '10px',
   backgroundColor: '#384BCA',
   borderRadius: '10px',
-  marginTop: '10%',
   marginLeft: '5%',
   marginRight: '5%'
 }

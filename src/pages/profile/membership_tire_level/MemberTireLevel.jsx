@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import PointTotal from './PointTotal';
 
 import Loader from "../../../components/loader/Loader";
 
@@ -8,19 +9,95 @@ import { getUserBrandMemberId } from "../../../utils/getBrandUserId";
 
 import { Link } from "react-router-dom";
 
+import { LanguageContext } from "../../../LanguageContext";
+
 import "./MemberTireLevel.scss";
 
-const MemberTireLevel = () => {
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+const icon_style = {
+  position: 'absolute',
+  left: '15px',
+  top: '33px',
+  backgroundColor: '#FAFAFA',
+  padding: '10px',
+  border: '1px',
+  borderRadius: '5px',
+}
 
-  const { membership_level } = api_routes;
+const heading = {
+  position: 'relative',
+  left: '180px',
+  top: '35px'
+}
+
+const sectionStyle = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  margin: '5px 15px',
+  fontSize: '14px',
+  width: '90%'
+};
+
+const buttonStyle = {
+  border: '1px solid rgba(128, 128, 128, 0.5)',
+  padding: '15px',
+  borderRadius: '5px'
+}
+
+const MemberTireLevel = () => {
+  const { t, changeLanguage } = useContext(LanguageContext);
+  const [data, setData] = useState(null);
+  const [level, setLevel] = useState(null);
+  const [img, setImg] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [pointData, setPointData] = useState(null);
+  const [userInfo, setUserInfo] = useState(null);
+
+  const { membership_level, member_tire_level, get_member_info } = api_routes;
   const { brand_id, user_id } = getUserBrandMemberId();
+
+  const get_tire_list = async () => {
+    setIsLoading(true);
+    try {
+      const response1 = await api.get(membership_level, { brandId: brand_id, userId: user_id });
+      setData(response1?.data?.value?.data);
+
+      const response2 = await api.get(member_tire_level, { brandId: brand_id });
+      setLevel(response2?.data?.value?.data);
+
+      const response3 = await api.get(get_member_info, { brandId: brand_id, userId: user_id });
+        setPointData(response3?.data?.value?.data);
+        setUserInfo(response3?.data?.value?.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
     get_tire_list();
-    // eslint-disable-next-line
+    changeLanguage(localStorage.getItem("language"));
   }, []);
+
+  useEffect(() => {
+    switch (data?.memberType) {
+      case "silver":
+        setImg(level ? level[0]?.image : null);
+        break;
+      case "gold":
+        setImg(level ? level[1]?.image : null);
+        break;
+      case "platinum":
+        setImg(level ? level[2]?.image : null);
+        break;
+      case "diamond":
+        setImg(level ? level[3]?.image : null);
+        break;
+      default:
+        break;
+    }
+  }, [data, level]);
 
   if (isLoading) {
     return (
@@ -29,108 +106,45 @@ const MemberTireLevel = () => {
       </div>
     );
   }
-
-  const get_tire_list = async () => {
-    setIsLoading(true);
-    await api
-      .get(membership_level, { brandId: brand_id, userId: user_id })
-      .then((response) => {
-        setData(response?.data?.value?.data);
-      });
-    setIsLoading(false);
-  };
+  
 
   return (
     <div className="member-tire-wrapper relative flex flex-col w-full overflow-scrol no-scrollbar">
-      <header className="flex flex-col z-30 bg-indigo-700 basis-2/12 ps-[20px] pr-[40%]">
-        <section className="flex justify-between mt-[20px]">
-          <Link
-            to="/profile"
-            className="flex flex-col items-start justify-start w-6 h-6"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6 text-white cursor-pointer"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 19.5 8.25 12l7.5-7.5"
-              />
-            </svg>
-          </Link>
-          <h1 className="text-white">Membership</h1>
-        </section>
-      </header>
-
-      {/* Member Tire Level */}
-      <main className="z-50 bg-white absolute left-0 rounded-t-2xl top-16 w-full h-[470px] basis-10/12 overflow-auto no-scrollbar flex flex-col">
-        {/* About Member  */}
-        <section className="basis-7/12 px-[13px]  pt-[10px] flex flex-col">
-          <h1 className="text-base text-indigo-700 font-medium  basis-2/12">
-            Hello {data?.name}
-          </h1>
-          <div className=" basis-7/12 pt-[10px] px-2">
-            <article className="bg-indigo-700  w-full h-[120px] rounded-lg px-6 py-3">
-              <div className="w-full h-full flex flex-col justify-between">
-                <p className="text-white text-base font-normal">Total</p>
-                <p className="text-white text-3xl font-semibold text-center">
-                  {data?.totalPoint}
-                </p>
-                <p className="text-white text-base font-normal text-end">
-                  Point
-                </p>
-              </div>
-            </article>
-          </div>
-          <div className="basis-2/12 flex justify-between items-center">
-            <div className="flex items-center">
-              <p className="text-base text-indigo-700 font-medium">
-                Your current Tier
-              </p>
-              <p className="text-xs font-thin text-black bg-cyan-300 rounded-lg text-center px-2 py-1 ms-3">
-                {data?.memberType}
-              </p>
-            </div>
-            <Link
-              to="/profile/membership-tire-level/view-tier-benefits"
-              className="text-sm text-indigo-700 border-b border-b-indigo-700"
-            >
-              View Tier Benefits
-            </Link>
-          </div>
-          <p className="text-xs text-indigo-700 font-normal basis-1/12">
-            {data?.alert}
-          </p>
-        </section>
-        {/* About Member */}
-
-        {/* Point History or Transaction History Link */}
-        <section className="basis-1/12 ">
-          <Link
-            to="/profile/transaction-history"
-            className="text-base  font-normal w-full h-full hover:bg-slate-200 flex items-center"
-          >
-            <div className="px-[13px]">View my points history</div>
-          </Link>
-        </section>
-        {/* Point History or Transaction History Link */}
-
-        {/* View expire points Link */}
-        <section className="basis-1/12  flex items-center">
-          <Link to="/profile/expire-point" className="text-base font-normal w-full h-full hover:bg-slate-200 flex items-center">
-            <div className="px-[13px]">View expire points</div>
-          </Link>
-        </section>
-        {/* View expire points Link */}
-
-        <section className="basis-3/12 "></section>
-      </main>
-      {/* Member Tire Level */}
+      <a style={icon_style} href="/profile">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+        </svg>
+      </a>
+      <h1 style={heading}>{t('membership1')}</h1>
+      <div style={{ marginTop: '65px'}}>
+        <PointTotal point_data={pointData} user_info={userInfo}/>
+      </div>
+      <div style={sectionStyle}>
+        <div class="flex justify-start items-center">
+          {t('tier')} 
+          <img src={img} alt="level-img" className="w-[23px] h-[23px]"/>
+        </div>
+        <a style={{color:'blue', textDecoration: 'underline'}} href="/profile/membership-tire-level/view-tier-benefits">{t('viewTier')}</a>
+      </div>
+      <p style={{marginLeft: '15px'}} className="text-xs font-normal basis-1/12">
+        {data?.alert}
+      </p>
+      <div >
+        <a href="/profile/expire-point" style={{...sectionStyle,...buttonStyle}}>
+          {t('expirePoints')}
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+          </svg>
+        </a>
+      </div>
+      <div>
+        <a href="/profile/transaction-history"  style={{...sectionStyle,...buttonStyle}}>
+          {t('pointHistory')}
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+          </svg>
+        </a>
+      </div>
     </div>
   );
 };

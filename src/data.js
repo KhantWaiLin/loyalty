@@ -201,6 +201,12 @@ export const mm = {
   "transaction": "အသုံးပြုမှုမှတ်တမ်း",
 
   "membership": "အဖွဲ့ဝင်အဆင့်သက်မှတ်ချက်",
+  "membership1": "အဖွဲ့ဝင်",
+  "tier": "လက်ရှိအဖွဲ့ဝင်အဆင့်",
+  "expirePoints": "သက်တမ်းကုန်သောအမှတ်များကြည့်ရန်",
+  "pointHistory": "အမှတ်လဲလည်မှုမှတ်တမ်းများကြည့်ရန်",
+  "viewTier": "အဖွဲ့ဝင်အကျိုးခံစားမှုများ",
+  "viewTier1": "အဖွဲ့ဝင်အကျိုးခံစားမှုများ",
 
   "setting": "ဆက်တင်",
 
@@ -248,7 +254,16 @@ export const mm = {
 
   "expired": "သက်တမ်းကုန်သော",
 
-  "blogs": "ဘလော့များ"
+  "usecode": "အသုံးပြုမည်",
+
+  "blogs": "ဘလော့များ",
+
+  // Reward Screen
+
+  "rewards": "ဆုများ",
+  "rewardDetail": "ဆုအကြောင်းအသေးစိတ်အချက်အလက်များ",
+  "redeem": "လဲလည်မည်",
+  "collectreward": "ဆုအားရယူမည်"
 
 };
 
@@ -271,6 +286,12 @@ export const en = {
   "confirmP": "Confirm Password",
   "transaction": "Transaction History",
   "membership": "Membership Tier Level",
+  "membership1": "Membership",
+  "tier": "Your current Tier",
+  "expirePoints": "View Expire Points",
+  "pointHistory": "View Point History",
+  "viewTier": "View Tier Benifits",
+  "viewTier1": "Tier Benefits",
   "setting": "Setting",
   "language": "Language",
   "general": "General",
@@ -294,5 +315,12 @@ export const en = {
   "available": "Available",
   "used": "Used",
   "expired": "Expired",
+  "usecode": "Use Code",
   "blogs": "Blogs",
+
+  // Reward Screen
+  "rewards": "Rewards",
+  "rewardDetail": "Reward Details",
+  "redeem": "Redeem",
+  "collectreward": "Collect Reward",
 };

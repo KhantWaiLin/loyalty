@@ -78,8 +78,7 @@ const Profile = () => {
     const picture = event.target.files[0];
     const reader = new FileReader();
     reader.onloadend = async () => {
-      const base64String = reader.result.split(",")[1]; // Extract Base64 content without the prefix
-  
+      const base64String = reader.result.split(",")[1];
       try {
         await api.postByFile(upload_photo, {
           brandId: brand_id,
