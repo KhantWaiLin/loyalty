@@ -83,7 +83,7 @@ const buttonStyle = {
 };
 
 const checkbox = {
-  marginTop: "95%",
+  marginTop: "75%",
   position: 'relative',
   top: '0.2rem',
   fontSize: '1rem',
@@ -95,6 +95,18 @@ const checkbox_label = {
   fontSize: '1rem',
   marginLeft: '1rem',
 };
+
+const alert_style = {
+  position: "absolute",
+  textAlign: "center",
+  left: "10%",
+  border: '1px solid rgba(128, 128, 128, 0.5)',
+  padding: '5px 10px',
+  borderRadius: '5px',
+  width: '80%',
+  backgroundColor: 'red',
+  color: 'white',
+}
 
 
 const Login = () => {
@@ -109,6 +121,8 @@ const Login = () => {
   const api_url =
     process.env.REACT_APP_API_URL + "/api/Authentication/Authenticate";
   const [rememberMe, setRememberMe] = useState(false);
+  const [loginFail, setLoginFail] = useState(false);
+  const [failtext, setFailtext] = useState(false);
 
   const handleRememberMe = () => {
     setRememberMe(!rememberMe);
@@ -161,6 +175,8 @@ const Login = () => {
         navigate("/home");
       } else {
         console.log("Login Failed.");
+        setFailtext(response?.data?.message);
+        setLoginFail(true);
       }
     });
   };
@@ -198,6 +214,9 @@ const Login = () => {
           </svg>
         </a>
         <div style={headingStyle}>Get Started</div>
+        {
+          loginFail? <p style={alert_style}>{failtext}</p>: null
+        }
         <form onSubmit={onSubmit}>
           <div style={inputContainerStyle}>
             <div style={{ fontSize: '14px' }}>Phone Number</div>
