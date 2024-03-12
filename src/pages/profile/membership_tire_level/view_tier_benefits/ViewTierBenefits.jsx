@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 import Loader from "../../../../components/loader/Loader";
 
@@ -9,7 +9,36 @@ import { getUserBrandMemberId } from "../../../../utils/getBrandUserId";
 import "./ViewTierBenefits.scss";
 import { Link } from "react-router-dom";
 
+import { LanguageContext } from "../../../../LanguageContext";
+
+const icon_style = {
+  position: 'absolute',
+  left: '15px',
+  top: '33px',
+  backgroundColor: '#FAFAFA',
+  padding: '10px',
+  border: '1px',
+  borderRadius: '5px',
+}
+
+const heading = {
+  position: 'relative',
+  left: '180px',
+  top: '35px'
+}
+
+const sectionStyle = {
+  display: 'flex',
+  marginTop: '10%',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  margin: '15px 15px',
+  fontSize: '14px',
+  width: '90%'
+};
+
 const ViewTierBenefits = () => {
+  const { t, changeLanguage } = useContext(LanguageContext);
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -26,6 +55,7 @@ const ViewTierBenefits = () => {
 
   useEffect(() => {
     get_tire_list();
+    changeLanguage(localStorage.getItem("language"));
     // eslint-disable-next-line
   }, []);
 
@@ -39,38 +69,14 @@ const ViewTierBenefits = () => {
 
   return (
     <div className="member-tire-wrapper relative flex flex-col w-full overflow-scrol no-scrollbar">
-      <header className="flex flex-col z-30 bg-indigo-700 basis-2/12 ps-[20px] pr-[40%]">
-        <section className="flex justify-between mt-[20px]">
-          <Link
-            to="/profile/membership-tire-level"
-            className="flex flex-col items-start justify-start w-6 h-6"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6 text-white cursor-pointer"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 19.5 8.25 12l7.5-7.5"
-              />
-            </svg>
-          </Link>
-          <h1 className="text-white">Tier Benefits</h1>
-        </section>
-      </header>
-
-      {/* Member Tire Level */}
-      <main className="z-50 bg-white absolute left-0 rounded-t-2xl top-16 w-full h-[470px] basis-10/12 overflow-auto no-scrollbar flex flex-col">
-        <h1 className="font-semibold text-base text-center my-[20px]">
-          SateKyite Point Membership Level
-        </h1>
-
-        <div class="relative overflow-x-auto mx-[12px] rounded-md">
+      <a style={icon_style} href="/profile/membership-tire-level">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+        </svg>
+      </a>
+      <h1 style={heading}>{t('viewTier1')}</h1>
+      <div  style={{ marginTop: '65px', marginLeft: '15px' }}></div>
+      <div class="relative overflow-x-auto mx-[12px] rounded-md">
           <table class="w-full text-sm text-center">
             <thead class="text-base bg-indigo-700 text-white ">
               <tr>
@@ -106,8 +112,6 @@ const ViewTierBenefits = () => {
             </tbody>
           </table>
         </div>
-      </main>
-      {/* Member Tire Level */}
     </div>
   );
 };

@@ -57,7 +57,7 @@ const Setting = () => {
           <span className="slider"></span>
         </label>
       </div>
-      <hr style={{opacity: '0.5'}}/>
+      <hr style={{ opacity: '0.5' }} />
       <div style={sectionStyle}>
         <div>{t('receiveEmail')}</div>
         <label className="switch">
@@ -69,7 +69,7 @@ const Setting = () => {
           <span className="slider"></span>
         </label>
       </div>
-      <hr style={{opacity: '0.5'}}/>
+      <hr style={{ opacity: '0.5' }} />
     </div>
   );
 };
