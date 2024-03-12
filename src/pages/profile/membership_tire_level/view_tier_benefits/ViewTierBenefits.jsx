@@ -87,7 +87,7 @@ const ViewTierBenefits = () => {
                   Usage
                 </th>
                 <th scope="col" class="px-6 py-2 font-normal text-base">
-                  Tire Level
+                  Tier Level
                 </th>
               </tr>
             </thead>
