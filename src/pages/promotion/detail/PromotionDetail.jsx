@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import defaultImage from '../../../assets/images/blog_default_img.png';
 import { FacebookShareButton } from 'react-share';
 import { useParams } from "react-router-dom";
 import { LanguageContext } from "../../../LanguageContext";
@@ -59,7 +58,7 @@ const des = {
   fontSize: '12px'
 }
 
-function PromotionDetail({ promotionId }) {
+function PromotionDetail () {
   const { t, changeLanguage } = useContext(LanguageContext);
   const shareUrl = window.location.href;
 
@@ -105,14 +104,14 @@ function PromotionDetail({ promotionId }) {
     <main className="flex flex-col h-full ">
       <header className="py-3 basis-1/12">
         <a style={icon_style} href="/promotionlist">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
           </svg>
         </a>
         <h1 style={heading}>{t('promotions')}</h1>
         <FacebookShareButton style={share_style} url={shareUrl}>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
           </svg>
         </FacebookShareButton>
       </header>

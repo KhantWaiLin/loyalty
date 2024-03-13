@@ -1,4 +1,4 @@
-function PointList({ index, point, collectedType, isIn, date }) {
+function PointList({ point, collectedType, isIn, date }) {
   return (
     <section className="h-[70px] py-2.5 rounded-tl-lg rounded-tr-lg border-b border-gray-100 justify-between items-start flex">
       <div className=" basis-2/12 flex justify-center items-center">

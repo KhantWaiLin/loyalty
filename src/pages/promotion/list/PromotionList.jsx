@@ -1,6 +1,5 @@
-import React from "react";
 import PromotionItem from "./components/PromotionItem";
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { LanguageContext } from "../../../LanguageContext";
 
 import Loader from "../../../components/loader/Loader";
@@ -39,6 +38,7 @@ const cardListStyle = {
 
 
 function PromotionList() {
+  let i=0;
   const { t, changeLanguage } = useContext(LanguageContext);
   const [promotionData, setPromotionData] = useState("");
 
@@ -72,16 +72,16 @@ function PromotionList() {
   return (
     <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
       <a style={icon_style} href="/home">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
         </svg>
       </a>
       <h1 style={heading}>{t('promotions')}</h1>
       <div style={cardListStyle} className="no-scrollbar">
-        {promotionData &&
+        {promotionData?
           promotionData.map((promotion, index) => (
-            <PromotionItem promotion={promotion} key={index} />
-          ))}
+            <PromotionItem promotion={promotion} key={i++} />
+          )):null}
       </div>
     </div>
   );

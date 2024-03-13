@@ -1,5 +1,5 @@
-import React, {useContext, useEffect} from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import PropTypes from 'prop-types';
 
 const cardStyle = {
   width: '360px',
@@ -18,8 +18,14 @@ const imageSectionStyle = {
 };
 
 function PromotionItem({ promotion }) {
-  
-  let navigate = useNavigate();
+  PromotionItem.propTypes = {
+    promotion: PropTypes.shape({
+      id: PropTypes.string,
+      image: PropTypes.string,
+      name: PropTypes.string,
+      startDate: PropTypes.string
+    }),
+  };
 
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -33,7 +39,7 @@ function PromotionItem({ promotion }) {
         <img
           className="w-full h-full object-contain"
           src={promotion.image}
-          alt="Card Image"
+          alt="Card"
         />
       </div>
       <p className="text-base font-normal not-italic text-[#48505E]">

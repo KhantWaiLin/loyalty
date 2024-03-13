@@ -8,7 +8,6 @@ import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
 import { getUserBrandMemberId } from "../../utils/getBrandUserId";
 
-import Heart from "../../assets/icons/heart-icon.svg";
 import BackArrow from "../../assets/icons/back_arrow.svg";
 import PointIcon from "../../assets/icons/point_icon.svg";
 import { reward } from "../../layouts/icons/RewardIcon";

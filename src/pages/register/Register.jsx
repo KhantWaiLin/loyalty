@@ -148,6 +148,7 @@ const alert_style = {
   }
 
 const Register = () => {
+    let i = 0;
     const [number, setNumber] = useState("");
     const [activeTab, setActiveTab] = useState("tab 1");
     const [activeInputIndex, setActiveInputIndex] = useState(null);
@@ -341,7 +342,7 @@ const Register = () => {
                             <input
                                 type="text"
                                 id={`otp-input-${index}`}
-                                key={index}
+                                key={i++}
                                 value={digit}
                                 onChange={(e) => handleOptInput(e, index)}
                                 maxLength="1"
