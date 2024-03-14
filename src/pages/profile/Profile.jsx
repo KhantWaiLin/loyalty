@@ -131,7 +131,7 @@ const Profile = () => {
               <div className="w-full h-full border-black border-[1px] rounded-full" />
             )}
             {/* camera icon */}
-            <p htmlFor="fileInput" className="absolute z-50 bottom-1 -right-1">
+            <label htmlFor="fileInput" className="absolute z-50 bottom-1 -right-1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -152,7 +152,7 @@ const Profile = () => {
                 />
               </svg>
               <input type="file" id="fileInput" className="hidden" onChange={handleFileChange} />
-            </p>
+            </label>
             {/* camera icon */}
           </div>
           {/* User Image */}

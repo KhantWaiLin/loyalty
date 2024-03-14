@@ -45,8 +45,8 @@ const buttonStyle1 = {
 const HelpCenter = () => {
     const { t, changeLanguage } = useContext(LanguageContext);
     const [isLoading, setIsLoading] = useState(false);
-    const [faqTypeList, setfaqTypeList] = useState(null);
-    const [faqListByType, setfaqListByType] = useState(null);
+    const [faqTypeList, setFaqTypeList] = useState(null);
+    const [faqListByType, setFaqListByType] = useState(null);
     const [activeTab, setActiveTab] = useState("tab 1");
 
     const { faq_type_list, faq_list_byType } = api_routes;
@@ -57,7 +57,7 @@ const HelpCenter = () => {
         await api
             .get(faq_type_list, { brandId: brand_id })
             .then((response) => {
-                setfaqTypeList(response?.data?.value?.data);
+                setFaqTypeList(response?.data?.value?.data);
             });
         setIsLoading(false);
     };
@@ -65,8 +65,7 @@ const HelpCenter = () => {
     const setType = async (type) => {
         try {
             const response = await api.postByBody(faq_list_byType, { brandId: brand_id, keyword: "", type: type });
-            //console.log(response.data.value.data);
-            setfaqListByType(response?.data?.value?.data);
+            setFaqListByType(response?.data?.value?.data);
             setActiveTab("tab 3");
         } catch (error) {
             console.error("Error fetching blog data:", error);
@@ -92,22 +91,22 @@ const HelpCenter = () => {
         <div>
             {activeTab === "tab 2" && (
                 <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
-                    <a style={iconStyle} onClick={() => setActiveTab("tab 1")}>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+                    <button style={iconStyle} onClick={() => setActiveTab("tab 1")}>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                         </svg>
-                    </a>
+                    </button>
                     <div style={headingStyle}>{t('faq')}</div>
                     <HelpCenterCard faq_type_list={faqTypeList} setType={setType} />
                 </div>
             )}
             {activeTab === "tab 3" && (
                 <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
-                    <a style={iconStyle} onClick={() => setActiveTab("tab 2")}>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-5 h-5">
+                    <button style={iconStyle} onClick={() => setActiveTab("tab 2")}>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                         </svg>
-                    </a>
+                    </button>
                     <div style={headingStyle}>{t('faq')}</div>
                     <div style={{ marginTop: '20%', height: '85vh', overflow: 'auto' }} className="no-scrollbar">
                         <QACard faq_type_list={faqListByType} />
@@ -116,55 +115,51 @@ const HelpCenter = () => {
             )}
 
             {activeTab === "tab 1" && (
-                <>
-                    <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
-                        <a style={iconStyle} href="/profile">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                            </svg>
-                        </a>
-                        <div style={headingStyle}>{t('helpCenter')}</div>
-                        <div style={{marginTop: '20%'}}>
-                            <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
+                <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
+                    <a style={iconStyle} href="/profile">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                        </svg>
+                    </a>
+                    <div style={headingStyle}>{t('helpCenter')}</div>
+                    <div style={{ marginTop: '20%' }}>
+                        <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
                             <button style={buttonStyle1} onClick={() => setActiveTab("tab 4")}>
                                 <div>
                                     {t('contactUs')}
                                 </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                                 </svg>
                             </button>
                             <button style={buttonStyle1} onClick={() => setActiveTab("tab 2")}>
                                 <div>
                                     {t('faq')}
                                 </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                                 </svg>
                             </button>
-                            </div>
                         </div>
                     </div>
-                </>
+                </div>
             )}
 
             {activeTab === "tab 4" && (
-                <>
-                    <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
-                        <a style={iconStyle} onClick={() => setActiveTab('tab 1')}>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                            </svg>
-                        </a>
-                        <div style={headingStyle}>{t('helpCenter')}</div>
-                        <div style={{marginTop: '20%'}}>
-                            <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
-                                {t('contactUs')}: 09*******<br/>
-                                {t('email')}: *****.com
-                            </div>
+                <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
+                    <button style={iconStyle} onClick={() => setActiveTab('tab 1')}>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                        </svg>
+                    </button>
+                    <div style={headingStyle}>{t('helpCenter')}</div>
+                    <div style={{ marginTop: '20%' }}>
+                        <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
+                            {t('contactUs')}: 09*******<br />
+                            {t('email')}: *****.com
                         </div>
                     </div>
-                </>
+                </div>
             )}
         </div>
     );
