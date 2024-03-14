@@ -32,6 +32,8 @@ const headingStyle = {
   top: '60px',
   transform: 'translateX(-50%)',
   fontSize: '16px',
+  color: '#48505E',
+  fontFamily: "'Poppins', sans-serif",
 }
 
 const inputBoxStyle = {
@@ -42,6 +44,8 @@ const inputBoxStyle = {
   fontSize: '14px',
   margin: '8px 0',
   outline: 'none',
+  color: '#48505E',
+  fontFamily: "'Poppins', sans-serif",
 };
 
 const inputIconStyle = {
@@ -65,14 +69,15 @@ const forgotStyle = {
   top: '42%',
   left: '65%',
   fontSize: '14px',
-  color: 'blue',
+  color: '#0080FF',
   textDecoration: 'underline',
+  fontFamily: "'Poppins', sans-serif",
 }
 
 const buttonStyle = {
   width: '90%',
   padding: '10px',
-  backgroundColor: 'blue',
+  backgroundColor: '#0080FF',
   color: 'white',
   border: 'none',
   borderRadius: '5px',
@@ -94,6 +99,7 @@ const checkbox_label = {
   top: '0.2rem',
   fontSize: '1rem',
   marginLeft: '1rem',
+  fontFamily: "'Poppins', sans-serif",
 };
 
 const alert_style = {
@@ -218,11 +224,11 @@ const Login = () => {
         }
         <form onSubmit={onSubmit}>
           <div style={inputContainerStyle}>
-            <div style={{ fontSize: '14px' }}>Phone Number</div>
+            <div style={{ fontSize: '14px', fontFamily: "'Poppins', sans-serif"}}>Phone Number</div>
             <input type="text" style={inputBoxStyle} name="userName" value={form.userName} onChange={onChange} />
             <span style={inputIconStyle}><img src={Phone} /></span>
             <br />
-            <div style={{ fontSize: '14px' }}>Password</div>
+            <div style={{ fontSize: '14px', fontFamily: "'Poppins', sans-serif"}}>Password</div>
             <input type="password" id="password" placeholder="Enter Password" style={inputBoxStyle} name="password" value={form.password} onChange={onChange} />
             <span style={passwordVisible} onClick={passwordView}>
               <img src={View} />

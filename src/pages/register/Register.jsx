@@ -34,6 +34,8 @@ const headingStyle = {
     top: '60px',
     transform: 'translateX(-50%)',
     fontSize: '16px',
+    color: '#48505E',
+    fontFamily: "'Poppins', sans-serif",
 }
 
 const inputContainerStyle2 = {
@@ -125,14 +127,15 @@ const terms = {
 const buttonStyle = {
     width: '90%',
     padding: '10px',
-    backgroundColor: 'blue',
+    backgroundColor: '#0080FF',
     color: 'white',
     border: 'none',
     borderRadius: '5px',
     cursor: 'pointer',
     position: 'absolute',
     top: '90%',
-    left: '5%'
+    left: '5%',
+    fontFamily: "'Poppins', sans-serif"
 };
 
 const alert_style = {
@@ -301,20 +304,20 @@ const Register = () => {
                     </a>
                     <div style={headingStyle}>Get Started</div>
                     <div style={inputContainerStyle}>
-                        <div style={{ fontSize: '14px' }}>Username</div>
+                        <div style={{ fontSize: '14px',color: '#48505E', fontFamily: "'Poppins', sans-serif", }}>Username</div>
                         <input type="text" style={inputBoxStyle} name="name" value={data.name} onChange={handleInputChange} />
                         <span style={inputIconStyle}><img alt="user-icon" src={User} /></span>
                         <br />
-                        <div style={{ fontSize: '14px' }}>Phone Number</div>
+                        <div style={{ fontSize: '14px',color: '#48505E', fontFamily: "'Poppins', sans-serif", }}>Phone Number</div>
                         <input type="text" placeholder="Enter Phone Number" style={inputBoxStyle} name="phoneNo" value={data.phoneNo} onChange={handleInputChange} />
                         <span style={phoneIconStyle}><img alt="phone-icon" src={Phone} /></span>
                         <br />
-                        <div style={{ fontSize: '14px' }}>Email</div>
+                        <div style={{ fontSize: '14px',color: '#48505E', fontFamily: "'Poppins', sans-serif", }}>Email</div>
                         <input type="email" placeholder="Enter Email (Optional)" style={inputBoxStyle} name="email" value={data.email} onChange={handleInputChange} />
                         <span style={emailIconStyle}>
                             <img alt="email-icon" src={Email} style={{ width: "16px", height: '16px' }} />
                         </span>
-                        <div style={{ fontSize: '14px' }}>Passwod</div>
+                        <div style={{ fontSize: '14px',color: '#48505E', fontFamily: "'Poppins', sans-serif", }}>Passwod</div>
                         <input id="password" type="password" placeholder="Enter Password" style={inputBoxStyle} name="password" value={data.password} onChange={handleInputChange} />
                         <button style={viewStyle} onClick={passwordView}>
                             <img alt="view-icon" src={View} style={{ width: "16px", height: '16px' }} />

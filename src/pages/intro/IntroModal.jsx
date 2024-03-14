@@ -21,13 +21,15 @@ const btnStyle = {
   borderRadius: '6px',
   cursor: 'pointer',
   margin: '5px 0',
-  backgroundColor: '#F0F1F3',
+  backgroundColor: '#F8F8FF',
+  fontSize: '16px',
+  fontFamily: "'Poppins', sans-serif",
+  color: "#48505E"
 };
 
 const blueBtnStyle = {
   ...btnStyle,
-  backgroundColor: 'blue',
-  opacity: '0.5',
+  backgroundColor: '#0080FF',
   color: 'white'
 };
 
