@@ -34,6 +34,8 @@ const headingStyle = {
     top: '60px',
     transform: 'translateX(-50%)',
     fontSize: '16px',
+    color: '#48505E',
+    fontFamily: "'Poppins', sans-serif",
 }
 
 const inputContainerStyle2 = {
@@ -125,17 +127,31 @@ const terms = {
 const buttonStyle = {
     width: '90%',
     padding: '10px',
-    backgroundColor: 'blue',
+    backgroundColor: '#0080FF',
     color: 'white',
     border: 'none',
     borderRadius: '5px',
     cursor: 'pointer',
     position: 'absolute',
     top: '90%',
-    left: '5%'
+    left: '5%',
+    fontFamily: "'Poppins', sans-serif"
 };
 
+const alert_style = {
+    position: "absolute",
+    textAlign: "center",
+    left: "10%",
+    border: '1px solid rgba(128, 128, 128, 0.5)',
+    padding: '5px 10px',
+    borderRadius: '5px',
+    width: '80%',
+    backgroundColor: 'red',
+    color: 'white',
+  }
+
 const Register = () => {
+    let i = 0;
     const [number, setNumber] = useState("");
     const [activeTab, setActiveTab] = useState("tab 1");
     const [activeInputIndex, setActiveInputIndex] = useState(null);
@@ -144,6 +160,8 @@ const Register = () => {
     const [countdown, setCountdown] = useState(60);
     const { send_otp, register_user } = api_routes;
     const { brand_id, branch_id } = getUserBrandMemberId();
+    const [regFail, setRegFail] = useState(false);
+    const [failtext, setFailtext] = useState(false);
     const [data, setData] = useState({
         name: null,
         phoneNo: null,
@@ -190,6 +208,10 @@ const Register = () => {
             if (response?.data?.code === 200) {
                 setCountdown(60);
                 setActiveTab("tab 2");
+                setRegFail(false);
+            }else{
+                setFailtext(response?.data?.message);
+                setRegFail(true);
             }
             setIsLoading(false);
         });
@@ -272,6 +294,9 @@ const Register = () => {
         <div>
             {activeTab === "tab 1" && (
                 <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
+                    {
+                        regFail? <p style={alert_style}>{failtext}</p>: null
+                    }
                     <a style={iconStyle} href="/login">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
@@ -279,20 +304,20 @@ const Register = () => {
                     </a>
                     <div style={headingStyle}>Get Started</div>
                     <div style={inputContainerStyle}>
-                        <div style={{ fontSize: '14px' }}>Username</div>
+                        <div style={{ fontSize: '14px',color: '#48505E', fontFamily: "'Poppins', sans-serif", }}>Username</div>
                         <input type="text" style={inputBoxStyle} name="name" value={data.name} onChange={handleInputChange} />
                         <span style={inputIconStyle}><img alt="user-icon" src={User} /></span>
                         <br />
-                        <div style={{ fontSize: '14px' }}>Phone Number</div>
+                        <div style={{ fontSize: '14px',color: '#48505E', fontFamily: "'Poppins', sans-serif", }}>Phone Number</div>
                         <input type="text" placeholder="Enter Phone Number" style={inputBoxStyle} name="phoneNo" value={data.phoneNo} onChange={handleInputChange} />
                         <span style={phoneIconStyle}><img alt="phone-icon" src={Phone} /></span>
                         <br />
-                        <div style={{ fontSize: '14px' }}>Email</div>
+                        <div style={{ fontSize: '14px',color: '#48505E', fontFamily: "'Poppins', sans-serif", }}>Email</div>
                         <input type="email" placeholder="Enter Email (Optional)" style={inputBoxStyle} name="email" value={data.email} onChange={handleInputChange} />
                         <span style={emailIconStyle}>
                             <img alt="email-icon" src={Email} style={{ width: "16px", height: '16px' }} />
                         </span>
-                        <div style={{ fontSize: '14px' }}>Passwod</div>
+                        <div style={{ fontSize: '14px',color: '#48505E', fontFamily: "'Poppins', sans-serif", }}>Passwod</div>
                         <input id="password" type="password" placeholder="Enter Password" style={inputBoxStyle} name="password" value={data.password} onChange={handleInputChange} />
                         <button style={viewStyle} onClick={passwordView}>
                             <img alt="view-icon" src={View} style={{ width: "16px", height: '16px' }} />
@@ -320,7 +345,7 @@ const Register = () => {
                             <input
                                 type="text"
                                 id={`otp-input-${index}`}
-                                key={index}
+                                key={i++}
                                 value={digit}
                                 onChange={(e) => handleOptInput(e, index)}
                                 maxLength="1"

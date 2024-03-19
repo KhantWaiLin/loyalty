@@ -80,6 +80,7 @@ const ServiceList = () => {
 };
 
 const renderServiceRows = (serviceList) => {
+  let x = 0;
   const rows = [];
   if (serviceList) {
     for (let i = 0; i < serviceList.length; i += 2) {
@@ -87,7 +88,7 @@ const renderServiceRows = (serviceList) => {
     }
   }
   return rows.map((row, index) => (
-    <div key={index} className="flex space-x-4">
+    <div key={x++} className="flex space-x-4">
       {row.map((service) => (
         <div key={service.name} className="w-[185px] h-[150px] cursor-pointer">
           <ServiceCard

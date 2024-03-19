@@ -82,18 +82,17 @@ const imageSection = {
   
 }
 
-// PointTotal.propTypes = {
-//   point_data: PropTypes.shape({
-//     point: PropTypes.string,
-//   }),
-//   user_info: PropTypes.shape({
-//     memberType: PropTypes.string,
-//     image: PropTypes.string,
-//     expireDate: PropTypes.string,
-//   }),
-// };
-
 const PointTotal = ({ point_data, user_info }) => {
+  PointTotal.propTypes = {
+    point_data: PropTypes.shape({
+      point: PropTypes.string,
+    }),
+    user_info: PropTypes.shape({
+      memberType: PropTypes.string,
+      image: PropTypes.string,
+      expireDate: PropTypes.string,
+    }),
+  };
   const formatDate = (date) => {
     const formattedDate = parse(date, 'MM/yyyy', new Date());
     return format(formattedDate, 'd.MM.yyyy');

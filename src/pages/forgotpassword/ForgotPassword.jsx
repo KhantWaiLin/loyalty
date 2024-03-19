@@ -31,6 +31,8 @@ const headingStyle = {
   top: '60px',
   transform: 'translateX(-50%)',
   fontSize: '16px',
+  color: '#48505E',
+  fontFamily: "'Poppins', sans-serif",
 }
 
 const inputBoxStyle = {
@@ -41,11 +43,14 @@ const inputBoxStyle = {
   fontSize: '14px',
   margin: '8px 0',
   outline: 'none',
+  fontFamily: "'Poppins', sans-serif"
 };
 
 const opt_des = {
     position: 'absolute',
     top: '15%',
+    fontFamily: "'Poppins', sans-serif",
+    fontSize: '12px'
 }
 
 const otpInputStyle = {
@@ -57,11 +62,13 @@ const otpInputStyle = {
     justifyContent: 'center',
     alignItems: 'flex-end',
     borderBottom: '1px solid #000',
-    opacity: '0.5'
+    opacity: '0.5',
+    fontSize: '24px'
 };
 
 const activeInputStyle = {
-    borderBottomColor: 'blue',
+    borderBottom: '1px solid #0080FF',
+    color: '#0080FF',
 };
 
 const countStyle = {
@@ -88,6 +95,7 @@ const inputIconStyle = {
   transform: 'translateY(-50%)',
   color: '#333',
 };
+
 const inputIconStyle1 = {
     position: 'absolute',
     top: '85%',
@@ -100,20 +108,22 @@ const text = {
     position: 'absolute',
     top: '25%',
     opacity: '0.5',
-    fontSize: '10px'
+    fontSize: '12px',
+    fontFamily: "'Poppins', sans-serif"
 }
 
 const buttonStyle = {
   width: '90%',
   padding: '10px',
-  backgroundColor: 'blue',
+  backgroundColor: '#0080FF',
   color: 'white',
   border: 'none',
   borderRadius: '5px',
   cursor: 'pointer',
   position: 'absolute',
   top: '90%',
-  left: '5%'
+  left: '5%',
+  fontFamily: "'Poppins', sans-serif"
 };
 
 const resetStyle = {
@@ -262,9 +272,9 @@ const ForgotPassword = () => {
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                         </svg>
                     </a>
-                    <div style={headingStyle}>Get Started</div>
+                    <div style={headingStyle}>Forgot Password?</div>
                     <div style={inputContainerStyle}>
-                        <div style={{ fontSize: '14px' }}>Phone Number</div>
+                        <div style={{ fontSize: '14px', fontFamily: "'Poppins', sans-serif" }}>Phone Number</div>
                         <input type="text" placeholder="Enter Phone Number" style={inputBoxStyle} name="phoneNo" value={number} onChange={handleInputChange} />
                         <span style={inputIconStyle}><img src={Phone} /></span>
                     </div>
@@ -284,7 +294,7 @@ const ForgotPassword = () => {
                         </button>
                         <div style={headingStyle}>Verification</div>
                         <p style={opt_des}>
-              Enter the 6-digit codes sent to {number}
+              A verification code has been sent to <span style={{color:'#0080FF'}}>{number}</span>
             </p>
                         <div style={inputContainerStyle2}>
                             {otp.map((digit, index) => (

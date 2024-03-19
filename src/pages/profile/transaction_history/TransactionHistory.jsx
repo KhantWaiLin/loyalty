@@ -17,7 +17,7 @@ const TransactionHistory = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { transaction_history } = api_routes;
-  const { brand_id, user_id, member_id } = getUserBrandMemberId();
+  const { brand_id, user_id } = getUserBrandMemberId();
 
   useEffect(() => {
     get_transaction();

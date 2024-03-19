@@ -21,13 +21,15 @@ const btnStyle = {
   borderRadius: '6px',
   cursor: 'pointer',
   margin: '5px 0',
-  backgroundColor: '#F0F1F3',
+  backgroundColor: '#F8F8FF',
+  fontSize: '16px',
+  fontFamily: "'Poppins', sans-serif",
+  color: "#48505E"
 };
 
 const blueBtnStyle = {
   ...btnStyle,
-  backgroundColor: 'blue',
-  opacity: '0.5',
+  backgroundColor: '#0080FF',
   color: 'white'
 };
 
@@ -36,7 +38,7 @@ const IntroModal = () => {
 
   return (
     <div id='modal' className="modal-overlay" style={modalStyle}>
-      <div className="modal-content" style={{margin:'5%', marginLeft:'10%'}}>
+      <div className="modal-content" style={{margin:'5%', textAlign:'center'}}>
         <button style={blueBtnStyle} onClick={() => navigate('/login')}>Login</button>
         <button style={btnStyle} onClick={() => navigate('/register')}>Sign Up</button>
       </div>

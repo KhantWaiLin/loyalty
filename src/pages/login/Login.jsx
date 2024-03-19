@@ -32,6 +32,8 @@ const headingStyle = {
   top: '60px',
   transform: 'translateX(-50%)',
   fontSize: '16px',
+  color: '#48505E',
+  fontFamily: "'Poppins', sans-serif",
 }
 
 const inputBoxStyle = {
@@ -42,6 +44,8 @@ const inputBoxStyle = {
   fontSize: '14px',
   margin: '8px 0',
   outline: 'none',
+  color: '#48505E',
+  fontFamily: "'Poppins', sans-serif",
 };
 
 const inputIconStyle = {
@@ -65,14 +69,15 @@ const forgotStyle = {
   top: '42%',
   left: '65%',
   fontSize: '14px',
-  color: 'blue',
+  color: '#0080FF',
   textDecoration: 'underline',
+  fontFamily: "'Poppins', sans-serif",
 }
 
 const buttonStyle = {
   width: '90%',
   padding: '10px',
-  backgroundColor: 'blue',
+  backgroundColor: '#0080FF',
   color: 'white',
   border: 'none',
   borderRadius: '5px',
@@ -83,7 +88,7 @@ const buttonStyle = {
 };
 
 const checkbox = {
-  marginTop: "95%",
+  marginTop: "75%",
   position: 'relative',
   top: '0.2rem',
   fontSize: '1rem',
@@ -94,8 +99,20 @@ const checkbox_label = {
   top: '0.2rem',
   fontSize: '1rem',
   marginLeft: '1rem',
+  fontFamily: "'Poppins', sans-serif",
 };
 
+const alert_style = {
+  position: "absolute",
+  textAlign: "center",
+  left: "10%",
+  border: '1px solid rgba(128, 128, 128, 0.5)',
+  padding: '5px 10px',
+  borderRadius: '5px',
+  width: '80%',
+  backgroundColor: 'red',
+  color: 'white',
+}
 
 const Login = () => {
   const navigate = useNavigate();
@@ -109,6 +126,8 @@ const Login = () => {
   const api_url =
     process.env.REACT_APP_API_URL + "/api/Authentication/Authenticate";
   const [rememberMe, setRememberMe] = useState(false);
+  const [loginFail, setLoginFail] = useState(false);
+  const [failtext, setFailtext] = useState(false);
 
   const handleRememberMe = () => {
     setRememberMe(!rememberMe);
@@ -161,6 +180,8 @@ const Login = () => {
         navigate("/home");
       } else {
         console.log("Login Failed.");
+        setFailtext(response?.data?.message);
+        setLoginFail(true);
       }
     });
   };
@@ -198,13 +219,16 @@ const Login = () => {
           </svg>
         </a>
         <div style={headingStyle}>Get Started</div>
+        {
+          loginFail? <p style={alert_style}>{failtext}</p>: null
+        }
         <form onSubmit={onSubmit}>
           <div style={inputContainerStyle}>
-            <div style={{ fontSize: '14px' }}>Phone Number</div>
+            <div style={{ fontSize: '14px', fontFamily: "'Poppins', sans-serif"}}>Phone Number</div>
             <input type="text" style={inputBoxStyle} name="userName" value={form.userName} onChange={onChange} />
             <span style={inputIconStyle}><img src={Phone} /></span>
             <br />
-            <div style={{ fontSize: '14px' }}>Password</div>
+            <div style={{ fontSize: '14px', fontFamily: "'Poppins', sans-serif"}}>Password</div>
             <input type="password" id="password" placeholder="Enter Password" style={inputBoxStyle} name="password" value={form.password} onChange={onChange} />
             <span style={passwordVisible} onClick={passwordView}>
               <img src={View} />

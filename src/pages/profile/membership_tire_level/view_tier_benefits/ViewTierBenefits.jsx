@@ -56,7 +56,6 @@ const ViewTierBenefits = () => {
   useEffect(() => {
     get_tire_list();
     changeLanguage(localStorage.getItem("language"));
-    // eslint-disable-next-line
   }, []);
 
   if (isLoading) {

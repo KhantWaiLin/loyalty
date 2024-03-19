@@ -9,8 +9,6 @@ import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
 import { getUserBrandMemberId } from "../../utils/getBrandUserId";
 
-import Heart from "../../assets/icons/heart-icon.svg";
-
 import { LanguageContext } from "../../LanguageContext";
 
 import "./Reward.scss";
