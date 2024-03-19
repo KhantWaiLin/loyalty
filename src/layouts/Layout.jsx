@@ -36,7 +36,8 @@ const Layout = ({ children }) => {
       location.pathname.includes('/login') ||
       location.pathname.includes('/forgotpassword') ||
       location.pathname.includes('profile/change-password') ||
-      location.pathname.includes('/profile/help-center')
+      location.pathname.includes('/profile/help-center') ||
+      location.pathname.includes('/profile/terms')
     ) {
       return false;
     }
