@@ -38,7 +38,7 @@ const IntroModal = () => {
 
   return (
     <div id='modal' className="modal-overlay" style={modalStyle}>
-      <div className="modal-content" style={{margin:'5%', marginLeft:'10%'}}>
+      <div className="modal-content" style={{margin:'5%', textAlign:'center'}}>
         <button style={blueBtnStyle} onClick={() => navigate('/login')}>Login</button>
         <button style={btnStyle} onClick={() => navigate('/register')}>Sign Up</button>
       </div>

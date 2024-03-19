@@ -49,6 +49,8 @@ const inputBoxStyle = {
 const opt_des = {
     position: 'absolute',
     top: '15%',
+    fontFamily: "'Poppins', sans-serif",
+    fontSize: '12px'
 }
 
 const otpInputStyle = {
@@ -60,11 +62,13 @@ const otpInputStyle = {
     justifyContent: 'center',
     alignItems: 'flex-end',
     borderBottom: '1px solid #000',
-    opacity: '0.5'
+    opacity: '0.5',
+    fontSize: '24px'
 };
 
 const activeInputStyle = {
-    borderBottomColor: 'blue',
+    borderBottom: '1px solid #0080FF',
+    color: '#0080FF',
 };
 
 const countStyle = {
@@ -290,7 +294,7 @@ const ForgotPassword = () => {
                         </button>
                         <div style={headingStyle}>Verification</div>
                         <p style={opt_des}>
-              Enter the 6-digit codes sent to {number}
+              A verification code has been sent to <span style={{color:'#0080FF'}}>{number}</span>
             </p>
                         <div style={inputContainerStyle2}>
                             {otp.map((digit, index) => (
