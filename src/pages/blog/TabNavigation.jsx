@@ -4,6 +4,7 @@ import "./TabNavigation.css";
 const navstyle = {
   width: '50%',
   textAlign: 'center',
+  marginTop: '24px'
 };
 
 const TabNavigation = ({ savedorliked }) => {

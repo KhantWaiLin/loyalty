@@ -105,15 +105,15 @@ const Profile = () => {
   }
 
   return (
-    <div className="flex flex-col w-full overflow-hidden profile-wrapper no-scrollbar">
+    <div style={{fontFamily: "'Poppins', sans-serif",}} className="flex flex-col w-full overflow-hidden profile-wrapper no-scrollbar">
       <section className="bg-indigo-700 min-h-[172px] shadown-xl basis-3/12 flex flex-col">
         <article className="flex mx-[20px] mt-[72.5px] mb-[19.5px] justify-between items-center ">
           {/* User name and email */}
           <div className="flex flex-col  justify-evenly w-[155px] h-[80px]">
-            <p className="text-xl font-bold leading-normal text-white">
+            <p className="text-[20px] text-xl font-bold leading-normal text-white">
               {profile?.name}
             </p>
-            <p className="text-sm font-medium leading-normal text-white">
+            <p className="text-[14px] text-sm font-medium leading-normal text-white">
               {profile?.email}
             </p>
           </div>

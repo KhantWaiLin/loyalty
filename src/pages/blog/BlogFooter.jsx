@@ -21,6 +21,8 @@ const styles = {
         display: "flex",
         alignItems: "center",
         gap: "1rem",
+        marginLeft: '20px',
+        marginRight: '20px'
     },
 };
 

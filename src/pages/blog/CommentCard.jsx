@@ -43,7 +43,7 @@ const gapStyle = {
 
 function CommentCard({ comment }) {
     return (
-        <div style={cardStyle}>
+        <div style={{...cardStyle, fontFamily: "'Poppins', sans-serif",fontSize: '12px', color: "#48505E",}}>
             <div href='#' style={imageSectionStyle}>
                 <img
                     style={imageStyle}

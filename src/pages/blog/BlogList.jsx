@@ -20,7 +20,10 @@ const cardListStyle = {
 };
 
 const headingStyle = {
-  marginLeft: '200px',
+  fontSize: '16px',
+  textAlign: 'center',
+  fontFamily: "'Poppins', sans-serif",
+  color: "#48505E",
   marginTop: '20px',
 };
 

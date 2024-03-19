@@ -10,7 +10,9 @@ import Loader from "../../components/loader/Loader";
 const heading = {
   marginTop: '52px',
   fontSize: '16px',
-  textAlign: 'center'
+  textAlign: 'center',
+  fontFamily: "'Poppins', sans-serif",
+  color: "#48505E"
 }
 
 const point = {
@@ -46,7 +48,7 @@ const qr_des = {
 }
 
 const name = {
-  marginTop : '30px',
+  // marginTop : '30px',
   textAlign : 'center',
   fontSize : '20px',
 }
@@ -55,6 +57,15 @@ const email = {
   marginTop : '10px',
   textAlign : 'center',
   fontSize : '14px',
+}
+
+const infoStyle = {
+  background: '#F8F8FF',
+  padding: '5px',
+  borderRadius: '10px',
+  width: '80%',
+  textAlign: 'center',
+  marginLeft: '10%'
 }
 
 const QR = () => {
@@ -104,8 +115,10 @@ const QR = () => {
         <QRCode style={qr} value={qrCode} fgColor="#384BCA"/>
       </div>
       <div style={qr_des}>Scan my QR</div>
-      <div style={name}>{userInfo?.name}</div>
-      <div style={email}>{userInfo?.email}</div>
+      <div style={infoStyle}>
+        <div style={name}>{userInfo?.name}</div>
+        <div style={email}>{userInfo?.email}</div>
+      </div>
     </div>
   )
 }

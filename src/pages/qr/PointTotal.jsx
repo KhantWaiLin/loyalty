@@ -101,7 +101,7 @@ const PointTotal = ({ point_data, user_info }) => {
     <div style={pointTotalContainer} className="point-total rounded-lg">
       <div style={cardFoot}>
         <div>
-          <h3 className="text-[#FFF] text-[14px] font-semibold">
+          <h3 style={{fontFamily: "'Poppins', sans-serif",}} className="text-[#FFF] text-[14px] font-semibold">
             Total Loyalty Points
           </h3>
           <div style={contentContainer}>

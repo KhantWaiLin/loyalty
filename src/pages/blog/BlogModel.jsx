@@ -11,7 +11,7 @@ const modalStyle = {
 
 const iconStyle = {
   backgroundColor: '#FAFAFA',
-  padding: '8px',
+  padding: '10px',
   border: '1px',
   borderRadius: '5px'
 }

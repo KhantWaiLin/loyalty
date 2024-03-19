@@ -33,7 +33,7 @@ return (
         <p className="text-[#667085] text-[14px]">{greeting}</p>
         {/* <img src={Cloud} className="w-[18px] h-[18px]" /> */}
       </div>
-      <h4 className="text-[#48505E] text-[20px] font-medium">
+      <h4 style={{fontFamily: "'Poppins', sans-serif"}} className="text-[#48505E] text-[20px] font-medium">
         {user?.name}
       </h4>
     </div>

@@ -48,7 +48,7 @@ const CommentBox = ({BlogId, data}) => {
                 placeholder="Type Something..."
                 value={comment}
                 onChange={handleCommentChange}
-                style={commentBoxStyle}
+                style={{...commentBoxStyle,fontFamily: "'Poppins', sans-serif",fontSize: '14px', color: "#48505E",}}
             />
             <button
                 onClick={handleSaveComment}

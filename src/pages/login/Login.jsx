@@ -69,7 +69,7 @@ const forgotStyle = {
   top: '42%',
   left: '65%',
   fontSize: '14px',
-  color: '#0080FF',
+  color: 'linear-gradient(213deg, #384bca 19.49%, #7b8cff 194.01%)',
   textDecoration: 'underline',
   fontFamily: "'Poppins', sans-serif",
 }
@@ -77,7 +77,7 @@ const forgotStyle = {
 const buttonStyle = {
   width: '90%',
   padding: '10px',
-  backgroundColor: '#0080FF',
+  background: 'linear-gradient(213deg, #384bca 19.49%, #7b8cff 194.01%)',
   color: 'white',
   border: 'none',
   borderRadius: '5px',
