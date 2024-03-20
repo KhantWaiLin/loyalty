@@ -83,7 +83,7 @@ const RewardDetail = () => {
   }
 
   return (
-    <div className="reward-detail relative p-4 w-full h-full overflow-hidden">
+    <div style={{fontFamily: "'Poppins', sans-serif",color: "#48505E"}} className="reward-detail relative p-4 w-full h-full overflow-hidden">
       {showPopup && (
         <RedeemModal
           title="Redeem item?"
@@ -97,6 +97,7 @@ const RewardDetail = () => {
       <div className="reward-detail-wrapper w-full relative overflow-hidden">
         <div className="flex w-full items-center mt-5 justify-between mb-6">
           <button
+            style={{padding: '10px'}}
             type="button"
             onClick={() => navigate(-1)}
             className="w-[50px] h-[50px] flex items-center justify-center border-[1px] border-[#F0F1F3] rounded-lg bg-[#FAFAFA]  text-white"

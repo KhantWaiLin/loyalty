@@ -8,10 +8,11 @@ const RedeemModal = ({ title, desc, onClick, image }) => {
 
   return (
     <div
+      style={{backgroundColor: 'rgba(0, 0, 0, 0.5)'}}
       className="redeem-modal flex w-full h-full justify-center z-20 items-center absolute  left-0 top-0"
       onClick={() => onClick(false)}
     >
-      <div className="redeem-container w-full p-4 bg-white z-30 shadow-md rounded-lg">
+      <div style={{borderRadius:'12px'}} className="redeem-container w-full p-4 bg-white z-30 shadow-md rounded-lg">
         <div className="w-full reward-icon-wrapper mb-4">
           <div className="w-[48px] h-[48px] flex items-center justify-center rounded-full bg-[#F5F6FD]">
             <div className="w-[35px] h-[35px] flex items-center justify-center rounded-full bg-[#F0F1F3]">

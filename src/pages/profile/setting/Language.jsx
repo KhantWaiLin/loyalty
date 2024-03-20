@@ -5,7 +5,10 @@ import { LanguageContext } from "../../../LanguageContext";
 
 const headingStyle = {
   textAlign: 'center',
-  marginTop: '23px',
+  marginTop: '30px',
+  fontFamily: "'Poppins', sans-serif",
+  fontSize: '16px',
+  color: "#48505E"
 };
 
 const iconStyle = {
@@ -13,7 +16,7 @@ const iconStyle = {
   left: '17px',
   top: '20px',
   backgroundColor: '#FAFAFA',
-  padding: '8px',
+  padding: '10px',
   border: '1px',
   borderRadius: '5px',
 };
