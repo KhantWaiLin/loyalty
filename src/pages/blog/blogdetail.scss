@@ -1,0 +1,87 @@
+$color-primary: #48504E;
+$color-background: #FAFAFA;
+$border-radius: 4px;
+$icon-padding: 9px;
+$image-border-width: 4.29px;
+$image-border-gradient-start: #1746A2;
+$image-border-gradient-end: #FFFFFF;
+
+.common-styles {
+  position: absolute;
+  background-color: $color-background;
+  border-radius: $border-radius;
+}
+
+.icon-style {
+  @extend .common-styles;
+  left: 14px;
+  top: 51px;
+  padding: $icon-padding;
+  border: 0;
+}
+
+.save-style {
+  @extend .common-styles;
+  left: 84%;
+  top: 54px;
+  padding: $icon-padding;
+  border: 0;
+}
+
+.title-style {
+  margin-left: 14px;
+  margin-top: 74px;
+  font-size: 15px;
+  color: $color-primary;
+}
+
+.date-style {
+  margin-left: 14px;
+  margin-top: 11px;
+  font-size: 11px;
+  color: $color-primary;
+}
+
+.image-style {
+  @extend .common-styles;
+  margin-top: 23px;
+  margin-left: 14px;
+  width: 379px;
+  height: 174px;
+  border: #{$image-border-width} linear-gradient(#{$image-border-gradient-start}, #{$image-border-gradient-end}) solid;
+}
+
+.blog-content-style {
+  margin-top: 200px;
+  margin-left: 14px;
+  text-indent: 49px;
+  text-align: justify;
+  width: 91%;
+  height: 39vh;
+  overflow: auto;
+  font-size: 11px;
+}
+
+.comment-section-style {
+  position: absolute;
+  top: 95%;
+}
+
+.heading-style {
+  left: 39%;
+  top: 0%;
+  font-size: 15px;
+  color: $color-primary;
+}
+
+.comments-style {
+  position: absolute;
+  top: 9%;
+  width: 97%;
+  height: 84%;
+  overflow-y: auto;
+}
+
+.body-style {
+  font-family: Poppins, sans-serif
+}
