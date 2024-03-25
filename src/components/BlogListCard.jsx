@@ -6,22 +6,7 @@ import Comment from "../assets/icons/comment-icon.svg";
 import api from "../api/api";
 import { api_routes } from "../utils/apiRoute";
 import { getUserBrandMemberId } from "../utils/getBrandUserId";
-
-const cardStyle = {
-  width: '388px',
-  height: '260px',
-  border: '1px solid #F0F1F3',
-  borderRadius: '20px',
-  padding: '10px',
-};
-
-const imageSectionStyle = {
-  width: '80%',
-  height: '140px',
-  borderRadius: '8px',
-  overflow: 'hidden',
-  objectFit: 'cover',
-};
+import "./bloglistcard.scss";
 
 function BlogListCard({ blog, link }) {
   const url = '/blog/';
@@ -68,9 +53,9 @@ function BlogListCard({ blog, link }) {
   }, [link, saved_blogs]);
 
   return (
-    <div style={cardStyle}>
+    <div className="cardStyle">
       <a href={url + link}>
-        <div style={imageSectionStyle}>
+        <div className="imageSectionStyle">
           <img
             className="w-full h-full object-contain"
             src={blog?.image}

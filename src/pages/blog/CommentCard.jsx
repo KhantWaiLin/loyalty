@@ -1,5 +1,6 @@
 import React from "react";
-import DefaultImage from "../../assets/images/profile_img.svg"
+import DefaultImage from "../../assets/images/profile_img.svg";
+import './commentcard.scss';
 
 const cardStyle = {
     display: 'flex',
@@ -43,7 +44,7 @@ const gapStyle = {
 
 function CommentCard({ comment }) {
     return (
-        <div style={{...cardStyle, fontFamily: "'Poppins', sans-serif",fontSize: '12px', color: "#48505E",}}>
+        <div style={{...cardStyle}}>
             <div href='#' style={imageSectionStyle}>
                 <img
                     style={imageStyle}

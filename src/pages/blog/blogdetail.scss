@@ -72,6 +72,7 @@ $image-border-gradient-end: #FFFFFF;
   top: 0%;
   font-size: 15px;
   color: $color-primary;
+  position: absolute;
 }
 
 .comments-style {
@@ -80,8 +81,4 @@ $image-border-gradient-end: #FFFFFF;
   width: 97%;
   height: 84%;
   overflow-y: auto;
-}
-
-.body-style {
-  font-family: Poppins, sans-serif
 }

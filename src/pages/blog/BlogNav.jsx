@@ -1,15 +1,9 @@
 import React from "react";
 import "./nav.css";
 
-const position = {
-    position : 'absolute',
-    top : '100px',
-    left : '15px'
-}
-
 const NavList = () => {
   return (
-    <nav className="flex" style={position}>
+    <nav className="flex position">
       <a href="#" className="nav-link">
         All
       </a>

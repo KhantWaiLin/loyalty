@@ -159,9 +159,11 @@ const Register = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [countdown, setCountdown] = useState(60);
     const { send_otp, register_user } = api_routes;
-    const { brand_id, branch_id } = getUserBrandMemberId();
+    //const { brand_id, branch_id } = getUserBrandMemberId();
     const [regFail, setRegFail] = useState(false);
     const [failtext, setFailtext] = useState(false);
+    const brand_id = process.env.brand_id;
+    const branch_id = process.env.branch_id;
     const [data, setData] = useState({
         name: null,
         phoneNo: null,
