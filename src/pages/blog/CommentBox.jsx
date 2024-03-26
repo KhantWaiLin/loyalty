@@ -4,8 +4,13 @@ import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
 import Send from "../../assets/icons/send.svg";
 import './bloglist.scss';
+import PropTypes from 'prop-types';
 
 const CommentBox = ({BlogId, data}) => {
+    CommentBox.propTypes = {
+    BlogId: PropTypes.string,
+    data: PropTypes.any,
+ };
     const [comment, setComment] = useState('');
     const { blog_react } = api_routes;
     const { user_id } = getUserBrandMemberId();

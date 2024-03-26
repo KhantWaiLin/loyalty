@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import BlogListCard from "../../components/BlogListCard";
-import BlogNav from "./BlogNav";
 import { LanguageContext } from "../../LanguageContext";
 
 import Loader from "../../components/loader/Loader";
@@ -21,7 +20,6 @@ const BlogList = () => {
 
     try {
       const response = await api.postByBody(blog_list, { brandId: brand_id });
-      //console.log(response.data.value.data.data);
       setBlogList(response?.data?.value?.data?.data);
     } catch (error) {
       console.error("Error fetching blog data:", error);

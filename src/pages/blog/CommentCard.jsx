@@ -1,6 +1,7 @@
 import React from "react";
 import DefaultImage from "../../assets/images/profile_img.svg";
 import './commentcard.scss';
+import PropTypes from 'prop-types';
 
 const cardStyle = {
     display: 'flex',
@@ -43,13 +44,15 @@ const gapStyle = {
 };
 
 function CommentCard({ comment }) {
+    CommentCard.propTypes = {
+    comment: PropTypes.any,
+ };
     return (
         <div style={{...cardStyle}}>
             <div href='#' style={imageSectionStyle}>
                 <img
                     style={imageStyle}
                     src={comment?.customerImage || DefaultImage}
-                    //placeholder={DefaultImage}
                     alt="Card Image"
                 />
                 <div style={textSectionStyle}>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./TabNavigation.css";
+import PropTypes from 'prop-types';
 
 const navstyle = {
   width: '50%',
@@ -8,6 +9,9 @@ const navstyle = {
 };
 
 const TabNavigation = ({ savedorliked }) => {
+  TabNavigation.propTypes = {
+    savedorliked: PropTypes.string
+  };
   const [activeTab, setActiveTab] = useState('saved');
 
   const handleTabClick = (tabName, event) => {

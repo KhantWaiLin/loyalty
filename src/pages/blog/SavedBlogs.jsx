@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import TabNavigation from "./TabNavigation";
 import SavedBlogCard from "./SavedBlogCard";
 
-import Loader from "../../components/loader/Loader";
 import api from "../../api/api";
 import { api_routes } from "../../utils/apiRoute";
 import { getUserBrandMemberId } from "../../utils/getBrandUserId";
@@ -35,21 +34,9 @@ const iconStyle = {
   borderRadius: '5px',
 };
 
-const saveStyle = {
-  position: 'absolute',
-  left: '380px',
-  top: '20px',
-  transform: 'translateX(-100%)',
-  backgroundColor: '#FAFAFA',
-  border: '1px',
-  padding: '8px',
-  borderRadius: '5px',
-};
-
 const SavedBlogs = () => {
-  const [blogSaved, setblogSaved] = useState(null);
+  const [blogSaved, setBlogSaved] = useState(null);
   const { saved_blogs } = api_routes;
-  const [isLoading, setIsLoading] = useState(false);
   const [savedCheck, setSavedCheck] = useState("true");
 
   const savedTabAssign = (data) => {
@@ -57,17 +44,14 @@ const SavedBlogs = () => {
   }
 
   const fetchBlogData = async () => {
-    setIsLoading(true);
     const { user_id } = getUserBrandMemberId();
 
     try {
       const response = await api.postByBody(saved_blogs, { customerId: user_id, savedTab: savedCheck });
-      //console.log(response.data.value);
-      setblogSaved(response?.data?.value?.data?.data);
+      setBlogSaved(response?.data?.value?.data?.data);
     } catch (error) {
       console.error("Error fetching blog data:", error);
     } finally {
-      setIsLoading(false);
     }
   };
 
@@ -75,16 +59,8 @@ const SavedBlogs = () => {
     fetchBlogData();
   }, [savedCheck]);
 
-  // if (isLoading) {
-  //   return (
-  //     <div className="reward-wrapper items-center flex flex-col justify-center">
-  //       <Loader />
-  //     </div>
-  //   );
-  // }
-
   return (
-    <div style={{fontFamily: "'Poppins', sans-serif"}} className="text-black-500 text-lg">
+    <div className="text-black-500 text-lg">
       <a style={iconStyle} href="/bloglist">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
           <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
