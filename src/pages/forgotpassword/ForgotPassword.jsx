@@ -25,6 +25,10 @@ const inputContainerStyle = {
   left: '5%'
 };
 
+const label = { 
+    fontSize: '14px'
+};
+
 const headingStyle = {
   position: 'absolute',
   left: '50%',
@@ -32,7 +36,6 @@ const headingStyle = {
   transform: 'translateX(-50%)',
   fontSize: '16px',
   color: '#48505E',
-  fontFamily: "'Poppins', sans-serif",
 }
 
 const inputBoxStyle = {
@@ -43,13 +46,11 @@ const inputBoxStyle = {
   fontSize: '14px',
   margin: '8px 0',
   outline: 'none',
-  fontFamily: "'Poppins', sans-serif"
 };
 
 const opt_des = {
     position: 'absolute',
     top: '15%',
-    fontFamily: "'Poppins', sans-serif",
     fontSize: '12px'
 }
 
@@ -90,7 +91,7 @@ const inputContainerStyle2 = {
 
 const inputIconStyle = {
   position: 'absolute',
-  top: '35%',
+  top: '60%',
   right: '8px',
   transform: 'translateY(-50%)',
   color: '#333',
@@ -109,7 +110,6 @@ const text = {
     top: '25%',
     opacity: '0.5',
     fontSize: '12px',
-    fontFamily: "'Poppins', sans-serif"
 }
 
 const buttonStyle = {
@@ -123,7 +123,6 @@ const buttonStyle = {
   position: 'absolute',
   top: '90%',
   left: '5%',
-  fontFamily: "'Poppins', sans-serif"
 };
 
 const resetStyle = {
@@ -175,8 +174,9 @@ const ForgotPassword = () => {
     const send_otp_fun = async () => {
         setIsLoading(true);
         const data = {
+            brandId: process.env.REACT_APP_BRAND_ID,
             isForget: true,
-            Phone: number,
+            phone: number,
             userType: 2,
         };
         await api.postOtp(send_otp, data).then((response) => {
@@ -193,6 +193,7 @@ const ForgotPassword = () => {
             setIsLoading(true);
     
             const formatedData = {
+                brandId: process.env.REACT_APP_BRAND_ID,
                 otp: otpStr,
                 newPassword: newPassword,
                 confirmPassword: confirmPassword,
@@ -274,7 +275,7 @@ const ForgotPassword = () => {
                     </a>
                     <div style={headingStyle}>Forgot Password?</div>
                     <div style={inputContainerStyle}>
-                        <div style={{ fontSize: '14px', fontFamily: "'Poppins', sans-serif" }}>Phone Number</div>
+                        <div style={label}>Phone Number</div>
                         <input type="text" placeholder="Enter Phone Number" style={inputBoxStyle} name="phoneNo" value={number} onChange={handleInputChange} />
                         <span style={inputIconStyle}><img src={Phone} /></span>
                     </div>
@@ -338,10 +339,10 @@ const ForgotPassword = () => {
                         </button>
                         <div style={headingStyle}>New Password</div>
                         <div style={inputContainerStyle}>
-                            <div style={{ fontSize: '14px' }}>New Password</div>
+                            <div style={label}>New Password</div>
                             <input id="password" type="password" style={inputBoxStyle} name="new" value={newPassword} onChange={(e)=>setNewPassword(e.target.value)} />
                             <span style={inputIconStyle} onClick={() => passwordView("password")}><img src={View} /></span>
-                            <div style={{ fontSize: '14px' }}>Confirm Password</div>
+                            <div style={label}>Confirm Password</div>
                             <input id="password1" type="password" style={inputBoxStyle} name="confirm" value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)} />
                             <span style={inputIconStyle1} onClick={() => passwordView("password1")}><img src={View} /></span>
                         </div>

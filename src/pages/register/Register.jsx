@@ -162,8 +162,8 @@ const Register = () => {
     //const { brand_id, branch_id } = getUserBrandMemberId();
     const [regFail, setRegFail] = useState(false);
     const [failtext, setFailtext] = useState(false);
-    const brand_id = process.env.brand_id;
-    const branch_id = process.env.branch_id;
+    const brand_id = process.env.REACT_APP_BRAND_ID;
+    const branch_id = process.env.REACT_APP_BRANCH_ID;
     const [data, setData] = useState({
         name: null,
         phoneNo: null,
