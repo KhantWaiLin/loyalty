@@ -49,6 +49,11 @@ const TermsConditions = () => {
               <p>We may request access to certain features on your mobile device to enhance your experience with the application.</p>
             </div>
             <div className="sub-section">
+              <h2 className="highlight">Camera and Photos</h2>
+              <p>Our serices require us to scan QR code from your device's camera and to upload profile picture
+from your device's camera and photos. For example, you won't be able to send snaps or upload photos from your camera roll unless we can access your camera or photos.</p>
+            </div>
+            <div className="sub-section">
               <h2 className="highlight">Push Notifications</h2>
               <p>With your permission, we may send you push notifications regarding your account or updates to the application. You have the option to opt-out of these notifications in your device settings.</p>
             </div>
@@ -70,11 +75,6 @@ const TermsConditions = () => {
             <div className="sub-section">
               <h2 className="highlight">SECURITY OF YOUR INFORMATION</h2>
               <p>We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable, and no method of data transmission can be guaranteed against any interception or other type of misuse. Any information disclosed online is vulnerable to interception and misuse by unauthorized parties. Therefore, we cannot guarantee complete security if you provide personal information.</p>
-            </div>
-            <div className="sub-section">
-              <h2 className="highlight">Camera and Photos</h2>
-              <p>Our serices require us to scan QR code from your device's camera and to upload profile picture
-from your device's camera and photos. For example, you won't be able to send snaps or upload photos from your camera roll unless we can access your camera or photos.</p>
             </div>
           </div>
         </div>
