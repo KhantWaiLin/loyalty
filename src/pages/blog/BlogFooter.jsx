@@ -24,6 +24,10 @@ const styles = {
         marginLeft: '20px',
         marginRight: '20px'
     },
+    icon: {
+        width: "25px",
+        height: "25px"
+    }
 };
 
 const BlogFooter = ({ BlogId, isLiked, like, comment, commentLength, footerOpen, setFooterOpen}) => {
@@ -45,8 +49,6 @@ const BlogFooter = ({ BlogId, isLiked, like, comment, commentLength, footerOpen,
         }
     }, [footerOpen, isCommentListOpen]);
 
-    
-  
     const react = async () => {
       try {
         const response = await api.postByBody(blog_react, {
@@ -77,10 +79,7 @@ const BlogFooter = ({ BlogId, isLiked, like, comment, commentLength, footerOpen,
                     src={liked ? Like : Unlike}
                     alt="like-icon"
                     className="w-full h-full"
-                    style={{
-                        width: iconSize,
-                        height: iconSize
-                    }}
+                    style={styles.icon}
                 />
                 <span className={`text-[#667085] text-[${iconSize}] font-medium`}>
                     {likeCount ? likeCount : like}

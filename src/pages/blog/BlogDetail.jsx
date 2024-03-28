@@ -10,80 +10,7 @@ import BlogModel from "./BlogModel";
 import CommentBox from "./CommentBox";
 import { getUserBrandMemberId } from "../../utils/getBrandUserId";
 
-const iconStyle = {
-    position: 'absolute',
-    left: '15px',
-    top: '52px',
-    backgroundColor: '#FAFAFA',
-    padding: '10px',
-    border: '1px',
-    borderRadius: '5px'
-}
-
-const saveStyle = {
-    position: 'absolute',
-    left: '85%',
-    top: '55px',
-    backgroundColor: '#FAFAFA',
-    border: '1px',
-    padding: '10px',
-    borderRadius: '5px'
-}
-
-const title_style = {
-    marginLeft: '15px',
-    marginTop: '75px',
-    fontSize: '16px',
-    color: "#48505E",
-}
-
-const date_style = {
-    marginLeft: '15px',
-    marginTop: '12px',
-    fontSize: '12px',
-    color: "#48505E",
-}
-
-const image = {
-    marginTop: '24px',
-    marginLeft: '15px',
-    width: '380px',
-    height: '175px',
-    border: '5.29px linear-gradient(#1746A2, #FFFFFF) solid',
-    borderRadius: '5px',
-}
-
-const blog_content = {
-    marginTop: '5px',
-    left: '15px',
-    textIndent: '50px',
-    textAlign: 'justify',
-    width: '92%',
-    height: '40%',
-    overflow: 'auto',
-    fontSize: '12px'
-}
-
-const commentSection = {
-    position: 'absolute',
-    top: '96%'
-}
-
-const headingStyle = {
-    position: 'absolute',
-    left: '40%',
-    top: '1%',
-    fontSize: '16px',
-    color: "#48505E",
-}
-
-const comments = {
-    position: 'absolute',
-    top: '10%',
-    width: '98%',
-    height: '85%',
-    overflowY: 'auto',
-}
+import './blogdetail.scss';
 
 const BlogDetail = () => {
     const { id } = useParams();
@@ -186,22 +113,22 @@ const BlogDetail = () => {
     }
 
     return (
-        <div style={{fontFamily: "'Poppins', sans-serif",}} className="text-black-500 text-lg">
-            <a style={iconStyle} href="/bloglist">
+        <div className="body-style text-black-500 text-lg">
+            <a className='icon-style' href="/bloglist">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                 </svg>
             </a>
             <button onClick={savedBlog}>
-                <svg style={saveStyle} xmlns="http://www.w3.org/2000/svg" fill={saved ? 'red' : 'none'} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-10 h-10">
+                <svg xmlns="http://www.w3.org/2000/svg" fill={saved ? 'red' : 'none'} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="save-style w-10 h-10">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
                 </svg>
             </button>
 
-            <div style={title_style}>{blogDetail?.title}</div>
-            <div style={date_style}>{blogDetail?.createdDate} by {blogDetail?.author}</div>
-            <img style={image} src={blogDetail?.image} alt="blog" />
-            <div style={blog_content} className="no-scrollbar">
+            <div className='title-style'>{blogDetail?.title}</div>
+            <div className='date-style'>{blogDetail?.createdDate} by {blogDetail?.author}</div>
+            <img className='image-style' src={blogDetail?.image} alt="blog" />
+            <div className='blog-content-style no-scrollbar'>
                 {blogDetail?.description}
             </div>
             <BlogFooter
@@ -214,8 +141,8 @@ const BlogDetail = () => {
                 setFooterOpen={setFooterOpen}
             />
             <BlogModel isOpen={isModalOpen} onClose={closeModal}>
-                <div style={headingStyle}>Comments</div>
-                <div style={comments} className="no-scrollbar">
+                <div className='heading-style'>Comments</div>
+                <div className='comments-style no-scrollbar'>
                     {commentListFromComment
                         ? commentListFromComment.map((comment) =>
                             comment.comment ? (
@@ -228,7 +155,7 @@ const BlogDetail = () => {
                             ) : null
                         )}
                 </div>
-                <div style={commentSection}>
+                <div className='comment-section-style'>
                     <CommentBox BlogId={id} data={dataFromComment} />
                 </div>
             </BlogModel>

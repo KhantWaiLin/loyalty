@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 const cardStyle = {
   display: 'flex',
@@ -28,22 +29,25 @@ const textSectionStyle = {
   justifyContent: 'space-between',
 };
 
-function SavedBlogCard({ blog, link }) {
+function SavedBlogCard({ blog }) {
   const url = '/blog/';
-
-  const formatDate = (dateString) => {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const formattedDate = new Date(dateString).toLocaleDateString(undefined, options);
-    return formattedDate;
+  SavedBlogCard.propTypes = {
+    blog: PropTypes.shape({
+      blogId: PropTypes.string,
+      image: PropTypes.string,
+      title: PropTypes.string,
+      createdDate: PropTypes.string,
+      author: PropTypes.string
+    }),
   };
 
   return (
-    <a href={url + blog?.blogId} style={{...cardStyle,fontFamily: "'Poppins', sans-serif"}}>
+    <a href={url + blog?.blogId} style={cardStyle}>
       <div style={imageSectionStyle}>
         <img
           style={imageStyle}
           src={blog?.image}
-          alt="Card Image"
+          alt="Card"
         />
       </div>
       <div style={textSectionStyle}>

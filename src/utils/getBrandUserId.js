@@ -1,7 +1,6 @@
 export const getUserBrandMemberId = () => {
   const auth_data = localStorage.getItem("authenticate_data");
-  let brand_id = '265f0dff-a30a-11ed-b26e-6045bdd63acb';
-  let branch_id = '8cd5fe32-a30a-11ed-b26e-6045bdd63acb';
+  let brand_id = null;
   let user_id = null;
   let member_id = null;
   if (auth_data) {
@@ -10,5 +9,5 @@ export const getUserBrandMemberId = () => {
     user_id = parsed_data?.memberID;
     member_id = parsed_data?.userId;
   }
-  return { brand_id, user_id, member_id, branch_id };
+  return { brand_id, user_id, member_id };
 };

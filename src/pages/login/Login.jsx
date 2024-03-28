@@ -88,7 +88,7 @@ const buttonStyle = {
 };
 
 const checkbox = {
-  marginTop: "75%",
+  marginTop: "90%",
   position: 'relative',
   top: '0.2rem',
   fontSize: '1rem',
@@ -158,15 +158,20 @@ const Login = () => {
         if (response.data?.value?.code === 200) {
           return navigate("/home");
         }
-        return;
       });
   };
 
-  check_token();
+  //check_token();
 
   const onSubmit = (e) => {
+    const brandId = process.env.REACT_APP_BRAND_ID;
+    console.log(brandId);
+    const formData = {
+      ...form,
+      brandId: brandId
+    };
     e.preventDefault();
-    axios.post(api_url, form).then((response) => {
+    axios.post(api_url, formData).then((response) => {
       if (response?.data?.code === 200) {
         const strigify_data = JSON.stringify(response?.data?.data);
         localStorage.setItem("authenticate_data", strigify_data);
@@ -214,7 +219,7 @@ const Login = () => {
     <div>
       <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
         <a style={iconStyle} href="/">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
           </svg>
         </a>
@@ -226,13 +231,13 @@ const Login = () => {
           <div style={inputContainerStyle}>
             <div style={{ fontSize: '14px', fontFamily: "'Poppins', sans-serif"}}>Phone Number</div>
             <input type="text" style={inputBoxStyle} name="userName" value={form.userName} onChange={onChange} />
-            <span style={inputIconStyle}><img src={Phone} /></span>
+            <span style={inputIconStyle}><img src={Phone} alt="ph-icon" /></span>
             <br />
             <div style={{ fontSize: '14px', fontFamily: "'Poppins', sans-serif"}}>Password</div>
             <input type="password" id="password" placeholder="Enter Password" style={inputBoxStyle} name="password" value={form.password} onChange={onChange} />
-            <span style={passwordVisible} onClick={passwordView}>
+            <div style={passwordVisible} onClick={passwordView}>
               <img src={View} />
-            </span>
+            </div>
           </div>
           <input
             style={checkbox}

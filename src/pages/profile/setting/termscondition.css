@@ -1,0 +1,23 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+h1 {
+    text-align: center;
+}
+h2 {
+    margin-top: 20px;
+}
+p {
+    line-height: 1.6;
+}
+.highlight {
+    color: black;
+    font-weight: bold;
+}
+.section {
+    margin-top: 40px;
+}
+.sub-section {
+    margin-top: 20px;
+}

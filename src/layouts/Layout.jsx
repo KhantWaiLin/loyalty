@@ -6,6 +6,7 @@ import { active_home, home } from "./icons/HomeIcon";
 import QR from "./icons/QRIcon";
 import { reward, active_reward } from "./icons/RewardIcon";
 import { user, user_active } from "./icons/UserIcon";
+import './layout.scss'
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -44,9 +45,11 @@ const Layout = ({ children }) => {
     return true;
   }, [location.pathname]);
 
+  const isTermsPage = useMemo(() => location.pathname.includes('/profile/terms'), [location.pathname]);
+
   return (
-    <div className="w-[100vw] flex  justify-center h-[100vh]">
-      <div className="w-[428px] justify-between relative h-full bg-[#FFF]">
+    <div className={` ${isTermsPage ? 'desktop-view' : 'w-[100vw] flex  justify-center h-[100vh]'}`}>
+      <div className={`${isTermsPage ? 'desktop-terms' : 'w-[428px] justify-between relative h-full bg-[#FFF] poppins '}`}>
         {children}
         {isShowFooter && <Footer buttons={buttons} />}
       </div>

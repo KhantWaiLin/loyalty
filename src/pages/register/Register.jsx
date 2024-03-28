@@ -159,9 +159,11 @@ const Register = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [countdown, setCountdown] = useState(60);
     const { send_otp, register_user } = api_routes;
-    const { brand_id, branch_id } = getUserBrandMemberId();
+    //const { brand_id, branch_id } = getUserBrandMemberId();
     const [regFail, setRegFail] = useState(false);
     const [failtext, setFailtext] = useState(false);
+    const brand_id = process.env.REACT_APP_BRAND_ID;
+    const branch_id = process.env.REACT_APP_BRANCH_ID;
     const [data, setData] = useState({
         name: null,
         phoneNo: null,
@@ -200,8 +202,9 @@ const Register = () => {
     const send_otp_fun = async () => {
         setIsLoading(true);
         const data = {
+            brandId: process.env.REACT_APP_BRAND_ID,
             isForget: false,
-            Phone: number,
+            phone: number,
             userType: 2,
         };
         await api.postOtp(send_otp, data).then((response) => {
