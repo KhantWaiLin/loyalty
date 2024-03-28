@@ -18,31 +18,30 @@ const iconStyle = {
   left: '15px',
   top: '52px',
   backgroundColor: '#FAFAFA',
-  padding: '8px',
+  padding: '10px',
   border: '1px solid #ddd',
   borderRadius: '5px'
 }
 
 const inputContainerStyle = {
   width: '90%',
-  position: 'absolute',
-  top: '20%',
-  left: '5%'
+  marginTop: '114px',
+  marginLeft: '5%'
 };
 
 const headingStyle = {
   position: 'absolute',
-  left: '50%',
-  top: '60px',
+  marginLeft: '50%',
+  marginTop: '50px',
   transform: 'translateX(-50%)',
   fontSize: '16px',
+  color: "#48505E"
 }
 
 const inputContainerStyle2 = {
   width: '90%',
-  position: 'absolute',
-  top: '20%',
-  left: '5%',
+  marginTop: '24px',
+  marginLeft: '5%',
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
@@ -50,14 +49,13 @@ const inputContainerStyle2 = {
 };
 
 const countStyle = {
-  position: 'absolute',
-  top: '25%',
-  left: '50%'
+  marginTop: '24px',
+  marginLeft: '50%'
 }
 
 const opt_des = {
-  position: 'absolute',
-  top: '15%',
+  marginTop: '114px',
+  marginLeft: '5%'
 }
 
 const otpInputStyle = {
@@ -69,11 +67,13 @@ const otpInputStyle = {
   justifyContent: 'center',
   alignItems: 'flex-end',
   borderBottom: '1px solid #000',
-  opacity: '0.5'
+  opacity: '0.5',
+  fontSize: '24px'
 };
 
 const activeInputStyle = {
   borderBottomColor: 'blue',
+  color: '#0080FF',
 };
 
 const inputBoxStyle = {
@@ -88,8 +88,8 @@ const inputBoxStyle = {
 
 const phoneIconStyle = {
   position: 'absolute',
-  top: '65%',
-  right: '8px',
+  top: '180px',
+  right: '40px',
   transform: 'translateY(-50%)',
   color: '#333',
 }
@@ -97,7 +97,7 @@ const phoneIconStyle = {
 const buttonStyle = {
   width: '90%',
   padding: '10px',
-  backgroundColor: 'blue',
+  background: 'linear-gradient(213deg, #384bca 19.49%, #7b8cff 194.01%)',
   color: 'white',
   border: 'none',
   borderRadius: '5px',
@@ -219,7 +219,7 @@ const ChangeNumber = () => {
   return (
     <div>
       {activeTab === "tab 1" && (
-        <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
+        <div style={{fontFamily: "'Poppins', sans-serif",}} className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
           <a style={iconStyle} href="/profile">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
@@ -233,7 +233,7 @@ const ChangeNumber = () => {
         </div>
       )}
       {activeTab === "tab 2" && (
-        <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
+        <div style={{fontFamily: "'Poppins', sans-serif",}} className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
           <button style={iconStyle} onClick={() => setActiveTab("tab 1")}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
@@ -251,7 +251,7 @@ const ChangeNumber = () => {
 
       {activeTab === "tab 3" && (
         <>
-          <div className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
+          <div style={{fontFamily: "'Poppins', sans-serif",}} className="personal-information-wrapper flex flex-col p-4  w-full overflow-scroll no-scrollbar">
             <button style={iconStyle} onClick={() => setActiveTab("tab 1")}>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
@@ -259,7 +259,7 @@ const ChangeNumber = () => {
             </button>
             <div style={headingStyle}>{t('verification')}</div>
             <p style={opt_des}>
-              Enter the 6-digit codes sent to {number}
+              Enter the 6-digit codes sent to <span style={{color:'#0080FF'}}>{number}</span>
             </p>
             <div style={inputContainerStyle2}>
               {otp.map((digit, index) => (

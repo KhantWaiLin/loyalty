@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 
 const buttonStyle = {
-    background: 'blue',
+    background: 'linear-gradient(213deg, #384bca 19.49%, #7b8cff 194.01%)',
     color: '#fff',
     textAlign: 'left',
     padding: '10px',

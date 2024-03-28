@@ -38,7 +38,7 @@ function SavedBlogCard({ blog, link }) {
   };
 
   return (
-    <a href={url + blog?.blogId} style={cardStyle}>
+    <a href={url + blog?.blogId} style={{...cardStyle,fontFamily: "'Poppins', sans-serif"}}>
       <div style={imageSectionStyle}>
         <img
           style={imageStyle}

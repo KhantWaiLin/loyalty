@@ -6,6 +6,7 @@ import "./QrModal.scss";
 const QrModal = ({ setIsClick, image }) => {
   return (
     <div
+      style={{backgroundColor: 'rgba(0, 0, 0, 0.5)'}}
       className="qr-modal flex w-full h-full justify-center z-20 items-center absolute  left-0 top-0"
       onClick={() => setIsClick(false)}
     >

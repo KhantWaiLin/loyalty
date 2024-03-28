@@ -29,7 +29,8 @@ const btnStyle = {
 
 const blueBtnStyle = {
   ...btnStyle,
-  backgroundColor: '#0080FF',
+  // backgroundColor: '#0080FF',
+  background: 'linear-gradient(213deg, #384bca 19.49%, #7b8cff 194.01%)',
   color: 'white'
 };
 

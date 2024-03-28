@@ -101,13 +101,14 @@ const Home = () => {
       <div className="scroll-container w-full pb-5 overflow-scroll no-scrollbar">
         <div className="flex flex-col mb-6">
           <div className="flex justify-between mb-4">
-            <h1 className="text-[#48505E] font-medium text-[16px]">
+            <h1 style={{fontFamily: "'Poppins', sans-serif"}} className="text-[#48505E] font-medium text-[16px]">
               {t('promotions')}
             </h1>
             <a
               type="button"
-              className="text-[#384BCA] font-normal text-[14px]"
+              className="text-[#384BCA] font-normal text-[12px]"
               href="/promotionlist"
+              style={{fontFamily: "'Poppins', sans-serif"}}
             >
               {t('viewAll')}
             </a>
@@ -134,11 +135,12 @@ const Home = () => {
         </div>
         <div className="flex flex-col mb-6">
           <div className="flex justify-between mb-4">
-            <h1 className="text-[#48505E] font-medium text-[16px]">{t('services')}</h1>
+            <h1 style={{fontFamily: "'Poppins', sans-serif"}} className="text-[#48505E] font-medium text-[16px]">{t('services')}</h1>
             <a
               type="button"
               className="text-[#384BCA] font-medium text-[12px]"
               href="/servicelist"
+              style={{fontFamily: "'Poppins', sans-serif"}}
             >
               {t('viewAll')}
             </a>
@@ -163,13 +165,14 @@ const Home = () => {
         </div>
         <div className="flex flex-col">
           <div className="flex justify-between mb-4">
-            <h1 className="text-[#48505E] font-medium text-[16px]">
+            <h1 style={{fontFamily: "'Poppins', sans-serif"}} className="text-[#48505E] font-medium text-[16px]">
               {t('recBlogs')}
             </h1>
             <a
               type="button"
               className="text-[#384BCA] font-medium text-[12px]"
               href="/bloglist"
+              style={{fontFamily: "'Poppins', sans-serif"}}
             >
               {t('viewAll')}
             </a>

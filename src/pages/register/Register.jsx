@@ -127,7 +127,7 @@ const terms = {
 const buttonStyle = {
     width: '90%',
     padding: '10px',
-    backgroundColor: '#0080FF',
+    background: 'linear-gradient(213deg, #384bca 19.49%, #7b8cff 194.01%)',
     color: 'white',
     border: 'none',
     borderRadius: '5px',

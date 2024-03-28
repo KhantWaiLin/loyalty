@@ -5,6 +5,9 @@ import { LanguageContext } from "../../../LanguageContext";
 const headingStyle = {
   textAlign: 'center',
   marginTop: '23px',
+  fontFamily: "'Poppins', sans-serif",
+  fontSize: '16px',
+  color: "#48505E"
 };
 
 const iconStyle = {
@@ -12,21 +15,24 @@ const iconStyle = {
   left: '17px',
   top: '20px',
   backgroundColor: '#FAFAFA',
-  padding: '8px',
+  padding: '10px',
   border: '1px',
   borderRadius: '5px',
 };
 
 const sectionStyle = {
   display: 'flex',
-  marginTop: '10%',
-  marginLeft: '5%',
   justifyContent: 'space-between',
   alignItems: 'center',
   margin: '15px 0',
   fontSize: '14px',
   width: '90%'
 };
+
+const wholeSection = {
+  marginTop: '44px',
+  marginLeft: '15px',
+}
 
 const Setting = () => {
   const { t, changeLanguage } = useContext(LanguageContext);
@@ -45,31 +51,32 @@ const Setting = () => {
         </svg>
       </a>
       <h1 style={headingStyle}>{t('setting')}</h1>
-
-      <div style={sectionStyle}>
-        <div>{t('receiveNoti')}</div>
-        <label className="switch">
-          <input
-            type="checkbox"
-            checked={notification1}
-            onChange={() => setNotification1(!notification1)}
-          />
-          <span className="slider"></span>
-        </label>
+      <div style={wholeSection}>
+        <div style={sectionStyle}>
+          <div>{t('receiveNoti')}</div>
+          <label className="switch">
+            <input
+              type="checkbox"
+              checked={notification1}
+              onChange={() => setNotification1(!notification1)}
+            />
+            <span className="slider"></span>
+          </label>
+        </div>
+        <hr style={{ opacity: '0.5' }} />
+        <div style={sectionStyle}>
+          <div>{t('receiveEmail')}</div>
+          <label className="switch">
+            <input
+              type="checkbox"
+              checked={notification2}
+              onChange={() => setNotification2(!notification2)}
+            />
+            <span className="slider"></span>
+          </label>
+        </div>
+        <hr style={{ opacity: '0.5' }} />
       </div>
-      <hr style={{ opacity: '0.5' }} />
-      <div style={sectionStyle}>
-        <div>{t('receiveEmail')}</div>
-        <label className="switch">
-          <input
-            type="checkbox"
-            checked={notification2}
-            onChange={() => setNotification2(!notification2)}
-          />
-          <span className="slider"></span>
-        </label>
-      </div>
-      <hr style={{ opacity: '0.5' }} />
     </div>
   );
 };

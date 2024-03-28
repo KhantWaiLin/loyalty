@@ -15,7 +15,7 @@ const iconStyle = {
     left: '15px',
     top: '52px',
     backgroundColor: '#FAFAFA',
-    padding: '8px',
+    padding: '10px',
     border: '1px',
     borderRadius: '5px'
 }
@@ -26,27 +26,27 @@ const saveStyle = {
     top: '55px',
     backgroundColor: '#FAFAFA',
     border: '1px',
-    padding: '8px',
+    padding: '10px',
     borderRadius: '5px'
 }
 
 const title_style = {
-    position: 'absolute',
-    left: '15px',
-    top: '100px',
+    marginLeft: '15px',
+    marginTop: '75px',
+    fontSize: '16px',
+    color: "#48505E",
 }
 
 const date_style = {
-    position: 'absolute',
-    left: '15px',
-    top: '20%',
-    fontSize: '10px'
+    marginLeft: '15px',
+    marginTop: '12px',
+    fontSize: '12px',
+    color: "#48505E",
 }
 
 const image = {
-    position: 'absolute',
-    top: '25%',
-    left: '15px',
+    marginTop: '24px',
+    marginLeft: '15px',
     width: '380px',
     height: '175px',
     border: '5.29px linear-gradient(#1746A2, #FFFFFF) solid',
@@ -54,8 +54,7 @@ const image = {
 }
 
 const blog_content = {
-    position: 'absolute',
-    top: '50%',
+    marginTop: '5px',
     left: '15px',
     textIndent: '50px',
     textAlign: 'justify',
@@ -73,7 +72,9 @@ const commentSection = {
 const headingStyle = {
     position: 'absolute',
     left: '40%',
-    top: '1%'
+    top: '1%',
+    fontSize: '16px',
+    color: "#48505E",
 }
 
 const comments = {
@@ -185,7 +186,7 @@ const BlogDetail = () => {
     }
 
     return (
-        <div className="text-black-500 text-lg">
+        <div style={{fontFamily: "'Poppins', sans-serif",}} className="text-black-500 text-lg">
             <a style={iconStyle} href="/bloglist">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />

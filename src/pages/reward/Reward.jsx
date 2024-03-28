@@ -59,7 +59,7 @@ const Reward = () => {
   return (
     <section className="reward-wrapper p-4 w-full overflow-hidden no-scrollbar">
       <div className="flex w-full justify-between mt-5 items-center mb-6">
-        <h1 className="flex w-auto flex-1 text-[#48505E] justify-center items-center text-[16px] font-medium">
+        <h1 style={{fontFamily: "'Poppins', sans-serif",}} className="flex w-auto flex-1 text-[#48505E] justify-center items-center text-[16px] font-medium">
           {t('rewards')}
         </h1>
         {/* <button

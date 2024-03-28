@@ -30,7 +30,7 @@ const BlogCard = ({ blog, onClick }) => {
       </div>
       <div className="w-full flex flex-col gap-1">
         <div className="w-full flex flex-col gap-1">
-          <h4 className="w-full text-[14px] font-medium leading-6 justify-start">
+          <h4 style={{fontFamily: "'Poppins', sans-serif"}} className="w-full text-[14px] font-medium leading-6 justify-start">
             {blog?.title?.length > MAX_WORDS
               ? blog?.title?.slice(0, MAX_WORDS) + "..."
               : blog?.title}

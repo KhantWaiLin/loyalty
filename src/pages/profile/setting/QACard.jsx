@@ -1,7 +1,7 @@
 import React from "react";
 
 const buttonStyle = {
-    background: 'blue',
+    background: 'linear-gradient(213deg, #384bca 19.49%, #7b8cff 194.01%)',
     color: '#fff',
     opacity: '0.7',
     textAlign: 'left',

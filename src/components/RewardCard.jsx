@@ -16,7 +16,7 @@ const RewardCard = ({ reward, onClick }) => {
           />
         </div>
       )}
-      <div className="w-full flex flex-col items-center justify-center">
+      <div style={{fontFamily: "'Poppins', sans-serif",}} className="w-full flex flex-col items-center justify-center">
         <h1 className="overflow-hidden w-[100%] text-[#48505E] text-[12px] text-center font-medium text-ellipsis whitespace-nowrap ">
           {reward?.name}
         </h1>
