@@ -202,8 +202,9 @@ const Register = () => {
     const send_otp_fun = async () => {
         setIsLoading(true);
         const data = {
+            brandId: process.env.REACT_APP_BRAND_ID,
             isForget: false,
-            Phone: number,
+            phone: number,
             userType: 2,
         };
         await api.postOtp(send_otp, data).then((response) => {

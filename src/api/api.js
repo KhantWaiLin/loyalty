@@ -42,13 +42,12 @@ const api = {
     try {
       const response = await axios.post(
         URL,
-        {},
+        data,
         {
           headers: {
             "Content-Type": "application/json",
             "Authorization": token,
           },
-          params: data,
         }
       );
       return { data: response.data, status: response.status };
