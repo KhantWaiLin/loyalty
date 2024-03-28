@@ -161,7 +161,7 @@ const Login = () => {
       });
   };
 
-  check_token();
+  //check_token();
 
   const onSubmit = (e) => {
     const brandId = process.env.REACT_APP_BRAND_ID;

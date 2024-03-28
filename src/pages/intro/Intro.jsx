@@ -35,7 +35,7 @@ const Intro = () => {
         });
     };
   
-    check_token();
+    // check_token();
   
 
     useEffect(() => {
