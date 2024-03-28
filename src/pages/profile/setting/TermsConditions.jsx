@@ -6,7 +6,6 @@ import './termscondition.css';
 const headingStyle = {
   textAlign: 'center',
   marginTop: '23px',
-  fontFamily: "'Poppins', sans-serif",
   fontSize: '16px',
   color: "#48505E"
 };
@@ -37,7 +36,7 @@ const TermsConditions = () => {
           </svg>
         </a>
         <h1 style={headingStyle}>{t('terms')}</h1>
-        <div style={{ marginTop: '5%', height: '80vh', overflow: 'auto', textAlign: 'justify', fontSize: '12px', color: "#48505E" }} className="no-scrollbar">
+        <div style={{ overflow: 'auto', textAlign: 'justify', fontSize: '12px', color: "#48505E" }} className="no-scrollbar">
           <div class="section">
             <h2 className="highlight">Collection of Your Information</h2>
             <p>We value your privacy and are committed to protecting your personal information. This Privacy Policy outlines how we collect, use, disclose, and safeguard your data when you use our mobile application. By accessing the application, you agree to the terms outlined in this Privacy Policy. If you do not agree, please refrain from using the application.</p>

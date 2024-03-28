@@ -37,16 +37,19 @@ const Layout = ({ children }) => {
       location.pathname.includes('/login') ||
       location.pathname.includes('/forgotpassword') ||
       location.pathname.includes('profile/change-password') ||
-      location.pathname.includes('/profile/help-center')
+      location.pathname.includes('/profile/help-center') ||
+      location.pathname.includes('/profile/terms')
     ) {
       return false;
     }
     return true;
   }, [location.pathname]);
 
+  const isTermsPage = useMemo(() => location.pathname.includes('/profile/terms'), [location.pathname]);
+
   return (
-    <div className="w-[100vw] flex  justify-center h-[100vh]">
-      <div className="w-[428px] justify-between relative h-full bg-[#FFF] poppins">
+    <div className={` ${isTermsPage ? 'desktop-view' : 'w-[100vw] flex  justify-center h-[100vh]'}`}>
+      <div className={`${isTermsPage ? 'desktop-terms' : 'w-[428px] justify-between relative h-full bg-[#FFF] poppins '}`}>
         {children}
         {isShowFooter && <Footer buttons={buttons} />}
       </div>
